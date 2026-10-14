@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Careers — Intelligent Realtors</title>
+<meta name="description" content="Join Intelligent Realtors: open roles in property advisory, marketing and operations across Noida and Gurugram.">
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 40 40%27><rect width=%2740%27 height=%2740%27 fill=%27%230a1628%27/><path d=%27M20 8 32 17v16h-8V25h-8v8H8V17z%27 fill=%27%23c9a961%27/></svg>">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400..700&family=Inter:wght@400;500;600;700&family=Stack+Sans+Headline:wght@200..700&display=swap" rel="stylesheet">
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.css" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css?v=muy4qb4j">
+<link rel="stylesheet" href="css/pages.css?v=muy4r5as">
+</head>
+<body>
+
+<!-- ============ NAVBAR ============ -->
+<header class="site-header" id="siteHeader">
+  <div class="container-xl">
+    <div class="nav-inner">
+
+      <a href="index.html" class="brand">
+        <span class="brand-mark">
+          <svg viewBox="0 0 40 40" aria-hidden="true">
+            <path d="M20 4 34 14v22H24V26h-8v10H6V14L20 4z"/>
+          </svg>
+        </span>
+        <span class="brand-text">
+          <strong>Intelligent</strong>
+          <em>Realtors</em>
+        </span>
+      </a>
+
+      <nav class="main-nav d-none d-xl-block" aria-label="Primary">
+        <ul class="list-unstyled mb-0">
+          <li class="has-drop">
+            <a href="city.html">Locations <svg viewBox="0 0 24 24" class="caret"><path d="M7 10l5 5 5-5z"/></svg></a>
+            <div class="drop drop--cols">
+              <h6>Where we operate</h6>
+              <div class="drop-grid">
+                <a href="city.html?city=noida">Noida <span>68</span></a>
+                <a href="city.html?city=gurugram">Gurugram <span>54</span></a>
+                <a href="city.html?city=greater-noida">Greater Noida <span>31</span></a>
+                <a href="city.html?city=mumbai">Mumbai <span>22</span></a>
+                <a href="city.html?city=bengaluru">Bengaluru <span>19</span></a>
+                <a href="city.html?city=pune">Pune <span>14</span></a>
+                <a href="city.html?city=ghaziabad">Ghaziabad <span>9</span></a>
+                <a href="city.html?city=lucknow">Lucknow <span>6</span></a>
+              </div>
+            </div>
+          </li>
+
+          <li class="has-drop">
+            <a href="developer.html">Developers <svg viewBox="0 0 24 24" class="caret"><path d="M7 10l5 5 5-5z"/></svg></a>
+            <div class="drop drop--cols">
+              <h6>Channel partner to</h6>
+              <div class="drop-grid">
+                <a href="developer.html?dev=godrej">Godrej Properties <span>14</span></a>
+                <a href="developer.html?dev=dlf">DLF <span>11</span></a>
+                <a href="developer.html?dev=m3m">M3M India <span>9</span></a>
+                <a href="developer.html?dev=ace">ACE Group <span>8</span></a>
+                <a href="developer.html?dev=bhutani">Bhutani Infra <span>7</span></a>
+                <a href="developer.html?dev=emaar">Emaar <span>6</span></a>
+                <a href="developer.html?dev=tata">Tata Housing <span>5</span></a>
+                <a href="developer.html?dev=prestige">Prestige Group <span>4</span></a>
+              </div>
+            </div>
+          </li>
+
+          <li class="has-mega">
+            <a href="index.html#projects">Projects <svg viewBox="0 0 24 24" class="caret"><path d="M7 10l5 5 5-5z"/></svg></a>
+            <div class="mega">
+              <div class="snap">
+
+                <div class="snap-col snap-cities">
+                  <h6>Select city</h6>
+                  <div class="snap-scroll" id="snapCities"></div>
+                </div>
+
+                <div class="snap-col snap-types">
+                  <h6>Property type</h6>
+                  <div id="snapTypes"></div>
+                </div>
+
+                <div class="snap-col snap-results">
+                  <div class="snap-head">
+                    <h5 id="snapTitle">All types in Noida</h5>
+                    <a href="index.html#projects" class="snap-all" id="snapAll">View all <i>&rarr;</i></a>
+                  </div>
+                  <div class="snap-list" id="snapList"></div>
+                  <a href="city.html" class="snap-cta" id="snapCta"><span>View all projects</span><i>&rarr;</i></a>
+                </div>
+
+              </div>
+            </div>
+          </li>
+
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="careers.html" class="active">Career</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="contact.html" class="btn-gold d-none d-md-inline-flex">Connect With Us</a>
+        <button class="burger d-xl-none" id="burger" aria-label="Open menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+
+    </div>
+  </div>
+</header>
+
+<!-- mobile drawer -->
+<div class="mobile-menu" id="mobileMenu">
+  <div class="mm-head">
+    <a href="index.html" class="brand mm-brand" aria-label="Intelligent Realtors home">
+      <span class="brand-mark"><svg viewBox="0 0 40 40" aria-hidden="true"><path d="M20 4 34 14v22H24V26h-8v10H6V14L20 4z"/></svg></span>
+      <span class="brand-text"><strong>Intelligent</strong><em>Realtors</em></span>
+    </a>
+    <button class="mm-close" id="mmClose" aria-label="Close menu">&times;</button>
+  </div>
+  <nav class="mm-links">
+    <a href="city.html"><span class="mm-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.3 7 13 7 13s7-7.7 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg></span><span class="mm-txt">Locations</span></a>
+    <a href="developer.html"><span class="mm-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 7V3H2v18h20V7H12zM6 19H4v-2h2v2zm0-4H4v-2h2v2zm0-4H4V9h2v2zm0-4H4V5h2v2zm4 12H8v-2h2v2zm0-4H8v-2h2v2zm0-4H8V9h2v2zm0-4H8V5h2v2zm10 12h-8v-2h2v-2h-2v-2h2v-2h-2V9h8v10zm-2-8h-2v2h2v-2zm0 4h-2v2h2v-2z"/></svg></span><span class="mm-txt">Developers</span></a>
+    <a href="index.html#projects"><span class="mm-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 2 12h3v8h6v-6h2v6h6v-8h3L12 3z"/></svg></span><span class="mm-txt">Projects</span></a>
+    <a href="about.html"><span class="mm-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg></span><span class="mm-txt">About Us</span></a>
+    <a href="careers.html"><span class="mm-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6h-4V4c0-1.1-.9-2-2-2h-4c-1.1 0-2 .9-2 2v2H4c-1.1 0-2 .9-2 2v11c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-6 0h-4V4h4v2z"/></svg></span><span class="mm-txt">Career</span></a>
+    <a href="contact.html"><span class="mm-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg></span><span class="mm-txt">Contact</span></a>
+  </nav>
+  <div class="mm-foot">
+    <a href="tel:+919811024680" class="mm-phone"><span class="mm-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1l-2.3 2.2z"/></svg></span>+91 98110 24680</a>
+    <p class="mm-addr"><span class="mm-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.3 7 13 7 13s7-7.7 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg></span>A-14, Sector 62, Noida 201301</p>
+    <a href="contact.html" class="btn-gold w-100 justify-content-center">Connect With Us</a>
+  </div>
+</div>
+<div class="mm-backdrop" id="mmBackdrop"></div>
+
+
+<main>
+
+<section class="cx-hero">
+  <div class="container-xl">
+    <div class="cx-head">
+      <span class="cx-pill reveal"><i></i>We&rsquo;re hiring &middot; 5 open roles</span>
+      <h1 class="cx-title reveal">Build a career that<br><em>moves families home</em></h1>
+      <p class="cx-lead reveal">Join a team of advisors and specialists who get it right for the client &mdash; with real responsibility early, honest mentoring and pay that rewards results.</p>
+      <div class="cx-actions reveal">
+        <a href="#openings" class="btn-navy">View open roles <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 11h12.2l-5.6-5.6L12 4l8 8-8 8-1.4-1.4 5.6-5.6H4z"/></svg></a>
+        <a href="#apply" class="cx-btn-light">Send your CV</a>
+      </div>
+    </div>
+
+    <div class="cx-bento">
+      <figure class="cxb cxb-a reveal-card">
+        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=1000&q=80" alt="An advisor at Intelligent Realtors" fetchpriority="high">
+        <figcaption class="cxb-chip"><b>Ananya Kapoor</b><span>Joined as an advisor in 2014 &middot; now Head, Residential</span></figcaption>
+      </figure>
+
+      <div class="cxb cxb-b reveal-card">
+        <div class="cxb-b-top"><h3>Why people join us</h3><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 6l2.3 2.3-4.9 4.9-4-4L2 16.6 3.4 18l6-6 4 4 6.3-6.3L22 12V6z"/></svg></span></div>
+        <p class="cxb-txt">Honest work, good people and real room to grow.</p>
+        <ul class="cx-list">
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm-1.2 14.5-4-4 1.4-1.4 2.6 2.6 5.6-5.6 1.4 1.4-7 7z"/></svg><span>Work with 20+ leading developers</span></li>
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm-1.2 14.5-4-4 1.4-1.4 2.6 2.6 5.6-5.6 1.4 1.4-7 7z"/></svg><span>A mentor from your first day</span></li>
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm-1.2 14.5-4-4 1.4-1.4 2.6 2.6 5.6-5.6 1.4 1.4-7 7z"/></svg><span>Leads and tools provided</span></li>
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm-1.2 14.5-4-4 1.4-1.4 2.6 2.6 5.6-5.6 1.4 1.4-7 7z"/></svg><span>Reviews every six months</span></li>
+        </ul>
+      </div>
+
+      <figure class="cxb cxb-c reveal-card"><img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=800&q=80" alt="Team celebrating a closing" loading="lazy"></figure>
+
+      <div class="cxb cxb-d reveal-card">
+        <div class="cxb-d-copy">
+          <h3>Grow faster with people who <em>back you</em></h3>
+          <p>We help you learn, earn and grow &mdash; with support at every step.</p>
+          <a href="#openings" class="btn-gold">See open roles <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 11h12.2l-5.6-5.6L12 4l8 8-8 8-1.4-1.4 5.6-5.6H4z"/></svg></a>
+        </div>
+        <ul class="cx-list cx-list--dark">
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm-1.2 14.5-4-4 1.4-1.4 2.6 2.6 5.6-5.6 1.4 1.4-7 7z"/></svg><span>Fixed pay plus uncapped incentives</span></li>
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm-1.2 14.5-4-4 1.4-1.4 2.6 2.6 5.6-5.6 1.4 1.4-7 7z"/></svg><span>Health cover for your family</span></li>
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm-1.2 14.5-4-4 1.4-1.4 2.6 2.6 5.6-5.6 1.4 1.4-7 7z"/></svg><span>Learning budget for courses</span></li>
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm-1.2 14.5-4-4 1.4-1.4 2.6 2.6 5.6-5.6 1.4 1.4-7 7z"/></svg><span>A clear path to team lead</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cx-sec" id="openings">
+  <div class="container-xl">
+    <div class="cx-rowhead">
+      <div class="reveal">
+        <h2 class="cx-h2">Open roles <em>right now</em></h2>
+        <p>Don&rsquo;t see your role? Send a general application &mdash; we always make time for good people.</p>
+      </div>
+    </div>
+
+    <form class="cx-search reveal" role="search" data-job-search>
+      <label class="cx-search-loc"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.3 7 13 7 13s7-7.7 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg><select name="loc" aria-label="Location"><option value="all">All locations</option><option value="noida">Noida</option><option value="gurugram">Gurugram</option></select></label>
+      <label class="cx-search-q"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6h-2a4 4 0 0 0-8 0H6a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2zm-6-2a2 2 0 0 1 2 2h-4a2 2 0 0 1 2-2z"/></svg><input type="search" name="q" placeholder="Search a position, e.g. Property Advisor" aria-label="Search positions" autocomplete="off"></label>
+      <button type="submit" class="cx-search-btn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 11h12.2l-5.6-5.6L12 4l8 8-8 8-1.4-1.4 5.6-5.6H4z"/></svg><span>Search</span></button>
+    </form>
+    <p class="cx-count reveal" data-job-count>Showing <b>5</b> roles</p>
+
+    <div class="cx-roles">
+      <div class="cx-jobs">
+        <article class="cx-job reveal-card" data-title="senior property advisor sales" data-loc="noida">
+          <button class="cx-job-h" aria-expanded="false">
+            <span class="cx-type">Full-time</span>
+            <span class="cx-job-name"><b class="cx-job-title">Senior Property Advisor</b><small>Sales</small></span>
+            <span class="cx-pos"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6h-2a4 4 0 0 0-8 0H6a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2zm-6-2a2 2 0 0 1 2 2h-4a2 2 0 0 1 2-2z"/></svg>3&ndash;6 years</span>
+            <span class="cx-loc"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.3 7 13 7 13s7-7.7 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>Noida</span>
+            <i class="cx-job-tg" aria-hidden="true"></i>
+          </button>
+          <div class="cx-job-b"><div class="cx-job-in">
+            <p class="cx-job-about">Own the full journey for a portfolio of families and investors &mdash; from the first call to the keys in their hand.</p>
+            <div class="cx-job-cols">
+              <div><h4>What you will do</h4><ul class="cx-list"><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm-1.2 14.5-4-4 1.4-1.4 2.6 2.6 5.6-5.6 1.4 1.4-7 7z"/></svg><span>Understand each client&rsquo;s budget, timeline and goals</span></li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm-1.2 14.5-4-4 1.4-1.4 2.6 2.6 5.6-5.6 1.4 1.4-7 7z"/></svg><span>Build honest shortlists and lead site visits</span></li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm-1.2 14.5-4-4 1.4-1.4 2.6 2.6 5.6-5.6 1.4 1.4-7 7z"/></svg><span>Negotiate with developers and guide clients through paperwork</span></li></ul></div>
+              <div><h4>What we are looking for</h4><ul class="cx-list"><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm-1.2 14.5-4-4 1.4-1.4 2.6 2.6 5.6-5.6 1.4 1.4-7 7z"/></svg><span>3+ years in real estate sales or advisory</span></li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm-1.2 14.5-4-4 1.4-1.4 2.6 2.6 5.6-5.6 1.4 1.4-7 7z"/></svg><span>Strong knowledge of the Noida and NCR market</span></li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm-1.2 14.5-4-4 1.4-1.4 2.6 2.6 5.6-5.6 1.4 1.4-7 7z"/></svg><span>Clear, honest communication in English and Hindi</span></li></ul></div>
+            </div>
+            <a href="#apply" class="cx-apply" data-apply-role="Senior Property Advisor">Apply for this role <i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v2h5.6L5 15.6 6.4 17 15 8.4V14h2V5z"/></svg></i></a>
+          </div></div>
+        </article>
+        <article class="cx-job reveal-card" data-title="property advisor - nri desk sales" data-loc="gurugram">
+          <button class="cx-job-h" aria-expanded="false">
+            <span class="cx-type">Full-time</span>
+            <span class="cx-job-name"><b class="cx-job-title">Property Advisor &mdash; NRI Desk</b><small>Sales</small></span>
+            <span class="cx-pos"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6h-2a4 4 0 0 0-8 0H6a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2zm-6-2a2 2 0 0 1 2 2h-4a2 2 0 0 1 2-2z"/></svg>2&ndash;5 years</span>
+            <span class="cx-loc"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.3 7 13 7 13s7-7.7 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>Gurugram</span>
+            <i class="cx-job-tg" aria-hidden="true"></i>
+          </button>
+          <div class="cx-job-b"><div class="cx-job-in">
+            <p class="cx-job-about">Help clients living abroad buy with confidence, through video walk-throughs and remote paperwork.</p>
+            <div class="cx-job-cols">
+              <div><h4>What you will do</h4><ul class="cx-list"><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm-1.2 14.5-4-4 1.4-1.4 2.6 2.6 5.6-5.6 1.4 1.4-7 7z"/></svg><span>Run video site visits for clients in the Gulf, UK and US</span></li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm-1.2 14.5-4-4 1.4-1.4 2.6 2.6 5.6-5.6 1.4 1.4-7 7z"/></svg><span>Coordinate documents and power of attorney</span></li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm-1.2 14.5-4-4 1.4-1.4 2.6 2.6 5.6-5.6 1.4 1.4-7 7z"/></svg><span>Keep clients updated through construction and handover</span></li></ul></div>
+              <div><h4>What we are looking for</h4><ul class="cx-list"><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm-1.2 14.5-4-4 1.4-1.4 2.6 2.6 5.6-5.6 1.4 1.4-7 7z"/></svg><span>2+ years in real estate or NRI client service</span></li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm-1.2 14.5-4-4 1.4-1.4 2.6 2.6 5.6-5.6 1.4 1.4-7 7z"/></svg><span>Comfortable working across time zones</span></li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm-1.2 14.5-4-4 1.4-1.4 2.6 2.6 5.6-5.6 1.4 1.4-7 7z"/></svg><span>Organised, patient and detail-minded</span></li></ul></div>
+            </div>
+            <a href="#apply" class="cx-apply" data-apply-role="Property Advisor - NRI Desk">Apply for this role <i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v2h5.6L5 15.6 6.4 17 15 8.4V14h2V5z"/></svg></i></a>
+          </div></div>
+        </article>
+        <article class="cx-job reveal-card" data-title="inside sales executive sales" data-loc="noida">
+          <button class="cx-job-h" aria-expanded="false">
+            <span class="cx-type">Full-time</span>
+            <span class="cx-job-name"><b class="cx-job-title">Inside Sales Executive</b><small>Sales</small></span>
+            <span class="cx-pos"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6h-2a4 4 0 0 0-8 0H6a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2zm-6-2a2 2 0 0 1 2 2h-4a2 2 0 0 1 2-2z"/></svg>0&ndash;2 years</span>
+            <span class="cx-loc"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.3 7 13 7 13s7-7.7 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>Noida</span>
+            <i class="cx-job-tg" aria-hidden="true"></i>
+          </button>
+          <div class="cx-job-b"><div class="cx-job-in">
+            <p class="cx-job-about">Be the first voice clients hear &mdash; understand their needs and set up the right advisor and site visit.</p>
+            <div class="cx-job-cols">
+              <div><h4>What you will do</h4><ul class="cx-list"><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm-1.2 14.5-4-4 1.4-1.4 2.6 2.6 5.6-5.6 1.4 1.4-7 7z"/></svg><span>Call and qualify new enquiries every day</span></li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm-1.2 14.5-4-4 1.4-1.4 2.6 2.6 5.6-5.6 1.4 1.4-7 7z"/></svg><span>Book site visits for the advisory team</span></li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm-1.2 14.5-4-4 1.4-1.4 2.6 2.6 5.6-5.6 1.4 1.4-7 7z"/></svg><span>Keep the CRM accurate and up to date</span></li></ul></div>
+              <div><h4>What we are looking for</h4><ul class="cx-list"><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm-1.2 14.5-4-4 1.4-1.4 2.6 2.6 5.6-5.6 1.4 1.4-7 7z"/></svg><span>Graduate in any stream; freshers welcome</span></li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm-1.2 14.5-4-4 1.4-1.4 2.6 2.6 5.6-5.6 1.4 1.4-7 7z"/></svg><span>Confident on the phone</span></li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm-1.2 14.5-4-4 1.4-1.4 2.6 2.6 5.6-5.6 1.4 1.4-7 7z"/></svg><span>Eager to learn the property market</span></li></ul></div>
+            </div>
+            <a href="#apply" class="cx-apply" data-apply-role="Inside Sales Executive">Apply for this role <i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v2h5.6L5 15.6 6.4 17 15 8.4V14h2V5z"/></svg></i></a>
+          </div></div>
+        </article>
+        <article class="cx-job reveal-card" data-title="digital marketing executive marketing" data-loc="noida">
+          <button class="cx-job-h" aria-expanded="false">
+            <span class="cx-type">Full-time</span>
+            <span class="cx-job-name"><b class="cx-job-title">Digital Marketing Executive</b><small>Marketing</small></span>
+            <span class="cx-pos"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6h-2a4 4 0 0 0-8 0H6a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2zm-6-2a2 2 0 0 1 2 2h-4a2 2 0 0 1 2-2z"/></svg>1&ndash;3 years</span>
+            <span class="cx-loc"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.3 7 13 7 13s7-7.7 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>Noida</span>
+            <i class="cx-job-tg" aria-hidden="true"></i>
+          </button>
+          <div class="cx-job-b"><div class="cx-job-in">
+            <p class="cx-job-about">Plan and run campaigns that bring in genuine enquiries for new launches.</p>
+            <div class="cx-job-cols">
+              <div><h4>What you will do</h4><ul class="cx-list"><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm-1.2 14.5-4-4 1.4-1.4 2.6 2.6 5.6-5.6 1.4 1.4-7 7z"/></svg><span>Run Google and Meta ad campaigns</span></li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm-1.2 14.5-4-4 1.4-1.4 2.6 2.6 5.6-5.6 1.4 1.4-7 7z"/></svg><span>Track leads, cost and results every week</span></li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm-1.2 14.5-4-4 1.4-1.4 2.6 2.6 5.6-5.6 1.4 1.4-7 7z"/></svg><span>Work with sales to improve lead quality</span></li></ul></div>
+              <div><h4>What we are looking for</h4><ul class="cx-list"><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm-1.2 14.5-4-4 1.4-1.4 2.6 2.6 5.6-5.6 1.4 1.4-7 7z"/></svg><span>1+ year running paid digital campaigns</span></li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm-1.2 14.5-4-4 1.4-1.4 2.6 2.6 5.6-5.6 1.4 1.4-7 7z"/></svg><span>Comfortable with numbers and reports</span></li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm-1.2 14.5-4-4 1.4-1.4 2.6 2.6 5.6-5.6 1.4 1.4-7 7z"/></svg><span>Real estate experience is a plus</span></li></ul></div>
+            </div>
+            <a href="#apply" class="cx-apply" data-apply-role="Digital Marketing Executive">Apply for this role <i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v2h5.6L5 15.6 6.4 17 15 8.4V14h2V5z"/></svg></i></a>
+          </div></div>
+        </article>
+        <article class="cx-job reveal-card" data-title="content & social media lead marketing" data-loc="noida">
+          <button class="cx-job-h" aria-expanded="false">
+            <span class="cx-type">Full-time</span>
+            <span class="cx-job-name"><b class="cx-job-title">Content &amp; Social Media Lead</b><small>Marketing</small></span>
+            <span class="cx-pos"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6h-2a4 4 0 0 0-8 0H6a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2zm-6-2a2 2 0 0 1 2 2h-4a2 2 0 0 1 2-2z"/></svg>2&ndash;4 years</span>
+            <span class="cx-loc"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.3 7 13 7 13s7-7.7 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>Noida / Hybrid</span>
+            <i class="cx-job-tg" aria-hidden="true"></i>
+          </button>
+          <div class="cx-job-b"><div class="cx-job-in">
+            <p class="cx-job-about">Tell the stories behind our projects and clients through simple, honest content.</p>
+            <div class="cx-job-cols">
+              <div><h4>What you will do</h4><ul class="cx-list"><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm-1.2 14.5-4-4 1.4-1.4 2.6 2.6 5.6-5.6 1.4 1.4-7 7z"/></svg><span>Plan and post content across our social channels</span></li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm-1.2 14.5-4-4 1.4-1.4 2.6 2.6 5.6-5.6 1.4 1.4-7 7z"/></svg><span>Shoot short videos at sites and events</span></li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm-1.2 14.5-4-4 1.4-1.4 2.6 2.6 5.6-5.6 1.4 1.4-7 7z"/></svg><span>Write clear project pages and newsletters</span></li></ul></div>
+              <div><h4>What we are looking for</h4><ul class="cx-list"><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm-1.2 14.5-4-4 1.4-1.4 2.6 2.6 5.6-5.6 1.4 1.4-7 7z"/></svg><span>2+ years in content or social media</span></li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm-1.2 14.5-4-4 1.4-1.4 2.6 2.6 5.6-5.6 1.4 1.4-7 7z"/></svg><span>A portfolio of work you are proud of</span></li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm-1.2 14.5-4-4 1.4-1.4 2.6 2.6 5.6-5.6 1.4 1.4-7 7z"/></svg><span>Good eye for photos and video</span></li></ul></div>
+            </div>
+            <a href="#apply" class="cx-apply" data-apply-role="Content & Social Media Lead">Apply for this role <i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v2h5.6L5 15.6 6.4 17 15 8.4V14h2V5z"/></svg></i></a>
+          </div></div>
+        </article>
+        <div class="cx-empty" data-job-empty hidden>
+          <b>No roles match your search.</b>
+          <span>Try another position or location &mdash; or <a href="#apply">send a general application</a>.</span>
+        </div>
+      </div>
+      <figure class="cx-roles-pic reveal">
+        <img src="https://images.unsplash.com/photo-1556761175-b413da4baf72?w=900&q=80" alt="Our team at work" loading="lazy">
+        <figcaption><b>5 roles open</b><span>across Noida and Gurugram</span></figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section class="cx-sec cx-sec--smoke">
+  <span class="pg-smoke pg-smoke--l" aria-hidden="true"></span>
+  <span class="pg-smoke pg-smoke--r" aria-hidden="true"></span>
+  <div class="container-xl">
+    <div class="cx-center reveal">
+      <h2 class="cx-h2">Benefits that <em>take care of you</em></h2>
+      <p>Life at Intelligent Realtors, beyond the pay slip.</p>
+    </div>
+    <div class="cx-perks">
+      <div class="cxk cxk--hero reveal-card">
+        <span class="ico-tile"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h12v2h-3.2c.5.6.9 1.3 1 2H18v2h-2.2c-.4 2.4-2.4 4.3-4.9 4.6L17 21h-2.8l-6-7.4V12h2.3c1.6 0 2.9-1.2 3.3-2.7H6V7h7.6c-.4-1.2-1.6-2-3.1-2H6V3z"/></svg></span>
+        <h3>Uncapped incentives</h3>
+        <p>Competitive commission on every closure, paid monthly with full transparency &mdash; your best month is never capped.</p>
+        <div class="cxk-stat"><b>Monthly</b><span>incentive payouts</span></div>
+      </div>
+      <div class="cxk reveal-card"><span class="ico-tile"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12V2zM8 4h6v8l-3-2-3 2V4z"/></svg></span><h3>Learning budget</h3><p>Courses, certifications and market workshops, paid for by us.</p></div>
+      <div class="cxk reveal-card"><span class="ico-tile"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21.4 10.6 20C5.4 15.4 2 12.3 2 8.5 2 5.4 4.4 3 7.5 3c1.7 0 3.4.8 4.5 2.1C13.1 3.8 14.8 3 16.5 3 19.6 3 22 5.4 22 8.5c0 3.8-3.4 6.9-8.6 11.5L12 21.4z"/></svg></span><h3>Health cover</h3><p>Medical insurance for you and your family from your first month.</p></div>
+      <div class="cxk reveal-card"><span class="ico-tile"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 6l2.3 2.3-4.9 4.9-4-4L2 16.6 3.4 18l6-6 4 4 6.3-6.3L22 12V6z"/></svg></span><h3>Clear growth path</h3><p>Reviews every six months, with promotions based on results.</p></div>
+      <div class="cxk reveal-card"><span class="ico-tile"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.9 6c-.2-.6-.8-1-1.4-1h-11c-.7 0-1.2.4-1.4 1L3 12v8a1 1 0 0 0 1 1h1a1 1 0 0 0 1-1v-1h12v1a1 1 0 0 0 1 1h1a1 1 0 0 0 1-1v-8l-2.1-6zM6.5 16a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm11 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zM5 11l1.5-4.5h11L19 11H5z"/></svg></span><h3>Travel covered</h3><p>Site visits and client meetings are on us.</p></div>
+      <div class="cxk reveal-card"><span class="ico-tile"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 5h-2V3H7v2H5a2 2 0 0 0-2 2v1a5 5 0 0 0 4.4 5A5 5 0 0 0 11 15.9V19H7v2h10v-2h-4v-3.1a5 5 0 0 0 3.6-2.9A5 5 0 0 0 21 8V7a2 2 0 0 0-2-2zM5 8V7h2v3.8A3 3 0 0 1 5 8zm14 0a3 3 0 0 1-2 2.8V7h2v1z"/></svg></span><h3>Recognition &amp; retreats</h3><p>Quarterly awards and an annual team retreat.</p></div>
+      <div class="cxk reveal-card"><span class="ico-tile"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-8 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0 2c-2.3 0-7 1.2-7 3.5V19h14v-2.5C15 14.2 10.3 13 8 13zm8 0c-.3 0-.6 0-1 .1 1.2.8 2 1.9 2 3.4V19h6v-2.5c0-2.3-4.7-3.5-7-3.5z"/></svg></span><h3>A mentor from day one</h3><p>Learn from advisors with a decade in the market.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="cx-sec" id="apply">
+  <div class="container-xl">
+    <div class="cx-apply-card reveal">
+      <div class="cx-apply-side">
+        <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1000&q=80" alt="" loading="lazy">
+        <div class="cx-apply-copy">
+          <h2>Send us <em>your CV</em></h2>
+          <p>Interested in a role above, or think you&rsquo;d fit somewhere else? We reply to every application within a week.</p>
+          <div class="cx-apply-info">
+            <a href="mailto:connect@intelligentrealtors.in"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg><span>connect@intelligentrealtors.in</span></a>
+            <a href="tel:+919811024680"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1l-2.3 2.2z"/></svg><span>+91 98110 24680</span></a>
+            <div><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.3 7 13 7 13s7-7.7 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg><span>Walk-ins: A-14, Sector 62, Noida &middot; Mon&ndash;Sat, 11am&ndash;4pm</span></div>
+          </div>
+        </div>
+      </div>
+      <form class="cx-form" data-form novalidate>
+        <div class="form-body">
+          <h3>Apply in five minutes</h3>
+          <div class="form-grid">
+            <div class="fld"><label>Full name <em>*</em></label><input name="name" type="text" placeholder="Your name" required><span class="fld-err">Please fill this in correctly.</span></div>
+            <div class="fld"><label>Email <em>*</em></label><input name="email" type="email" placeholder="you@example.com" required><span class="fld-err">Please fill this in correctly.</span></div>
+            <div class="fld"><label>Phone <em>*</em></label><input name="phone" type="tel" placeholder="+91" required><span class="fld-err">Please fill this in correctly.</span></div>
+            <div class="fld"><label>Role <em>*</em></label><select id="applyRole" name="role" required><option value="">Choose a role</option><option>Senior Property Advisor</option><option>Property Advisor - NRI Desk</option><option>Inside Sales Executive</option><option>Digital Marketing Executive</option><option>Content & Social Media Lead</option><option>General application</option></select><span class="fld-err">Please fill this in correctly.</span></div>
+            <div class="fld full"><label>Experience</label><select name="experience"><option value="">Years of experience</option><option>Fresher</option><option>1&ndash;2 years</option><option>3&ndash;5 years</option><option>6+ years</option></select></div>
+            <div class="fld full"><label>Upload CV</label><label class="file-drop"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 20h14v-2H5v2zm0-10h4v6h6v-6h4l-7-7-7 7z"/></svg><span><b data-file-label>Choose a file</b> &mdash; PDF or Word, up to 5 MB</span><input type="file" name="cv" accept=".pdf,.doc,.docx"></label></div>
+            <div class="full"><button class="btn-gold w-full" type="submit">Submit application <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 11h12.2l-5.6-5.6L12 4l8 8-8 8-1.4-1.4 5.6-5.6H4z"/></svg></button></div>
+          </div>
+        </div>
+        <div class="form-ok" role="status"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm-1.2 14.5-4-4 1.4-1.4 2.6 2.6 5.6-5.6 1.4 1.4-7 7z"/></svg><span>Thank you, <b data-who>there</b>. We have your application and will reply within a week.</span></div>
+      </form>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="site-footer" id="contact">
+  <div class="container-xl">
+
+    <div class="f-grid">
+      <div class="f-brand">
+        <a href="index.html" class="brand brand-footer">
+          <span class="brand-mark"><svg viewBox="0 0 40 40"><path d="M20 4 34 14v22H24V26h-8v10H6V14L20 4z"/></svg></span>
+          <span class="brand-text"><strong>Intelligent</strong><em>Realtors</em></span>
+        </a>
+        <p class="f-about">
+          A RERA-registered property advisory helping families and investors find
+          the right homes and income-yielding commercial spaces across Delhi NCR and four metros.
+        </p>
+        <div class="f-social">
+          <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" class="ic"><path d="M12 2.2c3.2 0 3.6 0 4.9.1 1.2.1 1.8.2 2.2.4.6.2 1 .5 1.4.9.4.4.7.8.9 1.4.2.4.4 1 .4 2.2.1 1.3.1 1.7.1 4.9s0 3.6-.1 4.9c-.1 1.2-.2 1.8-.4 2.2-.2.6-.5 1-.9 1.4-.4.4-.8.7-1.4.9-.4.2-1 .4-2.2.4-1.3.1-1.7.1-4.9.1s-3.6 0-4.9-.1c-1.2-.1-1.8-.2-2.2-.4-.6-.2-1-.5-1.4-.9-.4-.4-.7-.8-.9-1.4-.2-.4-.4-1-.4-2.2-.1-1.3-.1-1.7-.1-4.9s0-3.6.1-4.9c.1-1.2.2-1.8.4-2.2.2-.6.5-1 .9-1.4.4-.4.8-.7 1.4-.9.4-.2 1-.4 2.2-.4 1.3-.1 1.7-.1 4.9-.1zm0 3.8a6 6 0 1 0 0 12 6 6 0 0 0 0-12zm0 9.9a3.9 3.9 0 1 1 0-7.8 3.9 3.9 0 0 1 0 7.8zm7.6-10.1a1.4 1.4 0 1 1-2.8 0 1.4 1.4 0 0 1 2.8 0z"/></svg></a>
+          <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24" class="ic"><path d="M6.9 21H3.3V9.2h3.6V21zM5.1 7.6a2.1 2.1 0 1 1 0-4.2 2.1 2.1 0 0 1 0 4.2zM21 21h-3.6v-5.7c0-1.4 0-3.1-1.9-3.1s-2.2 1.5-2.2 3V21H9.7V9.2h3.4v1.6h.1a3.8 3.8 0 0 1 3.4-1.9c3.6 0 4.3 2.4 4.3 5.5V21z"/></svg></a>
+          <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24" class="ic"><path d="M23 12s0-3.3-.4-4.9a2.5 2.5 0 0 0-1.8-1.8C19.2 5 12 5 12 5s-7.2 0-8.8.4a2.5 2.5 0 0 0-1.8 1.8C1 8.7 1 12 1 12s0 3.3.4 4.9c.2.9.9 1.6 1.8 1.8 1.6.3 8.8.3 8.8.3s7.2 0 8.8-.4a2.5 2.5 0 0 0 1.8-1.8c.4-1.5.4-4.8.4-4.8zM9.7 15.1V8.9l6 3.1-6 3.1z"/></svg></a>
+        </div>
+      </div>
+
+      <nav class="f-col" aria-label="Explore">
+        <h6>Explore</h6>
+        <ul class="list-unstyled f-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About us</a></li>
+          <li><a href="index.html#launches">New launches</a></li>
+          <li><a href="index.html#projects">Projects</a></li>
+          <li><a href="index.html#partners">Partners</a></li>
+          <li><a href="index.html#testimonials">Testimonials</a></li>
+          <li><a href="careers.html">Careers</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+
+      <nav class="f-col" aria-label="Properties">
+        <h6>Properties</h6>
+        <ul class="list-unstyled f-links">
+          <li><a href="index.html#projects">Residential</a></li>
+          <li><a href="index.html#projects">Commercial</a></li>
+          <li><a href="index.html#launches">New launches</a></li>
+          <li><a href="index.html#projects">Ready to move</a></li>
+          <li><a href="index.html#projects">Pre-leased assets</a></li>
+          <li><a href="index.html#projects">Plots &amp; land</a></li>
+        </ul>
+      </nav>
+
+      <div class="f-col f-contact">
+        <h6>Get in touch</h6>
+        <a class="f-item" href="tel:+919811024680">
+          <span class="f-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1l-2.3 2.2z"/></svg></span>
+          <span><small>Call us</small><b>+91 98110 24680</b></span>
+        </a>
+        <a class="f-item" href="mailto:connect@intelligentrealtors.in">
+          <span class="f-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg></span>
+          <span><small>Email</small><b>connect@intelligentrealtors.in</b></span>
+        </a>
+        <div class="f-item">
+          <span class="f-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.3 7 13 7 13s7-7.7 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg></span>
+          <span><small>Visit</small><b>A-14, Second Floor, Sector 62, Noida, U.P. 201301</b></span>
+        </div>
+        <div class="f-item">
+          <span class="f-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm.8 10.6-3.9 2.3-.8-1.3 3.1-1.9V6h1.6v6.6z"/></svg></span>
+          <span><small>Office hours</small><b>Mon &ndash; Sat, 10:00 to 19:00 IST</b></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="f-mark" aria-hidden="true">Intelligent Realtors</div>
+
+    <div class="f-bottom">
+      <p>&copy; 2026 Intelligent Realtors Advisory LLP. All rights reserved.</p>
+      <p class="f-rera">RERA No. UPRERAAGT10452</p>
+      <div class="f-legal">
+        <a href="privacy-policy.html">Privacy policy</a>
+        <a href="terms-and-conditions.html">Terms &amp; conditions</a>
+      </div>
+    </div>
+
+    <p class="f-disclaimer">
+      Images on this page are indicative. Project details, pricing and configurations are
+      shared by developers and may change without notice. Nothing here constitutes an offer
+      or a guarantee of returns. Please verify all RERA particulars before booking.
+    </p>
+  </div>
+</footer>
+
+<!-- floating actions -->
+<div class="float-actions">
+  <a href="tel:+919811024680" class="fa-btn" aria-label="Call us"><svg viewBox="0 0 24 24"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.2.4 2.4.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.4 0 .8-.2 1l-2.3 2.2z"/></svg></a>
+  <a href="https://wa.me/919811024680" class="fa-btn fa-wa" aria-label="WhatsApp"><svg viewBox="0 0 24 24"><path d="M17.5 14.4c-.3-.2-1.7-.9-2-1-.3-.1-.5-.2-.7.1l-.9 1.1c-.2.2-.3.2-.6.1a8.2 8.2 0 0 1-4-3.5c-.3-.5.3-.5.8-1.5.1-.2 0-.4 0-.5l-1-2.3c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4a3.3 3.3 0 0 0-1 2.5c0 1.5 1.1 2.9 1.2 3.1.2.2 2.1 3.3 5.2 4.5 1.9.8 2.7.9 3.6.7.6-.1 1.7-.7 2-1.4.2-.7.2-1.2.2-1.4l-.7-.4zM12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2zm0 18.2c-1.6 0-3.1-.4-4.4-1.2l-.3-.2-3.1.8.8-3-.2-.3A8.2 8.2 0 1 1 12 20.2z"/></svg></a>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
+<script src="js/main.js?v=muy4r54r"></script>
+<script src="js/pages.js?v=muy4r5ap"></script>
+</body>
+</html>

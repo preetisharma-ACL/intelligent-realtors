@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Terms &amp; Conditions — Intelligent Realtors</title>
+<meta name="description" content="The terms that apply when you use the Intelligent Realtors website and our property advisory services.">
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 40 40%27><rect width=%2740%27 height=%2740%27 fill=%27%230a1628%27/><path d=%27M20 8 32 17v16h-8V25h-8v8H8V17z%27 fill=%27%23c9a961%27/></svg>">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400..700&family=Inter:wght@400;500;600;700&family=Stack+Sans+Headline:wght@200..700&display=swap" rel="stylesheet">
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.css" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css?v=muy4qb4j">
+<link rel="stylesheet" href="css/pages.css?v=muy4r5as">
+</head>
+<body>
+
+<!-- ============ NAVBAR ============ -->
+<header class="site-header" id="siteHeader">
+  <div class="container-xl">
+    <div class="nav-inner">
+
+      <a href="index.html" class="brand">
+        <span class="brand-mark">
+          <svg viewBox="0 0 40 40" aria-hidden="true">
+            <path d="M20 4 34 14v22H24V26h-8v10H6V14L20 4z"/>
+          </svg>
+        </span>
+        <span class="brand-text">
+          <strong>Intelligent</strong>
+          <em>Realtors</em>
+        </span>
+      </a>
+
+      <nav class="main-nav d-none d-xl-block" aria-label="Primary">
+        <ul class="list-unstyled mb-0">
+          <li class="has-drop">
+            <a href="city.html">Locations <svg viewBox="0 0 24 24" class="caret"><path d="M7 10l5 5 5-5z"/></svg></a>
+            <div class="drop drop--cols">
+              <h6>Where we operate</h6>
+              <div class="drop-grid">
+                <a href="city.html?city=noida">Noida <span>68</span></a>
+                <a href="city.html?city=gurugram">Gurugram <span>54</span></a>
+                <a href="city.html?city=greater-noida">Greater Noida <span>31</span></a>
+                <a href="city.html?city=mumbai">Mumbai <span>22</span></a>
+                <a href="city.html?city=bengaluru">Bengaluru <span>19</span></a>
+                <a href="city.html?city=pune">Pune <span>14</span></a>
+                <a href="city.html?city=ghaziabad">Ghaziabad <span>9</span></a>
+                <a href="city.html?city=lucknow">Lucknow <span>6</span></a>
+              </div>
+            </div>
+          </li>
+
+          <li class="has-drop">
+            <a href="developer.html">Developers <svg viewBox="0 0 24 24" class="caret"><path d="M7 10l5 5 5-5z"/></svg></a>
+            <div class="drop drop--cols">
+              <h6>Channel partner to</h6>
+              <div class="drop-grid">
+                <a href="developer.html?dev=godrej">Godrej Properties <span>14</span></a>
+                <a href="developer.html?dev=dlf">DLF <span>11</span></a>
+                <a href="developer.html?dev=m3m">M3M India <span>9</span></a>
+                <a href="developer.html?dev=ace">ACE Group <span>8</span></a>
+                <a href="developer.html?dev=bhutani">Bhutani Infra <span>7</span></a>
+                <a href="developer.html?dev=emaar">Emaar <span>6</span></a>
+                <a href="developer.html?dev=tata">Tata Housing <span>5</span></a>
+                <a href="developer.html?dev=prestige">Prestige Group <span>4</span></a>
+              </div>
+            </div>
+          </li>
+
+          <li class="has-mega">
+            <a href="index.html#projects">Projects <svg viewBox="0 0 24 24" class="caret"><path d="M7 10l5 5 5-5z"/></svg></a>
+            <div class="mega">
+              <div class="snap">
+
+                <div class="snap-col snap-cities">
+                  <h6>Select city</h6>
+                  <div class="snap-scroll" id="snapCities"></div>
+                </div>
+
+                <div class="snap-col snap-types">
+                  <h6>Property type</h6>
+                  <div id="snapTypes"></div>
+                </div>
+
+                <div class="snap-col snap-results">
+                  <div class="snap-head">
+                    <h5 id="snapTitle">All types in Noida</h5>
+                    <a href="index.html#projects" class="snap-all" id="snapAll">View all <i>&rarr;</i></a>
+                  </div>
+                  <div class="snap-list" id="snapList"></div>
+                  <a href="city.html" class="snap-cta" id="snapCta"><span>View all projects</span><i>&rarr;</i></a>
+                </div>
+
+              </div>
+            </div>
+          </li>
+
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="careers.html">Career</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="contact.html" class="btn-gold d-none d-md-inline-flex">Connect With Us</a>
+        <button class="burger d-xl-none" id="burger" aria-label="Open menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+
+    </div>
+  </div>
+</header>
+
+<!-- mobile drawer -->
+<div class="mobile-menu" id="mobileMenu">
+  <div class="mm-head">
+    <a href="index.html" class="brand mm-brand" aria-label="Intelligent Realtors home">
+      <span class="brand-mark"><svg viewBox="0 0 40 40" aria-hidden="true"><path d="M20 4 34 14v22H24V26h-8v10H6V14L20 4z"/></svg></span>
+      <span class="brand-text"><strong>Intelligent</strong><em>Realtors</em></span>
+    </a>
+    <button class="mm-close" id="mmClose" aria-label="Close menu">&times;</button>
+  </div>
+  <nav class="mm-links">
+    <a href="city.html"><span class="mm-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.3 7 13 7 13s7-7.7 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg></span><span class="mm-txt">Locations</span></a>
+    <a href="developer.html"><span class="mm-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 7V3H2v18h20V7H12zM6 19H4v-2h2v2zm0-4H4v-2h2v2zm0-4H4V9h2v2zm0-4H4V5h2v2zm4 12H8v-2h2v2zm0-4H8v-2h2v2zm0-4H8V9h2v2zm0-4H8V5h2v2zm10 12h-8v-2h2v-2h-2v-2h2v-2h-2V9h8v10zm-2-8h-2v2h2v-2zm0 4h-2v2h2v-2z"/></svg></span><span class="mm-txt">Developers</span></a>
+    <a href="index.html#projects"><span class="mm-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 2 12h3v8h6v-6h2v6h6v-8h3L12 3z"/></svg></span><span class="mm-txt">Projects</span></a>
+    <a href="about.html"><span class="mm-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg></span><span class="mm-txt">About Us</span></a>
+    <a href="careers.html"><span class="mm-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6h-4V4c0-1.1-.9-2-2-2h-4c-1.1 0-2 .9-2 2v2H4c-1.1 0-2 .9-2 2v11c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-6 0h-4V4h4v2z"/></svg></span><span class="mm-txt">Career</span></a>
+    <a href="contact.html"><span class="mm-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg></span><span class="mm-txt">Contact</span></a>
+  </nav>
+  <div class="mm-foot">
+    <a href="tel:+919811024680" class="mm-phone"><span class="mm-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1l-2.3 2.2z"/></svg></span>+91 98110 24680</a>
+    <p class="mm-addr"><span class="mm-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.3 7 13 7 13s7-7.7 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg></span>A-14, Sector 62, Noida 201301</p>
+    <a href="contact.html" class="btn-gold w-100 justify-content-center">Connect With Us</a>
+  </div>
+</div>
+<div class="mm-backdrop" id="mmBackdrop"></div>
+
+
+<main>
+
+<div class="legal-page">
+<div class="legal-smoke" aria-hidden="true"><span class="pg-smoke pg-smoke--l"></span><span class="pg-smoke pg-smoke--r"></span></div>
+
+<section class="lhero">
+  <div class="container-xl">
+    <nav class="crumbs reveal" aria-label="Breadcrumb"><a href="index.html">Home</a><i></i><span>Terms &amp; conditions</span></nav>
+    <h1 class="reveal">Terms &amp; <em>conditions</em></h1>
+    <p class="reveal">The ground rules for using our website and working with our advisors: what we do, what we don&rsquo;t, and what to check before you book.</p>
+  </div>
+</section>
+
+<section class="legal">
+  <div class="container-xl">
+    <div class="legal-grid">
+
+      <details class="legal-toc" open>
+        <summary>On this page</summary>
+        <ol>
+          <li><a href="#about-us-and-our-role">About us and our role</a></li>
+          <li><a href="#information-on-this-website">Information on this website</a></li>
+          <li><a href="#not-an-offer-or-professional-advice">Not an offer or professional advice</a></li>
+          <li><a href="#our-fees">Our fees</a></li>
+          <li><a href="#bookings-and-payments">Bookings and payments</a></li>
+          <li><a href="#your-responsibilities">Your responsibilities</a></li>
+          <li><a href="#enquiries-and-communication">Enquiries and communication</a></li>
+          <li><a href="#job-applications">Job applications</a></li>
+          <li><a href="#intellectual-property">Intellectual property</a></li>
+          <li><a href="#third-party-links">Third-party links</a></li>
+          <li><a href="#limitation-of-liability">Limitation of liability</a></li>
+          <li><a href="#indemnity">Indemnity</a></li>
+          <li><a href="#disclaimer">Disclaimer</a></li>
+          <li><a href="#governing-law-and-disputes">Governing law and disputes</a></li>
+          <li><a href="#changes-to-these-terms">Changes to these terms</a></li>
+          <li><a href="#contact-us">Contact us</a></li>
+        </ol>
+      </details>
+
+      <article class="legal-body">
+        <div class="legal-meta">
+          <span>Last updated: <b>14 October 2026</b></span>
+          <span>Applies to: <b>intelligentrealtors.in</b></span>
+          <span>RERA No. <b>UPRERAAGT10452</b></span>
+        </div>
+        <p>These terms apply to your use of the website at intelligentrealtors.in and to the property advisory services provided by Intelligent Realtors Advisory LLP (&ldquo;Intelligent Realtors&rdquo;, &ldquo;we&rdquo;, &ldquo;us&rdquo;). Please read them carefully. By using this website or our services, you agree to them. If you do not agree, please do not use the website.</p>
+
+        <section id="about-us-and-our-role">
+          <h2><span>01</span>About us and our role</h2>
+          <p>Intelligent Realtors is a real estate advisory registered with UP RERA as a real estate agent (registration number <strong>UPRERAAGT10452</strong>), with its office at A-14, Second Floor, Sector 62, Noida, Uttar Pradesh 201301.</p>
+          <p>For new projects, we act as an authorised channel partner of the developer. <strong>We are not the developer, builder or seller</strong> of any project shown on this website, and we do not own the properties listed. Any agreement to buy a property is between you and the developer or seller.</p>
+        </section>
+
+        <section id="information-on-this-website">
+          <h2><span>02</span>Information on this website</h2>
+          <p>Project details on this website, including prices, configurations, areas, amenities, possession dates, payment plans and offers, are based on information provided by developers. They are for general information only and may change without notice.</p>
+          <ul>
+            <li><strong>Prices</strong> are indicative starting prices and usually exclude GST, stamp duty, registration charges, parking, club membership, maintenance deposits and other charges, unless stated otherwise.</li>
+            <li><strong>Images, renders and videos</strong> are artistic impressions and may not show the actual property, finishes or surroundings.</li>
+            <li><strong>Areas</strong> may be shown as super area, built-up area or carpet area. The carpet area stated in the RERA-registered agreement is the one that applies.</li>
+            <li><strong>Availability</strong> is not guaranteed until a booking is confirmed by the developer.</li>
+          </ul>
+          <p>We take care to keep information accurate, but we do not guarantee that it is complete, current or free of errors.</p>
+        </section>
+
+        <section id="not-an-offer-or-professional-advice">
+          <h2><span>03</span>Not an offer or professional advice</h2>
+          <p>Nothing on this website is an offer, invitation to offer, or contract for the sale of any property. Our recommendations reflect our honest opinion based on the information available to us. They are not legal, financial, tax or investment advice, and we do not guarantee rental yields, appreciation or returns.</p>
+          <div class="legal-note">Before you book, please check the project&rsquo;s RERA registration on the relevant state RERA website and read the developer&rsquo;s agreement for sale. Where needed, take independent legal and financial advice.</div>
+        </section>
+
+        <section id="our-fees">
+          <h2><span>04</span>Our fees</h2>
+          <p>For primary sales of new projects, we are paid by the developer as their channel partner, so you pay the developer&rsquo;s price with no added fee from us. For resale, leasing, pre-leased assets or other services, any fee will be agreed with you in writing before we start work.</p>
+        </section>
+
+        <section id="bookings-and-payments">
+          <h2><span>05</span>Bookings and payments</h2>
+          <ul>
+            <li>All booking amounts and instalments must be paid <strong>directly to the developer or seller</strong>, into the bank account named in their official documents or the RERA-designated project account.</li>
+            <li>Intelligent Realtors will <strong>never</strong> ask you to pay property money into a personal account or to an individual advisor, or to pay in cash. If anyone asks you to, please refuse and report it to us at <a href="mailto:connect@intelligentrealtors.in">connect@intelligentrealtors.in</a>.</li>
+            <li>Cancellations, refunds, delays, construction quality and handover are governed by your agreement with the developer and applicable law. We will help you follow up, but the developer is responsible for these obligations.</li>
+          </ul>
+        </section>
+
+        <section id="your-responsibilities">
+          <h2><span>06</span>Your responsibilities</h2>
+          <p>When you use our website or services, you agree to:</p>
+          <ul>
+            <li>give us accurate, current information about yourself and your requirements;</li>
+            <li>use the website only for lawful purposes and not to send spam, malicious code or false enquiries;</li>
+            <li>not copy, scrape or misuse listings, prices or other content from the website; and</li>
+            <li>not try to gain unauthorised access to the website or our systems.</li>
+          </ul>
+        </section>
+
+        <section id="enquiries-and-communication">
+          <h2><span>07</span>Enquiries and communication</h2>
+          <p>When you submit a form, call or message us, you authorise Intelligent Realtors and the developers we represent to contact you by call, SMS, WhatsApp and email about your enquiry, even if your number is registered on the National Do Not Call registry. You can opt out at any time. How we handle your data is explained in our <a href="privacy-policy.html">Privacy Policy</a>.</p>
+        </section>
+
+        <section id="job-applications">
+          <h2><span>08</span>Job applications</h2>
+          <p>Applying for a role through our Careers page does not create any obligation to hire you. We will use your application only to assess you for current and suitable future roles, as described in our <a href="privacy-policy.html">Privacy Policy</a>. We never charge candidates a fee for any stage of recruitment.</p>
+        </section>
+
+        <section id="intellectual-property">
+          <h2><span>09</span>Intellectual property</h2>
+          <p>The text, design, logos, graphics and layout of this website belong to Intelligent Realtors or are used with permission. Developer names, logos, project names and images belong to their respective owners and are shown to identify projects we represent. You may view and print pages for your personal use, but you may not copy, republish or use our content for commercial purposes without our written permission.</p>
+        </section>
+
+        <section id="third-party-links">
+          <h2><span>10</span>Third-party links</h2>
+          <p>This website contains links to developer websites, maps, portals and social media. We do not control those sites and are not responsible for their content, availability or privacy practices.</p>
+        </section>
+
+        <section id="limitation-of-liability">
+          <h2><span>11</span>Limitation of liability</h2>
+          <p>To the extent permitted by law, Intelligent Realtors, its partners and employees are not liable for any indirect, incidental or consequential loss arising from your use of this website or reliance on the information on it, or from any act or failure of a developer, seller, bank or other third party.</p>
+          <p>Where we are found liable for a service we have provided directly to you, our total liability is limited to the fee, if any, that you paid us for that service.</p>
+        </section>
+
+        <section id="indemnity">
+          <h2><span>12</span>Indemnity</h2>
+          <p>You agree to indemnify Intelligent Realtors against any claims, losses or costs arising from your breach of these terms, your misuse of the website, or false information you provide to us.</p>
+        </section>
+
+        <section id="disclaimer">
+          <h2><span>13</span>Disclaimer</h2>
+          <p>This website and its content are provided on an &ldquo;as is&rdquo; and &ldquo;as available&rdquo; basis. We do not promise that the website will be uninterrupted, error-free or free of viruses. Project information is shared by developers and may change without notice. Nothing here constitutes an offer or a guarantee of returns. Please verify all RERA particulars before booking.</p>
+        </section>
+
+        <section id="governing-law-and-disputes">
+          <h2><span>14</span>Governing law and disputes</h2>
+          <p>These terms are governed by the laws of India. We will always try to resolve concerns informally first, so please contact us. If a dispute cannot be resolved, the courts at Gautam Buddh Nagar (Noida), Uttar Pradesh will have exclusive jurisdiction, without affecting any right you have to approach RERA or a consumer forum.</p>
+        </section>
+
+        <section id="changes-to-these-terms">
+          <h2><span>15</span>Changes to these terms</h2>
+          <p>We may update these terms from time to time. The latest version will always be on this page, with the date it was last changed at the top. Continuing to use the website after a change means you accept the updated terms.</p>
+        </section>
+
+        <section id="contact-us">
+          <h2><span>16</span>Contact us</h2>
+          <p>If you have any questions about these terms, please get in touch.</p>
+          
+          <div class="legal-contact">
+            <div><small>Registered office</small><b>Intelligent Realtors Advisory LLP</b></div>
+            <div><small>Email</small><b><a href="mailto:connect@intelligentrealtors.in">connect@intelligentrealtors.in</a></b></div>
+            <div><small>Phone</small><b><a href="tel:+919811024680">+91 98110 24680</a></b></div>
+            <div><small>Post</small><b>A-14, Second Floor, Sector 62, Noida, Uttar Pradesh 201301</b></div>
+          </div>
+        </section>
+      </article>
+
+    </div>
+  </div>
+</section>
+</div>
+<script>
+  /* contents list starts collapsed on small screens */
+  (function () { var t = document.querySelector('.legal-toc'); if (t && window.innerWidth < 992) t.open = false; })();
+</script>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="site-footer" id="contact">
+  <div class="container-xl">
+
+    <div class="f-grid">
+      <div class="f-brand">
+        <a href="index.html" class="brand brand-footer">
+          <span class="brand-mark"><svg viewBox="0 0 40 40"><path d="M20 4 34 14v22H24V26h-8v10H6V14L20 4z"/></svg></span>
+          <span class="brand-text"><strong>Intelligent</strong><em>Realtors</em></span>
+        </a>
+        <p class="f-about">
+          A RERA-registered property advisory helping families and investors find
+          the right homes and income-yielding commercial spaces across Delhi NCR and four metros.
+        </p>
+        <div class="f-social">
+          <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" class="ic"><path d="M12 2.2c3.2 0 3.6 0 4.9.1 1.2.1 1.8.2 2.2.4.6.2 1 .5 1.4.9.4.4.7.8.9 1.4.2.4.4 1 .4 2.2.1 1.3.1 1.7.1 4.9s0 3.6-.1 4.9c-.1 1.2-.2 1.8-.4 2.2-.2.6-.5 1-.9 1.4-.4.4-.8.7-1.4.9-.4.2-1 .4-2.2.4-1.3.1-1.7.1-4.9.1s-3.6 0-4.9-.1c-1.2-.1-1.8-.2-2.2-.4-.6-.2-1-.5-1.4-.9-.4-.4-.7-.8-.9-1.4-.2-.4-.4-1-.4-2.2-.1-1.3-.1-1.7-.1-4.9s0-3.6.1-4.9c.1-1.2.2-1.8.4-2.2.2-.6.5-1 .9-1.4.4-.4.8-.7 1.4-.9.4-.2 1-.4 2.2-.4 1.3-.1 1.7-.1 4.9-.1zm0 3.8a6 6 0 1 0 0 12 6 6 0 0 0 0-12zm0 9.9a3.9 3.9 0 1 1 0-7.8 3.9 3.9 0 0 1 0 7.8zm7.6-10.1a1.4 1.4 0 1 1-2.8 0 1.4 1.4 0 0 1 2.8 0z"/></svg></a>
+          <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24" class="ic"><path d="M6.9 21H3.3V9.2h3.6V21zM5.1 7.6a2.1 2.1 0 1 1 0-4.2 2.1 2.1 0 0 1 0 4.2zM21 21h-3.6v-5.7c0-1.4 0-3.1-1.9-3.1s-2.2 1.5-2.2 3V21H9.7V9.2h3.4v1.6h.1a3.8 3.8 0 0 1 3.4-1.9c3.6 0 4.3 2.4 4.3 5.5V21z"/></svg></a>
+          <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24" class="ic"><path d="M23 12s0-3.3-.4-4.9a2.5 2.5 0 0 0-1.8-1.8C19.2 5 12 5 12 5s-7.2 0-8.8.4a2.5 2.5 0 0 0-1.8 1.8C1 8.7 1 12 1 12s0 3.3.4 4.9c.2.9.9 1.6 1.8 1.8 1.6.3 8.8.3 8.8.3s7.2 0 8.8-.4a2.5 2.5 0 0 0 1.8-1.8c.4-1.5.4-4.8.4-4.8zM9.7 15.1V8.9l6 3.1-6 3.1z"/></svg></a>
+        </div>
+      </div>
+
+      <nav class="f-col" aria-label="Explore">
+        <h6>Explore</h6>
+        <ul class="list-unstyled f-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About us</a></li>
+          <li><a href="index.html#launches">New launches</a></li>
+          <li><a href="index.html#projects">Projects</a></li>
+          <li><a href="index.html#partners">Partners</a></li>
+          <li><a href="index.html#testimonials">Testimonials</a></li>
+          <li><a href="careers.html">Careers</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+
+      <nav class="f-col" aria-label="Properties">
+        <h6>Properties</h6>
+        <ul class="list-unstyled f-links">
+          <li><a href="index.html#projects">Residential</a></li>
+          <li><a href="index.html#projects">Commercial</a></li>
+          <li><a href="index.html#launches">New launches</a></li>
+          <li><a href="index.html#projects">Ready to move</a></li>
+          <li><a href="index.html#projects">Pre-leased assets</a></li>
+          <li><a href="index.html#projects">Plots &amp; land</a></li>
+        </ul>
+      </nav>
+
+      <div class="f-col f-contact">
+        <h6>Get in touch</h6>
+        <a class="f-item" href="tel:+919811024680">
+          <span class="f-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1l-2.3 2.2z"/></svg></span>
+          <span><small>Call us</small><b>+91 98110 24680</b></span>
+        </a>
+        <a class="f-item" href="mailto:connect@intelligentrealtors.in">
+          <span class="f-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg></span>
+          <span><small>Email</small><b>connect@intelligentrealtors.in</b></span>
+        </a>
+        <div class="f-item">
+          <span class="f-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.3 7 13 7 13s7-7.7 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg></span>
+          <span><small>Visit</small><b>A-14, Second Floor, Sector 62, Noida, U.P. 201301</b></span>
+        </div>
+        <div class="f-item">
+          <span class="f-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm.8 10.6-3.9 2.3-.8-1.3 3.1-1.9V6h1.6v6.6z"/></svg></span>
+          <span><small>Office hours</small><b>Mon &ndash; Sat, 10:00 to 19:00 IST</b></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="f-mark" aria-hidden="true">Intelligent Realtors</div>
+
+    <div class="f-bottom">
+      <p>&copy; 2026 Intelligent Realtors Advisory LLP. All rights reserved.</p>
+      <p class="f-rera">RERA No. UPRERAAGT10452</p>
+      <div class="f-legal">
+        <a href="privacy-policy.html">Privacy policy</a>
+        <a href="terms-and-conditions.html">Terms &amp; conditions</a>
+      </div>
+    </div>
+
+    <p class="f-disclaimer">
+      Images on this page are indicative. Project details, pricing and configurations are
+      shared by developers and may change without notice. Nothing here constitutes an offer
+      or a guarantee of returns. Please verify all RERA particulars before booking.
+    </p>
+  </div>
+</footer>
+
+<!-- floating actions -->
+<div class="float-actions">
+  <a href="tel:+919811024680" class="fa-btn" aria-label="Call us"><svg viewBox="0 0 24 24"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.2.4 2.4.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.4 0 .8-.2 1l-2.3 2.2z"/></svg></a>
+  <a href="https://wa.me/919811024680" class="fa-btn fa-wa" aria-label="WhatsApp"><svg viewBox="0 0 24 24"><path d="M17.5 14.4c-.3-.2-1.7-.9-2-1-.3-.1-.5-.2-.7.1l-.9 1.1c-.2.2-.3.2-.6.1a8.2 8.2 0 0 1-4-3.5c-.3-.5.3-.5.8-1.5.1-.2 0-.4 0-.5l-1-2.3c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4a3.3 3.3 0 0 0-1 2.5c0 1.5 1.1 2.9 1.2 3.1.2.2 2.1 3.3 5.2 4.5 1.9.8 2.7.9 3.6.7.6-.1 1.7-.7 2-1.4.2-.7.2-1.2.2-1.4l-.7-.4zM12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2zm0 18.2c-1.6 0-3.1-.4-4.4-1.2l-.3-.2-3.1.8.8-3-.2-.3A8.2 8.2 0 1 1 12 20.2z"/></svg></a>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
+<script src="js/main.js?v=muy4r54r"></script>
+<script src="js/pages.js?v=muy4r5ap"></script>
+</body>
+</html>
