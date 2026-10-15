@@ -1409,7 +1409,7 @@ body:has(.pd-tabs) [id^="pd-"]{ scroll-margin-top:84px }
 /* careers hero: bg-shape.jpg (white-ground handshake skyline), faint; text unchanged */
 .cx-hero::before{
   content:""; position:absolute; left:0; right:0; top:0; height:clamp(560px,66%,700px); z-index:0; pointer-events:none;
-  background:url('../assets/images/bg-shape.jpg') center 30% / min(1500px,120%) auto no-repeat;
+  background:url('../images/bg-shape.jpg') center 30% / min(1500px,120%) auto no-repeat;
   opacity:.1; mix-blend-mode:multiply;
   -webkit-mask-image:linear-gradient(180deg,#000 55%,transparent 100%);
           mask-image:linear-gradient(180deg,#000 55%,transparent 100%);
