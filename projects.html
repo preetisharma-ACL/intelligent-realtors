@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>All Projects — Intelligent Realtors</title>
+<meta name="description" content="Every live project we advise on across Delhi NCR and four metros, verified for title, RERA status and delivery record. Filter by location, developer, type, status and budget.">
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 40 40%27><rect width=%2740%27 height=%2740%27 fill=%27%230a1628%27/><path d=%27M20 8 32 17v16h-8V25h-8v8H8V17z%27 fill=%27%23c9a961%27/></svg>">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400..700&family=Inter:wght@400;500;600;700&family=Stack+Sans+Headline:wght@200..700&display=swap" rel="stylesheet">
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.css" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css?v=20261015j">
+</head>
+<body>
+
+<!-- ============ NAVBAR ============ -->
+<header class="site-header" id="siteHeader">
+  <div class="container-xl">
+    <div class="nav-inner">
+
+      <a href="index.html" class="brand">
+        <span class="brand-mark">
+          <svg viewBox="0 0 40 40" aria-hidden="true">
+            <path d="M20 4 34 14v22H24V26h-8v10H6V14L20 4z"/>
+          </svg>
+        </span>
+        <span class="brand-text">
+          <strong>Intelligent</strong>
+          <em>Realtors</em>
+        </span>
+      </a>
+
+      <nav class="main-nav d-none d-xl-block" aria-label="Primary">
+        <ul class="list-unstyled mb-0">
+          <li class="has-drop">
+            <a href="locations.html">Locations <svg viewBox="0 0 24 24" class="caret"><path d="M7 10l5 5 5-5z"/></svg></a>
+            <div class="drop drop--cols">
+              <label class="drop-search"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15.5 14h-.8l-.3-.3a6.5 6.5 0 1 0-.7.7l.3.3v.8l5 5 1.5-1.5-5-5zm-6 0a4.5 4.5 0 1 1 0-9 4.5 4.5 0 0 1 0 9z"/></svg><input type="search" placeholder="Search a city" aria-label="Search cities" autocomplete="off" data-city-search></label>
+              <div class="drop-grid">
+                <a href="projects.html?city=noida">Noida <span>68</span></a>
+                <a href="projects.html?city=gurugram">Gurugram <span>54</span></a>
+                <a href="projects.html?city=greater-noida">Greater Noida <span>31</span></a>
+                <a href="projects.html?city=mumbai">Mumbai <span>22</span></a>
+                <a href="projects.html?city=bengaluru">Bengaluru <span>19</span></a>
+                <a href="projects.html?city=pune">Pune <span>14</span></a>
+                <a href="projects.html?city=ghaziabad">Ghaziabad <span>9</span></a>
+                <a href="projects.html?city=lucknow">Lucknow <span>6</span></a>
+              </div>
+              <p class="drop-empty" hidden>No city found. <a href="contact.html">Ask us about it</a></p>
+            </div>
+          </li>
+
+          <li class="has-drop">
+            <a href="projects.html">Developers <svg viewBox="0 0 24 24" class="caret"><path d="M7 10l5 5 5-5z"/></svg></a>
+            <div class="drop drop--cols">
+              <h6>Channel partner to</h6>
+              <div class="drop-grid">
+                <a href="projects.html?dev=godrej">Godrej Properties <span>14</span></a>
+                <a href="projects.html?dev=dlf">DLF <span>11</span></a>
+                <a href="projects.html?dev=m3m">M3M India <span>9</span></a>
+                <a href="projects.html?dev=ace">ACE Group <span>8</span></a>
+                <a href="projects.html?dev=bhutani">Bhutani Infra <span>7</span></a>
+                <a href="projects.html?dev=emaar">Emaar <span>6</span></a>
+                <a href="projects.html?dev=tata">Tata Housing <span>5</span></a>
+                <a href="projects.html?dev=prestige">Prestige Group <span>4</span></a>
+              </div>
+            </div>
+          </li>
+
+          <li class="has-mega">
+            <a href="projects.html">Projects <svg viewBox="0 0 24 24" class="caret"><path d="M7 10l5 5 5-5z"/></svg></a>
+            <div class="mega">
+              <div class="snap">
+
+                <div class="snap-col snap-cities">
+                  <h6>Select city</h6>
+                  <div class="snap-scroll" id="snapCities"></div>
+                </div>
+
+                <div class="snap-col snap-types">
+                  <h6>Property type</h6>
+                  <div id="snapTypes"></div>
+                </div>
+
+                <div class="snap-col snap-results">
+                  <div class="snap-head">
+                    <h5 id="snapTitle">All types in Noida</h5>
+                    <a href="projects.html" class="snap-all" id="snapAll">View all <i>&rarr;</i></a>
+                  </div>
+                  <div class="snap-list" id="snapList">
+                    <a class="snap-item" href="project-details.html" data-city="Noida" data-type="residential"><img src="assets/images/project-placeholder.jpg" alt="" loading="lazy"><span class="snap-item-b"><strong>Marigold Estate</strong><em>Sector 150, Noida</em><b>₹3.15 Cr onwards</b></span></a>
+                    <a class="snap-item" href="project-details.html" data-city="Noida" data-type="residential"><img src="assets/images/project-placeholder.jpg" alt="" loading="lazy"><span class="snap-item-b"><strong>Bellevue Heights</strong><em>Sector 143, Noida</em><b>₹1.28 Cr onwards</b></span></a>
+                    <a class="snap-item" href="project-details.html" data-city="Noida" data-type="commercial"><img src="assets/images/project-placeholder.jpg" alt="" loading="lazy"><span class="snap-item-b"><strong>Meridian Corporate Park</strong><em>Sector 142, Noida</em><b>₹1.85 Cr onwards</b></span></a>
+                    <a class="snap-item" href="project-details.html" data-city="Noida" data-type="commercial"><img src="assets/images/project-placeholder.jpg" alt="" loading="lazy"><span class="snap-item-b"><strong>The Kiln High Street</strong><em>Sector 129, Noida</em><b>₹92 L onwards</b></span></a>
+                    <a class="snap-item" href="project-details.html" data-city="Noida" data-type="plots"><img src="assets/images/project-placeholder.jpg" alt="" loading="lazy"><span class="snap-item-b"><strong>Riverfront Plots</strong><em>Sector 168, Noida</em><b>₹68 L onwards</b></span></a>
+                    <a class="snap-item" href="project-details.html" data-city="Gurugram" data-type="residential"><img src="assets/images/project-placeholder.jpg" alt="" loading="lazy"><span class="snap-item-b"><strong>The Aravalli Residences</strong><em>Golf Course Extn., Gurugram</em><b>₹6.40 Cr onwards</b></span></a>
+                    <a class="snap-item" href="project-details.html" data-city="Gurugram" data-type="residential"><img src="assets/images/project-placeholder.jpg" alt="" loading="lazy"><span class="snap-item-b"><strong>Sutlej Sky Villas</strong><em>Sector 79, Gurugram</em><b>₹5.20 Cr onwards</b></span></a>
+                    <a class="snap-item" href="project-details.html" data-city="Gurugram" data-type="commercial"><img src="assets/images/project-placeholder.jpg" alt="" loading="lazy"><span class="snap-item-b"><strong>Cyber Greens Offices</strong><em>Golf Course Road, Gurugram</em><b>₹2.40 Cr onwards</b></span></a>
+                    <a class="snap-item" href="project-details.html" data-city="Gurugram" data-type="residential"><img src="assets/images/project-placeholder.jpg" alt="" loading="lazy"><span class="snap-item-b"><strong>The Crest Residences</strong><em>DLF Phase 5, Gurugram</em><b>₹8.75 Cr onwards</b></span></a>
+                    <a class="snap-item" href="project-details.html" data-city="Gurugram" data-type="residential"><img src="assets/images/project-placeholder.jpg" alt="" loading="lazy"><span class="snap-item-b"><strong>Emerald Hills</strong><em>Sector 65, Gurugram</em><b>₹2.95 Cr onwards</b></span></a>
+                    <a class="snap-item" href="project-details.html" data-city="Greater Noida" data-type="residential"><img src="assets/images/project-placeholder.jpg" alt="" loading="lazy"><span class="snap-item-b"><strong>Orchid County</strong><em>Sector 12, Greater Noida</em><b>₹1.05 Cr onwards</b></span></a>
+                    <a class="snap-item" href="project-details.html" data-city="Greater Noida" data-type="plots"><img src="assets/images/project-placeholder.jpg" alt="" loading="lazy"><span class="snap-item-b"><strong>Knowledge Park Plots</strong><em>Knowledge Park V, Greater Noida</em><b>₹52 L onwards</b></span></a>
+                    <a class="snap-item" href="project-details.html" data-city="Mumbai" data-type="residential"><img src="assets/images/project-placeholder.jpg" alt="" loading="lazy"><span class="snap-item-b"><strong>Worli Sea Face Tower</strong><em>Worli, Mumbai</em><b>₹11.80 Cr onwards</b></span></a>
+                    <a class="snap-item" href="project-details.html" data-city="Mumbai" data-type="commercial"><img src="assets/images/project-placeholder.jpg" alt="" loading="lazy"><span class="snap-item-b"><strong>Andheri Work Lofts</strong><em>Andheri East, Mumbai</em><b>₹3.10 Cr onwards</b></span></a>
+                    <a class="snap-item" href="project-details.html" data-city="Bengaluru" data-type="residential"><img src="assets/images/project-placeholder.jpg" alt="" loading="lazy"><span class="snap-item-b"><strong>Whitefield Rise</strong><em>Whitefield, Bengaluru</em><b>₹2.25 Cr onwards</b></span></a>
+                    <a class="snap-item" href="project-details.html" data-city="Bengaluru" data-type="commercial"><img src="assets/images/project-placeholder.jpg" alt="" loading="lazy"><span class="snap-item-b"><strong>Outer Ring Tech Park</strong><em>Outer Ring Road, Bengaluru</em><b>₹1.95 Cr onwards</b></span></a>
+                    <a class="snap-item" href="project-details.html" data-city="Pune" data-type="residential"><img src="assets/images/project-placeholder.jpg" alt="" loading="lazy"><span class="snap-item-b"><strong>Kharadi Court</strong><em>Kharadi, Pune</em><b>₹1.42 Cr onwards</b></span></a>
+                    <a class="snap-item" href="project-details.html" data-city="Ghaziabad" data-type="residential"><img src="assets/images/project-placeholder.jpg" alt="" loading="lazy"><span class="snap-item-b"><strong>Raj Nagar Greens</strong><em>Raj Nagar Extn., Ghaziabad</em><b>₹78 L onwards</b></span></a>
+                    <a class="snap-item" href="project-details.html" data-city="Lucknow" data-type="plots"><img src="assets/images/project-placeholder.jpg" alt="" loading="lazy"><span class="snap-item-b"><strong>Gomti Riverside Plots</strong><em>Gomti Nagar, Lucknow</em><b>₹43 L onwards</b></span></a>
+                    <p class="snap-empty" hidden>Nothing live in this combination today. Tell us what you need and we will source it.</p>
+                  </div>
+                  <a href="locations.html" class="snap-cta" id="snapCta"><span>View all projects</span><i>&rarr;</i></a>
+                </div>
+
+              </div>
+            </div>
+          </li>
+
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="careers.html">Career</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="contact.html" class="btn-gold d-none d-md-inline-flex">Connect With Us</a>
+        <button class="burger d-xl-none" id="burger" aria-label="Open menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+
+    </div>
+  </div>
+</header>
+
+<!-- mobile drawer -->
+<div class="mobile-menu" id="mobileMenu">
+  <div class="mm-head">
+    <a href="index.html" class="brand mm-brand" aria-label="Intelligent Realtors home">
+      <span class="brand-mark"><svg viewBox="0 0 40 40" aria-hidden="true"><path d="M20 4 34 14v22H24V26h-8v10H6V14L20 4z"/></svg></span>
+      <span class="brand-text"><strong>Intelligent</strong><em>Realtors</em></span>
+    </a>
+    <button class="mm-close" id="mmClose" aria-label="Close menu">&times;</button>
+  </div>
+  <nav class="mm-links">
+    <a href="locations.html"><span class="mm-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.3 7 13 7 13s7-7.7 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg></span><span class="mm-txt">Locations</span></a>
+    <a href="projects.html"><span class="mm-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 7V3H2v18h20V7H12zM6 19H4v-2h2v2zm0-4H4v-2h2v2zm0-4H4V9h2v2zm0-4H4V5h2v2zm4 12H8v-2h2v2zm0-4H8v-2h2v2zm0-4H8V9h2v2zm0-4H8V5h2v2zm10 12h-8v-2h2v-2h-2v-2h2v-2h-2V9h8v10zm-2-8h-2v2h2v-2zm0 4h-2v2h2v-2z"/></svg></span><span class="mm-txt">Developers</span></a>
+    <a href="projects.html"><span class="mm-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 2 12h3v8h6v-6h2v6h6v-8h3L12 3z"/></svg></span><span class="mm-txt">Projects</span></a>
+    <a href="about.html"><span class="mm-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg></span><span class="mm-txt">About Us</span></a>
+    <a href="careers.html"><span class="mm-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6h-4V4c0-1.1-.9-2-2-2h-4c-1.1 0-2 .9-2 2v2H4c-1.1 0-2 .9-2 2v11c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-6 0h-4V4h4v2z"/></svg></span><span class="mm-txt">Career</span></a>
+    <a href="contact.html"><span class="mm-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg></span><span class="mm-txt">Contact</span></a>
+  </nav>
+  <div class="mm-foot">
+    <a href="tel:+919811024680" class="mm-phone"><span class="mm-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1l-2.3 2.2z"/></svg></span>+91 98110 24680</a>
+    <p class="mm-addr"><span class="mm-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.3 7 13 7 13s7-7.7 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg></span>A-14, Sector 62, Noida 201301</p>
+    <a href="contact.html" class="btn-gold w-100 justify-content-center">Connect With Us</a>
+  </div>
+</div>
+<div class="mm-backdrop" id="mmBackdrop"></div>
+
+
+<main>
+
+<section class="phero lst-hero">
+  <div class="phero-bg"><img src="assets/images/projects.jpeg" alt="" fetchpriority="high"></div>
+  <div class="container-xl">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">Home</a><i></i><span data-lst-crumb>Projects</span></nav>
+    <span class="lst-logo" data-lst-logo hidden><img src="" alt=""></span>
+    <h1 data-lst-h1>All <em>projects</em></h1>
+    <p data-lst-sub>Every listing is checked for title, RERA status and the developer&rsquo;s delivery record before it appears here. Filter to find your shortlist.</p>
+  </div>
+</section>
+<section class="lst-body">
+  <div class="container-xl">
+
+    <form class="flt" data-flt role="search" aria-label="Filter projects">
+      <div class="flt-top">
+        <div class="flt-tabs" role="tablist" aria-label="Property type">
+          <button type="button" role="tab" data-type="all" aria-selected="true">All <span data-count="all"></span></button>
+          <button type="button" role="tab" data-type="residential" aria-selected="false">Residential <span data-count="residential"></span></button>
+          <button type="button" role="tab" data-type="commercial" aria-selected="false">Commercial <span data-count="commercial"></span></button>
+          <button type="button" role="tab" data-type="plots" aria-selected="false">Plots <span data-count="plots"></span></button>
+        </div>
+        <label class="flt-search"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15.5 14h-.8l-.3-.3a6.5 6.5 0 1 0-.7.7l.3.3v.8l5 5 1.5-1.5-5-5zm-6 0a4.5 4.5 0 1 1 0-9 4.5 4.5 0 0 1 0 9z"/></svg><span class="visually-hidden">Search</span>
+          <input type="search" name="q" placeholder="Search a project, developer or sector" autocomplete="off">
+        </label>
+      </div>
+      <div class="flt-row">
+        <label class="flt-field"><small>Location</small>
+          <select name="city"><option value="">All locations</option><option value="noida">Noida</option><option value="gurugram">Gurugram</option><option value="greater-noida">Greater Noida</option><option value="mumbai">Mumbai</option><option value="bengaluru">Bengaluru</option><option value="pune">Pune</option><option value="ghaziabad">Ghaziabad</option><option value="lucknow">Lucknow</option></select>
+        </label>
+        <label class="flt-field"><small>Developer</small>
+          <select name="dev"><option value="">All developers</option><option value="ace">ACE Group</option><option value="tata">Tata Housing</option><option value="bhutani">Bhutani Infra</option><option value="godrej">Godrej Properties</option><option value="m3m">M3M India</option><option value="dlf">DLF</option><option value="emaar">Emaar</option><option value="prestige">Prestige Group</option></select>
+        </label>
+        <label class="flt-field"><small>Status</small>
+          <select name="status"><option value="">Any status</option><option>Under construction</option><option>Ready to move</option><option>New launch</option></select>
+        </label>
+        <label class="flt-field"><small>Budget</small>
+          <select name="budget">
+            <option value="">Any budget</option>
+            <option value="0-1">Under &#8377;1 Cr</option>
+            <option value="1-3">&#8377;1 &ndash; 3 Cr</option>
+            <option value="3-5">&#8377;3 &ndash; 5 Cr</option>
+            <option value="5-999">&#8377;5 Cr +</option>
+          </select>
+        </label>
+        <button type="reset" class="flt-reset">Reset</button>
+      </div>
+    </form>
+
+    <div class="rbar">
+      <p data-rbar>Showing all projects</p>
+      <label class="rbar-sort"><small>Sort by</small>
+        <select data-sort aria-label="Sort projects">
+          <option value="">Recommended</option>
+          <option value="price-asc">Price: low to high</option>
+          <option value="price-desc">Price: high to low</option>
+          <option value="name">Name: A to Z</option>
+        </select>
+      </label>
+    </div>
+
+    <div class="proj-grid" data-listing>
+      <article class="pcard lst-card" data-index="0"
+        data-city="noida" data-city-name="Noida"
+        data-developer="ace" data-developer-name="ACE Group" data-developer-logo="assets/images/developers/ace.webp"
+        data-type="residential" data-status="Under construction" data-price="3.15"
+        data-search="marigold estate sector 150 noida ace group residential">
+        <div class="pcard-media">
+          <img src="assets/images/project-placeholder.jpg" alt="Marigold Estate" loading="lazy">
+          <span class="pcard-status">Under construction</span><span class="pcard-cat">Residential</span>
+          <div class="pcard-overlay">
+            <h3>Marigold Estate</h3>
+            <span class="pcard-loc"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.3 7 13 7 13s7-7.7 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>Sector 150, Noida</span>
+          </div>
+          <span class="pcard-go" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v2h5.6L5 15.6 6.4 17 15 8.4V14h2V5z"/></svg></span>
+        </div>
+        <div class="pcard-body">
+          <span class="pcard-dev"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm-1.2 14.5-4-4 1.4-1.4 2.6 2.6 5.6-5.6 1.4 1.4-7 7z"/></svg>By ACE Group</span>
+          <span class="pcard-from">Starting from</span>
+          <span class="pcard-price">₹3.15 Cr<sup>*</sup></span>
+          <ul class="pcard-specs list-unstyled"><li>3 &amp; 4 BHK</li><li>2,150 – 3,400 sq.ft.</li></ul>
+          <a href="project-details.html" class="pcard-link">View details <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v2h5.6L5 15.6 6.4 17 15 8.4V14h2V5z"/></svg></a>
+        </div>
+      </article>
+
+      <article class="pcard lst-card" data-index="1"
+        data-city="noida" data-city-name="Noida"
+        data-developer="tata" data-developer-name="Tata Housing" data-developer-logo="assets/images/developers/tata.png"
+        data-type="residential" data-status="Ready to move" data-price="1.28"
+        data-search="bellevue heights sector 143 noida tata housing residential">
+        <div class="pcard-media">
+          <img src="assets/images/project-placeholder.jpg" alt="Bellevue Heights" loading="lazy">
+          <span class="pcard-status">Ready to move</span><span class="pcard-cat">Residential</span>
+          <div class="pcard-overlay">
+            <h3>Bellevue Heights</h3>
+            <span class="pcard-loc"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.3 7 13 7 13s7-7.7 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>Sector 143, Noida</span>
+          </div>
+          <span class="pcard-go" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v2h5.6L5 15.6 6.4 17 15 8.4V14h2V5z"/></svg></span>
+        </div>
+        <div class="pcard-body">
+          <span class="pcard-dev"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm-1.2 14.5-4-4 1.4-1.4 2.6 2.6 5.6-5.6 1.4 1.4-7 7z"/></svg>By Tata Housing</span>
+          <span class="pcard-from">Starting from</span>
+          <span class="pcard-price">₹1.28 Cr<sup>*</sup></span>
+          <ul class="pcard-specs list-unstyled"><li>2 &amp; 3 BHK</li><li>1,240 – 1,860 sq.ft.</li></ul>
+          <a href="project-details.html" class="pcard-link">View details <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v2h5.6L5 15.6 6.4 17 15 8.4V14h2V5z"/></svg></a>
+        </div>
+      </article>
+
+      <article class="pcard lst-card" data-index="2"
+        data-city="noida" data-city-name="Noida"
+        data-developer="bhutani" data-developer-name="Bhutani Infra" data-developer-logo="assets/images/developers/bhutani.png"
+        data-type="commercial" data-status="New launch" data-price="1.85"
+        data-search="meridian corporate park sector 142 noida bhutani infra commercial">
+        <div class="pcard-media">
+          <img src="assets/images/project-placeholder.jpg" alt="Meridian Corporate Park" loading="lazy">
+          <span class="pcard-status">New launch</span><span class="pcard-cat">Commercial</span>
+          <div class="pcard-overlay">
+            <h3>Meridian Corporate Park</h3>
+            <span class="pcard-loc"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.3 7 13 7 13s7-7.7 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>Sector 142, Noida</span>
+          </div>
+          <span class="pcard-go" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v2h5.6L5 15.6 6.4 17 15 8.4V14h2V5z"/></svg></span>
+        </div>
+        <div class="pcard-body">
+          <span class="pcard-dev"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm-1.2 14.5-4-4 1.4-1.4 2.6 2.6 5.6-5.6 1.4 1.4-7 7z"/></svg>By Bhutani Infra</span>
+          <span class="pcard-from">Starting from</span>
+          <span class="pcard-price">₹1.85 Cr<sup>*</sup></span>
+          <ul class="pcard-specs list-unstyled"><li>Office suites</li><li>900 – 4,200 sq.ft.</li></ul>
+          <a href="project-details.html" class="pcard-link">View details <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v2h5.6L5 15.6 6.4 17 15 8.4V14h2V5z"/></svg></a>
+        </div>
+      </article>
+
+      <article class="pcard lst-card" data-index="3"
+        data-city="noida" data-city-name="Noida"
+        data-developer="bhutani" data-developer-name="Bhutani Infra" data-developer-logo="assets/images/developers/bhutani.png"
+        data-type="commercial" data-status="Under construction" data-price="0.92"
+        data-search="the kiln high street sector 129 noida bhutani infra commercial">
+        <div class="pcard-media">
+          <img src="assets/images/project-placeholder.jpg" alt="The Kiln High Street" loading="lazy">
+          <span class="pcard-status">Under construction</span><span class="pcard-cat">Commercial</span>
+          <div class="pcard-overlay">
+            <h3>The Kiln High Street</h3>
+            <span class="pcard-loc"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.3 7 13 7 13s7-7.7 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>Sector 129, Noida</span>
+          </div>
+          <span class="pcard-go" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v2h5.6L5 15.6 6.4 17 15 8.4V14h2V5z"/></svg></span>
+        </div>
+        <div class="pcard-body">
+          <span class="pcard-dev"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm-1.2 14.5-4-4 1.4-1.4 2.6 2.6 5.6-5.6 1.4 1.4-7 7z"/></svg>By Bhutani Infra</span>
+          <span class="pcard-from">Starting from</span>
+          <span class="pcard-price">₹92 L<sup>*</sup></span>
+          <ul class="pcard-specs list-unstyled"><li>Retail &amp; F&amp;B</li><li>300 – 1,600 sq.ft.</li></ul>
+          <a href="project-details.html" class="pcard-link">View details <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v2h5.6L5 15.6 6.4 17 15 8.4V14h2V5z"/></svg></a>
+        </div>
+      </article>
+
+      <article class="pcard lst-card" data-index="4"
+        data-city="noida" data-city-name="Noida"
+        data-developer="ace" data-developer-name="ACE Group" data-developer-logo="assets/images/developers/ace.webp"
+        data-type="plots" data-status="New launch" data-price="0.68"
+        data-search="riverfront plots sector 168 noida ace group plots">
+        <div class="pcard-media">
+          <img src="assets/images/project-placeholder.jpg" alt="Riverfront Plots" loading="lazy">
+          <span class="pcard-status">New launch</span><span class="pcard-cat">Plots</span>
+          <div class="pcard-overlay">
+            <h3>Riverfront Plots</h3>
+            <span class="pcard-loc"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.3 7 13 7 13s7-7.7 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>Sector 168, Noida</span>
+          </div>
+          <span class="pcard-go" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v2h5.6L5 15.6 6.4 17 15 8.4V14h2V5z"/></svg></span>
+        </div>
+        <div class="pcard-body">
+          <span class="pcard-dev"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm-1.2 14.5-4-4 1.4-1.4 2.6 2.6 5.6-5.6 1.4 1.4-7 7z"/></svg>By ACE Group</span>
+          <span class="pcard-from">Starting from</span>
+          <span class="pcard-price">₹68 L<sup>*</sup></span>
+          <ul class="pcard-specs list-unstyled"><li>Residential plots</li><li>120 – 300 sq.yd.</li></ul>
+          <a href="project-details.html" class="pcard-link">View details <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v2h5.6L5 15.6 6.4 17 15 8.4V14h2V5z"/></svg></a>
+        </div>
+      </article>
+
+      <article class="pcard lst-card" data-index="5"
+        data-city="gurugram" data-city-name="Gurugram"
+        data-developer="godrej" data-developer-name="Godrej Properties" data-developer-logo="assets/images/developers/godrej.svg"
+        data-type="residential" data-status="New launch" data-price="6.4"
+        data-search="the aravalli residences golf course extn. gurugram godrej properties residential">
+        <div class="pcard-media">
+          <img src="assets/images/project-placeholder.jpg" alt="The Aravalli Residences" loading="lazy">
+          <span class="pcard-status">New launch</span><span class="pcard-cat">Residential</span>
+          <div class="pcard-overlay">
+            <h3>The Aravalli Residences</h3>
+            <span class="pcard-loc"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.3 7 13 7 13s7-7.7 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>Golf Course Extn., Gurugram</span>
+          </div>
+          <span class="pcard-go" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v2h5.6L5 15.6 6.4 17 15 8.4V14h2V5z"/></svg></span>
+        </div>
+        <div class="pcard-body">
+          <span class="pcard-dev"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm-1.2 14.5-4-4 1.4-1.4 2.6 2.6 5.6-5.6 1.4 1.4-7 7z"/></svg>By Godrej Properties</span>
+          <span class="pcard-from">Starting from</span>
+          <span class="pcard-price">₹6.40 Cr<sup>*</sup></span>
+          <ul class="pcard-specs list-unstyled"><li>4 &amp; 5 BHK</li><li>3,240 – 4,810 sq.ft.</li></ul>
+          <a href="project-details.html" class="pcard-link">View details <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v2h5.6L5 15.6 6.4 17 15 8.4V14h2V5z"/></svg></a>
+        </div>
+      </article>
+
+      <article class="pcard lst-card" data-index="6"
+        data-city="gurugram" data-city-name="Gurugram"
+        data-developer="m3m" data-developer-name="M3M India" data-developer-logo="assets/images/developers/m3m.png"
+        data-type="residential" data-status="New launch" data-price="5.2"
+        data-search="sutlej sky villas sector 79 gurugram m3m india residential">
+        <div class="pcard-media">
+          <img src="assets/images/project-placeholder.jpg" alt="Sutlej Sky Villas" loading="lazy">
+          <span class="pcard-status">New launch</span><span class="pcard-cat">Residential</span>
+          <div class="pcard-overlay">
+            <h3>Sutlej Sky Villas</h3>
+            <span class="pcard-loc"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.3 7 13 7 13s7-7.7 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>Sector 79, Gurugram</span>
+          </div>
+          <span class="pcard-go" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v2h5.6L5 15.6 6.4 17 15 8.4V14h2V5z"/></svg></span>
+        </div>
+        <div class="pcard-body">
+          <span class="pcard-dev"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm-1.2 14.5-4-4 1.4-1.4 2.6 2.6 5.6-5.6 1.4 1.4-7 7z"/></svg>By M3M India</span>
+          <span class="pcard-from">Starting from</span>
+          <span class="pcard-price">₹5.20 Cr<sup>*</sup></span>
+          <ul class="pcard-specs list-unstyled"><li>4 BHK + Study</li><li>3,690 – 4,100 sq.ft.</li></ul>
+          <a href="project-details.html" class="pcard-link">View details <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v2h5.6L5 15.6 6.4 17 15 8.4V14h2V5z"/></svg></a>
+        </div>
+      </article>
+
+      <article class="pcard lst-card" data-index="7"
+        data-city="gurugram" data-city-name="Gurugram"
+        data-developer="dlf" data-developer-name="DLF" data-developer-logo="assets/images/developers/dlf.svg"
+        data-type="commercial" data-status="Ready to move" data-price="2.4"
+        data-search="cyber greens offices golf course road gurugram dlf commercial">
+        <div class="pcard-media">
+          <img src="assets/images/project-placeholder.jpg" alt="Cyber Greens Offices" loading="lazy">
+          <span class="pcard-status">Ready to move</span><span class="pcard-cat">Commercial</span>
+          <div class="pcard-overlay">
+            <h3>Cyber Greens Offices</h3>
+            <span class="pcard-loc"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.3 7 13 7 13s7-7.7 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>Golf Course Road, Gurugram</span>
+          </div>
+          <span class="pcard-go" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v2h5.6L5 15.6 6.4 17 15 8.4V14h2V5z"/></svg></span>
+        </div>
+        <div class="pcard-body">
+          <span class="pcard-dev"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm-1.2 14.5-4-4 1.4-1.4 2.6 2.6 5.6-5.6 1.4 1.4-7 7z"/></svg>By DLF</span>
+          <span class="pcard-from">Starting from</span>
+          <span class="pcard-price">₹2.40 Cr<sup>*</sup></span>
+          <ul class="pcard-specs list-unstyled"><li>Office floors</li><li>1,200 – 6,000 sq.ft.</li></ul>
+          <a href="project-details.html" class="pcard-link">View details <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v2h5.6L5 15.6 6.4 17 15 8.4V14h2V5z"/></svg></a>
+        </div>
+      </article>
+
+      <article class="pcard lst-card" data-index="8"
+        data-city="gurugram" data-city-name="Gurugram"
+        data-developer="dlf" data-developer-name="DLF" data-developer-logo="assets/images/developers/dlf.svg"
+        data-type="residential" data-status="Ready to move" data-price="8.75"
+        data-search="the crest residences dlf phase 5 gurugram dlf residential">
+        <div class="pcard-media">
+          <img src="assets/images/project-placeholder.jpg" alt="The Crest Residences" loading="lazy">
+          <span class="pcard-status">Ready to move</span><span class="pcard-cat">Residential</span>
+          <div class="pcard-overlay">
+            <h3>The Crest Residences</h3>
+            <span class="pcard-loc"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.3 7 13 7 13s7-7.7 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>DLF Phase 5, Gurugram</span>
+          </div>
+          <span class="pcard-go" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v2h5.6L5 15.6 6.4 17 15 8.4V14h2V5z"/></svg></span>
+        </div>
+        <div class="pcard-body">
+          <span class="pcard-dev"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm-1.2 14.5-4-4 1.4-1.4 2.6 2.6 5.6-5.6 1.4 1.4-7 7z"/></svg>By DLF</span>
+          <span class="pcard-from">Starting from</span>
+          <span class="pcard-price">₹8.75 Cr<sup>*</sup></span>
+          <ul class="pcard-specs list-unstyled"><li>4 BHK</li><li>4,200 – 6,000 sq.ft.</li></ul>
+          <a href="project-details.html" class="pcard-link">View details <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v2h5.6L5 15.6 6.4 17 15 8.4V14h2V5z"/></svg></a>
+        </div>
+      </article>
+
+      <article class="pcard lst-card" data-index="9"
+        data-city="gurugram" data-city-name="Gurugram"
+        data-developer="emaar" data-developer-name="Emaar" data-developer-logo="assets/images/developers/emaar.svg"
+        data-type="residential" data-status="Under construction" data-price="2.95"
+        data-search="emerald hills sector 65 gurugram emaar residential">
+        <div class="pcard-media">
+          <img src="assets/images/project-placeholder.jpg" alt="Emerald Hills" loading="lazy">
+          <span class="pcard-status">Under construction</span><span class="pcard-cat">Residential</span>
+          <div class="pcard-overlay">
+            <h3>Emerald Hills</h3>
+            <span class="pcard-loc"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.3 7 13 7 13s7-7.7 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>Sector 65, Gurugram</span>
+          </div>
+          <span class="pcard-go" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v2h5.6L5 15.6 6.4 17 15 8.4V14h2V5z"/></svg></span>
+        </div>
+        <div class="pcard-body">
+          <span class="pcard-dev"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm-1.2 14.5-4-4 1.4-1.4 2.6 2.6 5.6-5.6 1.4 1.4-7 7z"/></svg>By Emaar</span>
+          <span class="pcard-from">Starting from</span>
+          <span class="pcard-price">₹2.95 Cr<sup>*</sup></span>
+          <ul class="pcard-specs list-unstyled"><li>3 &amp; 4 BHK</li><li>1,950 – 2,850 sq.ft.</li></ul>
+          <a href="project-details.html" class="pcard-link">View details <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v2h5.6L5 15.6 6.4 17 15 8.4V14h2V5z"/></svg></a>
+        </div>
+      </article>
+
+      <article class="pcard lst-card" data-index="10"
+        data-city="greater-noida" data-city-name="Greater Noida"
+        data-developer="prestige" data-developer-name="Prestige Group" data-developer-logo="assets/images/developers/prestige.svg"
+        data-type="residential" data-status="Under construction" data-price="1.05"
+        data-search="orchid county sector 12 greater noida prestige group residential">
+        <div class="pcard-media">
+          <img src="assets/images/project-placeholder.jpg" alt="Orchid County" loading="lazy">
+          <span class="pcard-status">Under construction</span><span class="pcard-cat">Residential</span>
+          <div class="pcard-overlay">
+            <h3>Orchid County</h3>
+            <span class="pcard-loc"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.3 7 13 7 13s7-7.7 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>Sector 12, Greater Noida</span>
+          </div>
+          <span class="pcard-go" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v2h5.6L5 15.6 6.4 17 15 8.4V14h2V5z"/></svg></span>
+        </div>
+        <div class="pcard-body">
+          <span class="pcard-dev"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm-1.2 14.5-4-4 1.4-1.4 2.6 2.6 5.6-5.6 1.4 1.4-7 7z"/></svg>By Prestige Group</span>
+          <span class="pcard-from">Starting from</span>
+          <span class="pcard-price">₹1.05 Cr<sup>*</sup></span>
+          <ul class="pcard-specs list-unstyled"><li>2 &amp; 3 BHK</li><li>1,050 – 1,620 sq.ft.</li></ul>
+          <a href="project-details.html" class="pcard-link">View details <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v2h5.6L5 15.6 6.4 17 15 8.4V14h2V5z"/></svg></a>
+        </div>
+      </article>
+
+      <article class="pcard lst-card" data-index="11"
+        data-city="greater-noida" data-city-name="Greater Noida"
+        data-developer="godrej" data-developer-name="Godrej Properties" data-developer-logo="assets/images/developers/godrej.svg"
+        data-type="plots" data-status="New launch" data-price="0.52"
+        data-search="knowledge park plots knowledge park v greater noida godrej properties plots">
+        <div class="pcard-media">
+          <img src="assets/images/project-placeholder.jpg" alt="Knowledge Park Plots" loading="lazy">
+          <span class="pcard-status">New launch</span><span class="pcard-cat">Plots</span>
+          <div class="pcard-overlay">
+            <h3>Knowledge Park Plots</h3>
+            <span class="pcard-loc"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.3 7 13 7 13s7-7.7 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>Knowledge Park V, Greater Noida</span>
+          </div>
+          <span class="pcard-go" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v2h5.6L5 15.6 6.4 17 15 8.4V14h2V5z"/></svg></span>
+        </div>
+        <div class="pcard-body">
+          <span class="pcard-dev"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm-1.2 14.5-4-4 1.4-1.4 2.6 2.6 5.6-5.6 1.4 1.4-7 7z"/></svg>By Godrej Properties</span>
+          <span class="pcard-from">Starting from</span>
+          <span class="pcard-price">₹52 L<sup>*</sup></span>
+          <ul class="pcard-specs list-unstyled"><li>Residential plots</li><li>100 – 250 sq.yd.</li></ul>
+          <a href="project-details.html" class="pcard-link">View details <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v2h5.6L5 15.6 6.4 17 15 8.4V14h2V5z"/></svg></a>
+        </div>
+      </article>
+
+      <article class="pcard lst-card" data-index="12"
+        data-city="mumbai" data-city-name="Mumbai"
+        data-developer="tata" data-developer-name="Tata Housing" data-developer-logo="assets/images/developers/tata.png"
+        data-type="residential" data-status="New launch" data-price="11.8"
+        data-search="worli sea face tower worli mumbai tata housing residential">
+        <div class="pcard-media">
+          <img src="assets/images/project-placeholder.jpg" alt="Worli Sea Face Tower" loading="lazy">
+          <span class="pcard-status">New launch</span><span class="pcard-cat">Residential</span>
+          <div class="pcard-overlay">
+            <h3>Worli Sea Face Tower</h3>
+            <span class="pcard-loc"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.3 7 13 7 13s7-7.7 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>Worli, Mumbai</span>
+          </div>
+          <span class="pcard-go" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v2h5.6L5 15.6 6.4 17 15 8.4V14h2V5z"/></svg></span>
+        </div>
+        <div class="pcard-body">
+          <span class="pcard-dev"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm-1.2 14.5-4-4 1.4-1.4 2.6 2.6 5.6-5.6 1.4 1.4-7 7z"/></svg>By Tata Housing</span>
+          <span class="pcard-from">Starting from</span>
+          <span class="pcard-price">₹11.80 Cr<sup>*</sup></span>
+          <ul class="pcard-specs list-unstyled"><li>3 &amp; 4 BHK</li><li>2,100 – 3,600 sq.ft.</li></ul>
+          <a href="project-details.html" class="pcard-link">View details <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v2h5.6L5 15.6 6.4 17 15 8.4V14h2V5z"/></svg></a>
+        </div>
+      </article>
+
+      <article class="pcard lst-card" data-index="13"
+        data-city="mumbai" data-city-name="Mumbai"
+        data-developer="godrej" data-developer-name="Godrej Properties" data-developer-logo="assets/images/developers/godrej.svg"
+        data-type="commercial" data-status="Under construction" data-price="3.1"
+        data-search="andheri work lofts andheri east mumbai godrej properties commercial">
+        <div class="pcard-media">
+          <img src="assets/images/project-placeholder.jpg" alt="Andheri Work Lofts" loading="lazy">
+          <span class="pcard-status">Under construction</span><span class="pcard-cat">Commercial</span>
+          <div class="pcard-overlay">
+            <h3>Andheri Work Lofts</h3>
+            <span class="pcard-loc"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.3 7 13 7 13s7-7.7 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>Andheri East, Mumbai</span>
+          </div>
+          <span class="pcard-go" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v2h5.6L5 15.6 6.4 17 15 8.4V14h2V5z"/></svg></span>
+        </div>
+        <div class="pcard-body">
+          <span class="pcard-dev"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm-1.2 14.5-4-4 1.4-1.4 2.6 2.6 5.6-5.6 1.4 1.4-7 7z"/></svg>By Godrej Properties</span>
+          <span class="pcard-from">Starting from</span>
+          <span class="pcard-price">₹3.10 Cr<sup>*</sup></span>
+          <ul class="pcard-specs list-unstyled"><li>Office lofts</li><li>1,100 – 3,200 sq.ft.</li></ul>
+          <a href="project-details.html" class="pcard-link">View details <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v2h5.6L5 15.6 6.4 17 15 8.4V14h2V5z"/></svg></a>
+        </div>
+      </article>
+
+      <article class="pcard lst-card" data-index="14"
+        data-city="bengaluru" data-city-name="Bengaluru"
+        data-developer="prestige" data-developer-name="Prestige Group" data-developer-logo="assets/images/developers/prestige.svg"
+        data-type="residential" data-status="Under construction" data-price="2.25"
+        data-search="whitefield rise whitefield bengaluru prestige group residential">
+        <div class="pcard-media">
+          <img src="assets/images/project-placeholder.jpg" alt="Whitefield Rise" loading="lazy">
+          <span class="pcard-status">Under construction</span><span class="pcard-cat">Residential</span>
+          <div class="pcard-overlay">
+            <h3>Whitefield Rise</h3>
+            <span class="pcard-loc"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.3 7 13 7 13s7-7.7 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>Whitefield, Bengaluru</span>
+          </div>
+          <span class="pcard-go" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v2h5.6L5 15.6 6.4 17 15 8.4V14h2V5z"/></svg></span>
+        </div>
+        <div class="pcard-body">
+          <span class="pcard-dev"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm-1.2 14.5-4-4 1.4-1.4 2.6 2.6 5.6-5.6 1.4 1.4-7 7z"/></svg>By Prestige Group</span>
+          <span class="pcard-from">Starting from</span>
+          <span class="pcard-price">₹2.25 Cr<sup>*</sup></span>
+          <ul class="pcard-specs list-unstyled"><li>3 BHK</li><li>1,680 – 2,240 sq.ft.</li></ul>
+          <a href="project-details.html" class="pcard-link">View details <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v2h5.6L5 15.6 6.4 17 15 8.4V14h2V5z"/></svg></a>
+        </div>
+      </article>
+
+      <article class="pcard lst-card" data-index="15"
+        data-city="bengaluru" data-city-name="Bengaluru"
+        data-developer="prestige" data-developer-name="Prestige Group" data-developer-logo="assets/images/developers/prestige.svg"
+        data-type="commercial" data-status="Ready to move" data-price="1.95"
+        data-search="outer ring tech park outer ring road bengaluru prestige group commercial">
+        <div class="pcard-media">
+          <img src="assets/images/project-placeholder.jpg" alt="Outer Ring Tech Park" loading="lazy">
+          <span class="pcard-status">Ready to move</span><span class="pcard-cat">Commercial</span>
+          <div class="pcard-overlay">
+            <h3>Outer Ring Tech Park</h3>
+            <span class="pcard-loc"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.3 7 13 7 13s7-7.7 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>Outer Ring Road, Bengaluru</span>
+          </div>
+          <span class="pcard-go" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v2h5.6L5 15.6 6.4 17 15 8.4V14h2V5z"/></svg></span>
+        </div>
+        <div class="pcard-body">
+          <span class="pcard-dev"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm-1.2 14.5-4-4 1.4-1.4 2.6 2.6 5.6-5.6 1.4 1.4-7 7z"/></svg>By Prestige Group</span>
+          <span class="pcard-from">Starting from</span>
+          <span class="pcard-price">₹1.95 Cr<sup>*</sup></span>
+          <ul class="pcard-specs list-unstyled"><li>Office suites</li><li>1,000 – 5,500 sq.ft.</li></ul>
+          <a href="project-details.html" class="pcard-link">View details <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v2h5.6L5 15.6 6.4 17 15 8.4V14h2V5z"/></svg></a>
+        </div>
+      </article>
+
+      <article class="pcard lst-card" data-index="16"
+        data-city="pune" data-city-name="Pune"
+        data-developer="godrej" data-developer-name="Godrej Properties" data-developer-logo="assets/images/developers/godrej.svg"
+        data-type="residential" data-status="Under construction" data-price="1.42"
+        data-search="kharadi court kharadi pune godrej properties residential">
+        <div class="pcard-media">
+          <img src="assets/images/project-placeholder.jpg" alt="Kharadi Court" loading="lazy">
+          <span class="pcard-status">Under construction</span><span class="pcard-cat">Residential</span>
+          <div class="pcard-overlay">
+            <h3>Kharadi Court</h3>
+            <span class="pcard-loc"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.3 7 13 7 13s7-7.7 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>Kharadi, Pune</span>
+          </div>
+          <span class="pcard-go" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v2h5.6L5 15.6 6.4 17 15 8.4V14h2V5z"/></svg></span>
+        </div>
+        <div class="pcard-body">
+          <span class="pcard-dev"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm-1.2 14.5-4-4 1.4-1.4 2.6 2.6 5.6-5.6 1.4 1.4-7 7z"/></svg>By Godrej Properties</span>
+          <span class="pcard-from">Starting from</span>
+          <span class="pcard-price">₹1.42 Cr<sup>*</sup></span>
+          <ul class="pcard-specs list-unstyled"><li>2 &amp; 3 BHK</li><li>1,020 – 1,540 sq.ft.</li></ul>
+          <a href="project-details.html" class="pcard-link">View details <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v2h5.6L5 15.6 6.4 17 15 8.4V14h2V5z"/></svg></a>
+        </div>
+      </article>
+
+      <article class="pcard lst-card" data-index="17"
+        data-city="ghaziabad" data-city-name="Ghaziabad"
+        data-developer="m3m" data-developer-name="M3M India" data-developer-logo="assets/images/developers/m3m.png"
+        data-type="residential" data-status="Ready to move" data-price="0.78"
+        data-search="raj nagar greens raj nagar extn. ghaziabad m3m india residential">
+        <div class="pcard-media">
+          <img src="assets/images/project-placeholder.jpg" alt="Raj Nagar Greens" loading="lazy">
+          <span class="pcard-status">Ready to move</span><span class="pcard-cat">Residential</span>
+          <div class="pcard-overlay">
+            <h3>Raj Nagar Greens</h3>
+            <span class="pcard-loc"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.3 7 13 7 13s7-7.7 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>Raj Nagar Extn., Ghaziabad</span>
+          </div>
+          <span class="pcard-go" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v2h5.6L5 15.6 6.4 17 15 8.4V14h2V5z"/></svg></span>
+        </div>
+        <div class="pcard-body">
+          <span class="pcard-dev"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm-1.2 14.5-4-4 1.4-1.4 2.6 2.6 5.6-5.6 1.4 1.4-7 7z"/></svg>By M3M India</span>
+          <span class="pcard-from">Starting from</span>
+          <span class="pcard-price">₹78 L<sup>*</sup></span>
+          <ul class="pcard-specs list-unstyled"><li>2 &amp; 3 BHK</li><li>980 – 1,450 sq.ft.</li></ul>
+          <a href="project-details.html" class="pcard-link">View details <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v2h5.6L5 15.6 6.4 17 15 8.4V14h2V5z"/></svg></a>
+        </div>
+      </article>
+
+      <article class="pcard lst-card" data-index="18"
+        data-city="lucknow" data-city-name="Lucknow"
+        data-developer="emaar" data-developer-name="Emaar" data-developer-logo="assets/images/developers/emaar.svg"
+        data-type="plots" data-status="New launch" data-price="0.43"
+        data-search="gomti riverside plots gomti nagar lucknow emaar plots">
+        <div class="pcard-media">
+          <img src="assets/images/project-placeholder.jpg" alt="Gomti Riverside Plots" loading="lazy">
+          <span class="pcard-status">New launch</span><span class="pcard-cat">Plots</span>
+          <div class="pcard-overlay">
+            <h3>Gomti Riverside Plots</h3>
+            <span class="pcard-loc"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.3 7 13 7 13s7-7.7 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>Gomti Nagar, Lucknow</span>
+          </div>
+          <span class="pcard-go" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v2h5.6L5 15.6 6.4 17 15 8.4V14h2V5z"/></svg></span>
+        </div>
+        <div class="pcard-body">
+          <span class="pcard-dev"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm-1.2 14.5-4-4 1.4-1.4 2.6 2.6 5.6-5.6 1.4 1.4-7 7z"/></svg>By Emaar</span>
+          <span class="pcard-from">Starting from</span>
+          <span class="pcard-price">₹43 L<sup>*</sup></span>
+          <ul class="pcard-specs list-unstyled"><li>Residential plots</li><li>100 – 200 sq.yd.</li></ul>
+          <a href="project-details.html" class="pcard-link">View details <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v2h5.6L5 15.6 6.4 17 15 8.4V14h2V5z"/></svg></a>
+        </div>
+      </article>
+    </div>
+
+    <div class="lst-empty" data-lst-empty hidden>
+      <b>No projects match these filters.</b>
+      <span>Try a wider budget or another location, or tell us what you need and we will source it.</span>
+      <button type="button" class="btn-navy" data-flt-clear>Clear filters</button>
+    </div>
+
+    <nav class="pager" data-pager aria-label="Project pages"></nav>
+  </div>
+</section>
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="site-footer" id="contact">
+  <div class="container-xl">
+
+    <div class="f-grid">
+      <div class="f-brand">
+        <a href="index.html" class="brand brand-footer">
+          <span class="brand-mark"><svg viewBox="0 0 40 40"><path d="M20 4 34 14v22H24V26h-8v10H6V14L20 4z"/></svg></span>
+          <span class="brand-text"><strong>Intelligent</strong><em>Realtors</em></span>
+        </a>
+        <p class="f-about">
+          A RERA-registered property advisory helping families and investors find
+          the right homes and income-yielding commercial spaces across Delhi NCR and four metros.
+        </p>
+        <div class="f-social">
+          <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" class="ic"><path d="M12 2.2c3.2 0 3.6 0 4.9.1 1.2.1 1.8.2 2.2.4.6.2 1 .5 1.4.9.4.4.7.8.9 1.4.2.4.4 1 .4 2.2.1 1.3.1 1.7.1 4.9s0 3.6-.1 4.9c-.1 1.2-.2 1.8-.4 2.2-.2.6-.5 1-.9 1.4-.4.4-.8.7-1.4.9-.4.2-1 .4-2.2.4-1.3.1-1.7.1-4.9.1s-3.6 0-4.9-.1c-1.2-.1-1.8-.2-2.2-.4-.6-.2-1-.5-1.4-.9-.4-.4-.7-.8-.9-1.4-.2-.4-.4-1-.4-2.2-.1-1.3-.1-1.7-.1-4.9s0-3.6.1-4.9c.1-1.2.2-1.8.4-2.2.2-.6.5-1 .9-1.4.4-.4.8-.7 1.4-.9.4-.2 1-.4 2.2-.4 1.3-.1 1.7-.1 4.9-.1zm0 3.8a6 6 0 1 0 0 12 6 6 0 0 0 0-12zm0 9.9a3.9 3.9 0 1 1 0-7.8 3.9 3.9 0 0 1 0 7.8zm7.6-10.1a1.4 1.4 0 1 1-2.8 0 1.4 1.4 0 0 1 2.8 0z"/></svg></a>
+          <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24" class="ic"><path d="M6.9 21H3.3V9.2h3.6V21zM5.1 7.6a2.1 2.1 0 1 1 0-4.2 2.1 2.1 0 0 1 0 4.2zM21 21h-3.6v-5.7c0-1.4 0-3.1-1.9-3.1s-2.2 1.5-2.2 3V21H9.7V9.2h3.4v1.6h.1a3.8 3.8 0 0 1 3.4-1.9c3.6 0 4.3 2.4 4.3 5.5V21z"/></svg></a>
+          <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24" class="ic"><path d="M23 12s0-3.3-.4-4.9a2.5 2.5 0 0 0-1.8-1.8C19.2 5 12 5 12 5s-7.2 0-8.8.4a2.5 2.5 0 0 0-1.8 1.8C1 8.7 1 12 1 12s0 3.3.4 4.9c.2.9.9 1.6 1.8 1.8 1.6.3 8.8.3 8.8.3s7.2 0 8.8-.4a2.5 2.5 0 0 0 1.8-1.8c.4-1.5.4-4.8.4-4.8zM9.7 15.1V8.9l6 3.1-6 3.1z"/></svg></a>
+        </div>
+      </div>
+
+      <nav class="f-col" aria-label="Explore">
+        <h6>Explore</h6>
+        <ul class="list-unstyled f-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About us</a></li>
+          <li><a href="index.html#launches">New launches</a></li>
+          <li><a href="projects.html">Projects</a></li>
+          <li><a href="index.html#partners">Partners</a></li>
+          <li><a href="index.html#testimonials">Testimonials</a></li>
+          <li><a href="careers.html">Careers</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+
+      <nav class="f-col" aria-label="Properties">
+        <h6>Properties</h6>
+        <ul class="list-unstyled f-links">
+          <li><a href="projects.html">Residential</a></li>
+          <li><a href="projects.html">Commercial</a></li>
+          <li><a href="index.html#launches">New launches</a></li>
+          <li><a href="projects.html">Ready to move</a></li>
+          <li><a href="projects.html">Pre-leased assets</a></li>
+          <li><a href="projects.html">Plots &amp; land</a></li>
+        </ul>
+      </nav>
+
+      <div class="f-col f-contact">
+        <h6>Get in touch</h6>
+        <a class="f-item" href="tel:+919811024680">
+          <span class="f-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1l-2.3 2.2z"/></svg></span>
+          <span><small>Call us</small><b>+91 98110 24680</b></span>
+        </a>
+        <a class="f-item" href="mailto:connect@intelligentrealtors.in">
+          <span class="f-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg></span>
+          <span><small>Email</small><b>connect@intelligentrealtors.in</b></span>
+        </a>
+        <div class="f-item">
+          <span class="f-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.3 7 13 7 13s7-7.7 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg></span>
+          <span><small>Visit</small><b>A-14, Second Floor, Sector 62, Noida, U.P. 201301</b></span>
+        </div>
+        <div class="f-item">
+          <span class="f-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm.8 10.6-3.9 2.3-.8-1.3 3.1-1.9V6h1.6v6.6z"/></svg></span>
+          <span><small>Office hours</small><b>Mon &ndash; Sat, 10:00 to 19:00 IST</b></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="f-mark" aria-hidden="true">Intelligent Realtors</div>
+
+    <div class="f-bottom">
+      <p>&copy; 2026 Intelligent Realtors Advisory LLP. All rights reserved.</p>
+      <p class="f-rera">RERA No. UPRERAAGT10452</p>
+      <div class="f-legal">
+        <a href="privacy-policy.html">Privacy policy</a>
+        <a href="terms.html">Terms &amp; conditions</a>
+      </div>
+    </div>
+
+    <p class="f-disclaimer">
+      Images on this page are indicative. Project details, pricing and configurations are
+      shared by developers and may change without notice. Nothing here constitutes an offer
+      or a guarantee of returns. Please verify all RERA particulars before booking.
+    </p>
+  </div>
+</footer>
+
+<!-- floating actions -->
+<div class="float-actions">
+  <a href="tel:+919811024680" class="fa-btn" aria-label="Call us"><svg viewBox="0 0 24 24"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.2.4 2.4.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.4 0 .8-.2 1l-2.3 2.2z"/></svg></a>
+  <a href="https://wa.me/919811024680" class="fa-btn fa-wa" aria-label="WhatsApp"><svg viewBox="0 0 24 24"><path d="M17.5 14.4c-.3-.2-1.7-.9-2-1-.3-.1-.5-.2-.7.1l-.9 1.1c-.2.2-.3.2-.6.1a8.2 8.2 0 0 1-4-3.5c-.3-.5.3-.5.8-1.5.1-.2 0-.4 0-.5l-1-2.3c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4a3.3 3.3 0 0 0-1 2.5c0 1.5 1.1 2.9 1.2 3.1.2.2 2.1 3.3 5.2 4.5 1.9.8 2.7.9 3.6.7.6-.1 1.7-.7 2-1.4.2-.7.2-1.2.2-1.4l-.7-.4zM12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2zm0 18.2c-1.6 0-3.1-.4-4.4-1.2l-.3-.2-3.1.8.8-3-.2-.3A8.2 8.2 0 1 1 12 20.2z"/></svg></a>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
+<script src="assets/js/main.js?v=20261015j"></script>
+</body>
+</html>

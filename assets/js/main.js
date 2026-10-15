@@ -1,22 +1,77 @@
 /* ==========================================================================
-   Intelligent Realtors — interaction layer
-   Lenis drives the scroll, GSAP/ScrollTrigger reads from it.
+   Intelligent Realtors — site script
+   One file for the whole site. Every block checks for the elements it needs
+   and does nothing when they are missing, so the same file loads on every
+   page. Blocks share a few helpers through the IR object (section 0).
+
+   Contents
+      0.  Shared helpers
+      1.  Smooth scroll + scroll sync
+      2.  Header: sticky / hiding state
+      3.  Mobile menu (sidebar)
+      4.  Menus: city search + projects filter
+      5.  Home: new-launch slider
+      6.  Home: featured projects filter
+      7.  Home: testimonials
+      8.  Back to top
+      9.  Scroll animations
+     10.  FAQ accordion
+     11.  Forms: validation + thank-you state
+     12.  Careers: apply buttons
+     13.  Project page: section tabs + nearby list
+     14.  Project page: gallery lightbox
+     15.  Enquiry popup
+     16.  Careers: open roles + job search
+     17.  Projects listing: filters, sorting, pagination
+     18.  Blogs: category filter
+     19.  Careers: growth bars
+     20.  Image fallback
+
+   Libraries expected on the page: GSAP + ScrollTrigger, Lenis, Bootstrap.
    ========================================================================== */
 
-(function () {
-  'use strict';
+/* Fallback image for project photos. Project cards are written in the HTML
+   (by the CMS); if a card's photo fails to load, it shows this instead. */
+window.IR_PLACEHOLDER = 'assets/images/project-placeholder.jpg';
 
+/* ==========================================================================
+   0. Shared helpers
+   ========================================================================== */
+var IR = window.IR = (function () {
+  'use strict';
   var $  = function (s, c) { return (c || document).querySelector(s); };
   var $$ = function (s, c) { return Array.prototype.slice.call((c || document).querySelectorAll(s)); };
-
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var lenisNow = function () { return window.__lenis || null; };
+  return {
+    $: $, $$: $$, reduced: reduced,
+    lenis: null,            /* set by section 1 */
+    scrollTo: null,         /* set by section 1 */
+    lenisNow: lenisNow,
+    /* smooth-scroll to an element, leaving room for the header */
+    scrollToEl: function (el, offset) {
+      var y = el.getBoundingClientRect().top + window.scrollY - (offset || 0);
+      if (lenisNow()) lenisNow().scrollTo(y, { duration: 1.1 });
+      else window.scrollTo({ top: y, behavior: 'smooth' });
+    },
+    /* freeze page scrolling while a popup is open */
+    lockScroll: function (on) {
+      if (lenisNow()) { on ? lenisNow().stop() : lenisNow().start(); }
+      document.documentElement.style.overflow = on ? 'hidden' : '';
+    }
+  };
+})();
 
-  /* Only hide things for animation once we know JS actually runs. */
-  if (!reduced) document.documentElement.classList.add('js-ready');
+/* Only hide things for animation once we know JS actually runs. */
+if (!IR.reduced) document.documentElement.classList.add('js-ready');
 
-  /* ----------------------------------------------------------------------
-     1. Smooth scroll (Lenis) + ScrollTrigger handshake
-     ---------------------------------------------------------------------- */
+/* ==========================================================================
+   1. Smooth scroll + scroll sync
+   ========================================================================== */
+(function () {
+  'use strict';
+  var $ = IR.$, $$ = IR.$$, reduced = IR.reduced;
+
   var lenis = null;
 
   if (window.Lenis && !reduced) {
@@ -54,14 +109,24 @@
       var el = document.querySelector(id);
       if (!el) return;
       e.preventDefault();
-      closeMenu();
+      if (IR.closeMenu) IR.closeMenu();   /* defined in section 3 */
       scrollTo(el);
     });
   });
 
-  /* ----------------------------------------------------------------------
-     2. Header state
-     ---------------------------------------------------------------------- */
+  /* shared with the blocks below */
+  IR.lenis = lenis;
+  IR.scrollTo = scrollTo;
+})();
+
+/* ==========================================================================
+   2. Header: sticky / hiding state
+   ========================================================================== */
+(function () {
+  'use strict';
+  var $ = IR.$, $$ = IR.$$, reduced = IR.reduced;
+  var lenis = IR.lenis;
+
   function onScroll(y) {
     document.body.classList.toggle('scrolled', y > 70);
   }
@@ -69,10 +134,16 @@
   if (lenis) lenis.on('scroll', function (e) { onScroll(e.scroll); });
   else window.addEventListener('scroll', function () { onScroll(window.scrollY); }, { passive: true });
   onScroll(window.scrollY);
+})();
 
-  /* ----------------------------------------------------------------------
-     3. Mobile drawer
-     ---------------------------------------------------------------------- */
+/* ==========================================================================
+   3. Mobile menu (sidebar)
+   ========================================================================== */
+(function () {
+  'use strict';
+  var $ = IR.$, $$ = IR.$$, reduced = IR.reduced;
+  var lenis = IR.lenis;
+
   var burger = $('#burger');
 
   function openMenu() {
@@ -97,14 +168,23 @@
     if (e.key === 'Escape') closeMenu();
   });
 
-  /* ----------------------------------------------------------------------
-     4. Projects mega menu: city / property type / snapshot
-     ---------------------------------------------------------------------- */
+  /* used by the anchor links in section 1 */
+  IR.closeMenu = closeMenu;
+})();
+
+/* ==========================================================================
+   4. Menus: city search + projects filter
+   ========================================================================== */
+(function () {
+  'use strict';
+  var $ = IR.$, $$ = IR.$$, reduced = IR.reduced;
+
   (function () {
     var cityEl = $('#snapCities'), typeEl = $('#snapTypes'), listEl = $('#snapList');
     if (!cityEl || !typeEl || !listEl) return;
 
     var titleEl = $('#snapTitle'), allEl = $('#snapAll');
+    var items = $$('.snap-item', listEl), emptyEl = $('.snap-empty', listEl);
 
     var CITIES = [
       { name: 'All cities',    count: 0  },
@@ -125,47 +205,6 @@
       { key: 'plots',       label: 'Plots'       }
     ];
 
-    var IMG = {
-      villa:  'https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=240&q=70',
-      hill:   'https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=240&q=70',
-      tower:  'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=240&q=70',
-      modern: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=240&q=70',
-      block:  'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=240&q=70',
-      inter:  'https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=240&q=70'
-    };
-
-    var RS = '₹';
-
-    var PROJECTS = {
-      'Noida': [
-        { n: 'Marigold Estate',         a: 'Sector 150',      p: RS + '3.15 Cr onwards',  t: 'residential', i: IMG.hill },
-        { n: 'Bellevue Heights',        a: 'Sector 143',      p: RS + '1.28 Cr onwards',  t: 'residential', i: IMG.block },
-        { n: 'Meridian Corporate Park', a: 'Sector 142',      p: RS + '1.85 Cr per unit', t: 'commercial',  i: IMG.tower },
-        { n: 'The Kiln High Street',    a: 'Sector 129',      p: RS + '92 L onwards',     t: 'commercial',  i: IMG.inter },
-        { n: 'Riverfront Plots',        a: 'Sector 168',      p: RS + '68 L onwards',     t: 'plots',       i: IMG.modern }
-      ],
-      'Gurugram': [
-        { n: 'The Aravalli Residences', a: 'Golf Course Extn.', p: RS + '6.40 Cr onwards',  t: 'residential', i: IMG.villa },
-        { n: 'Sutlej Sky Villas',       a: 'Sector 79',         p: RS + '5.20 Cr onwards',  t: 'residential', i: IMG.modern },
-        { n: 'Cyber Greens Offices',    a: 'Golf Course Road',  p: RS + '2.40 Cr per unit', t: 'commercial',  i: IMG.tower }
-      ],
-      'Greater Noida': [
-        { n: 'Orchid County',        a: 'Sector 12',        p: RS + '1.05 Cr onwards', t: 'residential', i: IMG.block },
-        { n: 'Knowledge Park Plots', a: 'Knowledge Park V', p: RS + '52 L onwards',    t: 'plots',       i: IMG.hill }
-      ],
-      'Mumbai': [
-        { n: 'Worli Sea Face Tower', a: 'Worli',        p: RS + '11.80 Cr onwards', t: 'residential', i: IMG.tower },
-        { n: 'Andheri Work Lofts',   a: 'Andheri East', p: RS + '3.10 Cr per unit', t: 'commercial',  i: IMG.inter }
-      ],
-      'Bengaluru': [
-        { n: 'Whitefield Rise',      a: 'Whitefield',      p: RS + '2.25 Cr onwards',  t: 'residential', i: IMG.modern },
-        { n: 'Outer Ring Tech Park', a: 'Outer Ring Road', p: RS + '1.95 Cr per unit', t: 'commercial',  i: IMG.tower }
-      ],
-      'Pune':      [ { n: 'Kharadi Court',         a: 'Kharadi',        p: RS + '1.42 Cr onwards', t: 'residential', i: IMG.block  } ],
-      'Ghaziabad': [ { n: 'Raj Nagar Greens',      a: 'Raj Nagar Extn.',p: RS + '78 L onwards',    t: 'residential', i: IMG.hill   } ],
-      'Lucknow':   [ { n: 'Gomti Riverside Plots', a: 'Gomti Nagar',    p: RS + '43 L onwards',    t: 'plots',       i: IMG.modern } ]
-    };
-
     var city = 'Noida', type = 'all';
     var ALL = 'All cities';
     CITIES[0].count = CITIES.slice(1).reduce(function (n, c) { return n + c.count; }, 0);
@@ -183,10 +222,12 @@
                '" data-type="' + t.key + '">' + t.label + '</button>';
       }).join('');
 
-      var pool = city === ALL
-        ? Object.keys(PROJECTS).reduce(function (a, c) { return a.concat(PROJECTS[c].map(function (p) { return Object.assign({ c: c }, p); })); }, [])
-        : (PROJECTS[city] || []).map(function (p) { return Object.assign({ c: city }, p); });
-      var rows = pool.filter(function (p) { return type === 'all' || p.t === type; });
+      /* the items are in the HTML; keep the ones matching city + type */
+      var rows = items.filter(function (a) {
+        var keep = (city === ALL || a.dataset.city === city) && (type === 'all' || a.dataset.type === type);
+        a.hidden = !keep;
+        return keep;
+      });
       var label = TYPES.filter(function (t) { return t.key === type; })[0].label;
 
       titleEl.textContent = label + ' in ' + (city === ALL ? 'all cities' : city);
@@ -196,26 +237,15 @@
       if (ctaEl) {
         var noun = type === 'all' ? 'projects' : type === 'plots' ? 'plots' : label.toLowerCase() + ' projects';
         ctaEl.querySelector('span').textContent = city === ALL ? 'View all ' + noun : 'View ' + (type === 'all' ? 'all ' : '') + noun + ' in ' + city;
-        ctaEl.href = 'city.html' + (city === ALL
-          ? (type === 'all' ? '' : '?type=' + type)
-          : '?city=' + slug(city) + (type === 'all' ? '' : '&type=' + type));
+        ctaEl.href = city === ALL
+          ? (type === 'all' ? 'projects.html' : 'property-type.html?type=' + type)
+          : 'projects.html?city=' + slug(city) + (type === 'all' ? '' : '&type=' + type);
       }
 
-      listEl.innerHTML = rows.length
-        ? rows.map(function (p) {
-            return '<a class="snap-item" href="project-details.html">' +
-                     '<img src="' + p.i + '" alt="" loading="lazy">' +
-                     '<span class="snap-item-b">' +
-                       '<strong>' + p.n + '</strong>' +
-                       '<em>' + p.a + ', ' + p.c + '</em>' +
-                       '<b>' + p.p + '</b>' +
-                     '</span>' +
-                   '</a>';
-          }).join('')
-        : '<p class="snap-empty">Nothing live in this combination today. Tell us what you need and we will source it.</p>';
+      if (emptyEl) emptyEl.hidden = rows.length > 0;
 
       if (window.gsap && !reduced) {
-        gsap.fromTo(listEl.children,
+        gsap.fromTo(rows.length ? rows : [emptyEl],
           { autoAlpha: 0, y: 12 },
           { autoAlpha: 1, y: 0, clearProps: 'transform', duration: .38, stagger: .045, ease: 'power2.out', overwrite: true });
         gsap.fromTo(titleEl,
@@ -240,12 +270,43 @@
     render();
   })();
 
-  /* ----------------------------------------------------------------------
-     5. New-launch rail — continuous loop, modelled on Swiper's
-        { speed: 4000, autoplay: { delay: 0 }, loop: true }: each card takes
-        four seconds to glide past and the next glide starts straight away,
-        so the rail moves like a slow conveyor rather than stepping.
-     ---------------------------------------------------------------------- */
+  /* Locations dropdown: type to filter the city list. Enter opens the first
+     match; Escape clears the box. Matching ignores case and extra spaces. */
+  $$('[data-city-search]').forEach(function (input) {
+    var drop = input.closest('.drop');
+    var links = $$('.drop-grid a', drop), empty = $('.drop-empty', drop);
+    var name = function (a) { return a.firstChild.textContent.trim().toLowerCase(); };
+    var visible = function () { return links.filter(function (a) { return !a.hidden; }); };
+    var run = function () {
+      var term = input.value.trim().toLowerCase().replace(/\s+/g, ' ');
+      links.forEach(function (a) { a.hidden = !!term && name(a).indexOf(term) < 0; a.classList.remove('is-first'); });
+      var shown = visible();
+      if (term && shown.length) shown[0].classList.add('is-first');
+      if (empty) empty.hidden = shown.length > 0;
+    };
+    input.addEventListener('input', run);
+    input.addEventListener('search', run);   /* the box's own clear (x) button */
+    input.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter') {
+        var first = visible()[0];
+        if (first && input.value.trim()) { e.preventDefault(); window.location.href = first.href; }
+      } else if (e.key === 'Escape') {
+        input.value = ''; run();
+      }
+    });
+  });
+})();
+
+/* ==========================================================================
+   5. Home: new-launch slider
+   { speed: 4000, autoplay: { delay: 0 }, loop: true }: each card takes
+   four seconds to glide past and the next glide starts straight away,
+   so the rail moves like a slow conveyor rather than stepping.
+   ========================================================================== */
+(function () {
+  'use strict';
+  var $ = IR.$, $$ = IR.$$, reduced = IR.reduced;
+
   (function () {
     var rail = $('#launchRail'), dotsEl = $('#launchDots');
     if (!rail) return;
@@ -375,10 +436,15 @@
     paint();
     advance();
   })();
+})();
 
-  /* ----------------------------------------------------------------------
-     6. Featured projects filter
-     ---------------------------------------------------------------------- */
+/* ==========================================================================
+   6. Home: featured projects filter
+   ========================================================================== */
+(function () {
+  'use strict';
+  var $ = IR.$, $$ = IR.$$, reduced = IR.reduced;
+
   (function () {
     var chips = $$('.chip');
     var cards = $$('#projGrid .pcard');
@@ -407,10 +473,15 @@
       });
     });
   })();
+})();
 
-  /* ----------------------------------------------------------------------
-     7. Testimonials — quote rotates every 6.5s, pausing while hovered
-     ---------------------------------------------------------------------- */
+/* ==========================================================================
+   7. Home: testimonials
+   ========================================================================== */
+(function () {
+  'use strict';
+  var $ = IR.$, $$ = IR.$$, reduced = IR.reduced;
+
   (function () {
     var main = $('#tqMain');
     if (!main) return;
@@ -448,15 +519,26 @@
     render();
     start();
   })();
+})();
 
-  /* ----------------------------------------------------------------------
-     8. Back to top
-     ---------------------------------------------------------------------- */
+/* ==========================================================================
+   8. Back to top
+   ========================================================================== */
+(function () {
+  'use strict';
+  var $ = IR.$, $$ = IR.$$, reduced = IR.reduced;
+  var scrollTo = IR.scrollTo;
+
   if ($('#toTop')) $('#toTop').addEventListener('click', function () { scrollTo(0); });
+})();
 
-  /* ----------------------------------------------------------------------
-     9. GSAP scenes
-     ---------------------------------------------------------------------- */
+/* ==========================================================================
+   9. Scroll animations
+   ========================================================================== */
+(function () {
+  'use strict';
+  var $ = IR.$, $$ = IR.$$, reduced = IR.reduced;
+
   if (!window.gsap || reduced) {
     document.documentElement.classList.remove('js-ready');
     return;
@@ -646,115 +728,13 @@
   window.addEventListener('load', function () { ScrollTrigger.refresh(); }, { once: true });
 })();
 
-
-/* ##########################################################################
-   PROJECT DATA (was projects.js) — the list the city and developer pages are built from.
-   Must stay above the inner-page code below, which reads window.IR_DATA.
-   ########################################################################## */
 /* ==========================================================================
-   Intelligent Realtors — project list shared by the city and developer pages.
-   Each project: name, locality, city, developer key, type, status, price,
-   two spec lines and a photo. Add or edit projects here only.
+   10. FAQ accordion
    ========================================================================== */
 (function () {
   'use strict';
+  var $ = IR.$, $$ = IR.$$, reduced = IR.reduced;
 
-  var U = function (id) { return 'https://images.unsplash.com/photo-' + id + '?w=900&q=80'; };
-  var IMG = {
-    villa:  U('1613490493576-7fde63acd811'),
-    hill:   U('1580587771525-78b9dba3b914'),
-    white:  U('1600596542815-ffad4c1539a9'),
-    tower:  U('1486406146926-c627a92ad1ab'),
-    inter:  U('1600566753086-00f18fb6b3ea'),
-    modern: U('1512917774080-9991f1c4c750'),
-    block:  U('1545324418-cc1a3fa10c00'),
-    sky:    U('1514565131-fce0801e5785')
-  };
-
-  var CITIES = [
-    { key: 'noida',         name: 'Noida' },
-    { key: 'gurugram',      name: 'Gurugram' },
-    { key: 'greater-noida', name: 'Greater Noida' },
-    { key: 'mumbai',        name: 'Mumbai' },
-    { key: 'bengaluru',     name: 'Bengaluru' },
-    { key: 'pune',          name: 'Pune' },
-    { key: 'ghaziabad',     name: 'Ghaziabad' },
-    { key: 'lucknow',       name: 'Lucknow' }
-  ];
-
-  var DEVELOPERS = [
-    { key: 'godrej',   name: 'Godrej Properties', logo: 'assets/images/partners/godrej.svg' },
-    { key: 'dlf',      name: 'DLF',               logo: 'assets/images/partners/dlf.svg' },
-    { key: 'm3m',      name: 'M3M India',         logo: 'assets/images/partners/m3m.png' },
-    { key: 'ace',      name: 'ACE Group',         logo: 'assets/images/partners/ace.webp' },
-    { key: 'bhutani',  name: 'Bhutani Infra',     logo: 'assets/images/partners/bhutani.png' },
-    { key: 'emaar',    name: 'Emaar',             logo: 'assets/images/partners/emaar.svg' },
-    { key: 'tata',     name: 'Tata Housing',      logo: 'assets/images/partners/tata.png' },
-    { key: 'prestige', name: 'Prestige Group',    logo: 'assets/images/partners/prestige.svg' }
-  ];
-
-  var PROJECTS = [
-    /* Noida */
-    { n: 'Marigold Estate',         a: 'Sector 150',        c: 'noida',         d: 'ace',      t: 'Residential', s: 'Under construction', p: '₹3.15 Cr', sp: ['3 & 4 BHK', '2,150 – 3,400 sq.ft.'],       i: IMG.hill },
-    { n: 'Bellevue Heights',        a: 'Sector 143',        c: 'noida',         d: 'tata',     t: 'Residential', s: 'Ready to move',      p: '₹1.28 Cr', sp: ['2 & 3 BHK', '1,240 – 1,860 sq.ft.'],       i: IMG.block },
-    { n: 'Meridian Corporate Park', a: 'Sector 142',        c: 'noida',         d: 'bhutani',  t: 'Commercial',  s: 'New launch',         p: '₹1.85 Cr', sp: ['Office suites', '900 – 4,200 sq.ft.'],     i: IMG.tower },
-    { n: 'The Kiln High Street',    a: 'Sector 129',        c: 'noida',         d: 'bhutani',  t: 'Commercial',  s: 'Under construction', p: '₹92 L',    sp: ['Retail & F&B', '300 – 1,600 sq.ft.'],      i: IMG.inter },
-    { n: 'Riverfront Plots',        a: 'Sector 168',        c: 'noida',         d: 'ace',      t: 'Plots',       s: 'New launch',         p: '₹68 L',    sp: ['Residential plots', '120 – 300 sq.yd.'],   i: IMG.modern },
-    /* Gurugram */
-    { n: 'The Aravalli Residences', a: 'Golf Course Extn.', c: 'gurugram',      d: 'godrej',   t: 'Residential', s: 'New launch',         p: '₹6.40 Cr', sp: ['4 & 5 BHK', '3,240 – 4,810 sq.ft.'],       i: IMG.villa },
-    { n: 'Sutlej Sky Villas',       a: 'Sector 79',         c: 'gurugram',      d: 'm3m',      t: 'Residential', s: 'New launch',         p: '₹5.20 Cr', sp: ['4 BHK + Study', '3,690 – 4,100 sq.ft.'],   i: IMG.modern },
-    { n: 'Cyber Greens Offices',    a: 'Golf Course Road',  c: 'gurugram',      d: 'dlf',      t: 'Commercial',  s: 'Ready to move',      p: '₹2.40 Cr', sp: ['Office floors', '1,200 – 6,000 sq.ft.'],   i: IMG.tower },
-    { n: 'The Crest Residences',    a: 'DLF Phase 5',       c: 'gurugram',      d: 'dlf',      t: 'Residential', s: 'Ready to move',      p: '₹8.75 Cr', sp: ['4 BHK', '4,200 – 6,000 sq.ft.'],           i: IMG.white },
-    { n: 'Emerald Hills',           a: 'Sector 65',         c: 'gurugram',      d: 'emaar',    t: 'Residential', s: 'Under construction', p: '₹2.95 Cr', sp: ['3 & 4 BHK', '1,950 – 2,850 sq.ft.'],       i: IMG.hill },
-    /* Greater Noida */
-    { n: 'Orchid County',           a: 'Sector 12',         c: 'greater-noida', d: 'prestige', t: 'Residential', s: 'Under construction', p: '₹1.05 Cr', sp: ['2 & 3 BHK', '1,050 – 1,620 sq.ft.'],       i: IMG.block },
-    { n: 'Knowledge Park Plots',    a: 'Knowledge Park V',  c: 'greater-noida', d: 'godrej',   t: 'Plots',       s: 'New launch',         p: '₹52 L',    sp: ['Residential plots', '100 – 250 sq.yd.'],   i: IMG.hill },
-    /* Mumbai */
-    { n: 'Worli Sea Face Tower',    a: 'Worli',             c: 'mumbai',        d: 'tata',     t: 'Residential', s: 'New launch',         p: '₹11.80 Cr', sp: ['3 & 4 BHK', '2,100 – 3,600 sq.ft.'],      i: IMG.sky },
-    { n: 'Andheri Work Lofts',      a: 'Andheri East',      c: 'mumbai',        d: 'godrej',   t: 'Commercial',  s: 'Under construction', p: '₹3.10 Cr', sp: ['Office lofts', '1,100 – 3,200 sq.ft.'],    i: IMG.inter },
-    /* Bengaluru */
-    { n: 'Whitefield Rise',         a: 'Whitefield',        c: 'bengaluru',     d: 'prestige', t: 'Residential', s: 'Under construction', p: '₹2.25 Cr', sp: ['3 BHK', '1,680 – 2,240 sq.ft.'],           i: IMG.modern },
-    { n: 'Outer Ring Tech Park',    a: 'Outer Ring Road',   c: 'bengaluru',     d: 'prestige', t: 'Commercial',  s: 'Ready to move',      p: '₹1.95 Cr', sp: ['Office suites', '1,000 – 5,500 sq.ft.'],   i: IMG.tower },
-    /* Pune, Ghaziabad, Lucknow */
-    { n: 'Kharadi Court',           a: 'Kharadi',           c: 'pune',          d: 'godrej',   t: 'Residential', s: 'Under construction', p: '₹1.42 Cr', sp: ['2 & 3 BHK', '1,020 – 1,540 sq.ft.'],       i: IMG.block },
-    { n: 'Raj Nagar Greens',        a: 'Raj Nagar Extn.',   c: 'ghaziabad',     d: 'm3m',      t: 'Residential', s: 'Ready to move',      p: '₹78 L',    sp: ['2 & 3 BHK', '980 – 1,450 sq.ft.'],         i: IMG.hill },
-    { n: 'Gomti Riverside Plots',   a: 'Gomti Nagar',       c: 'lucknow',       d: 'emaar',    t: 'Plots',       s: 'New launch',         p: '₹43 L',    sp: ['Residential plots', '100 – 200 sq.yd.'],   i: IMG.modern }
-  ];
-
-  window.IR_DATA = { cities: CITIES, developers: DEVELOPERS, projects: PROJECTS };
-})();
-
-
-/* ##########################################################################
-   INNER-PAGE FEATURES (was pages.js) — FAQ, forms, careers, project tabs, gallery,
-   enquiry modal and the city/developer listings. Each block does nothing if
-   its markup is not on the page.
-   ########################################################################## */
-/* ==========================================================================
-   Intelligent Realtors — inner-page interactions
-   FAQ, forms, job filter, project tabs, gallery lightbox, enquiry modal.
-   Loads after main.js; every block bails out if its markup is absent.
-   ========================================================================== */
-(function () {
-  'use strict';
-
-  var $  = function (s, c) { return (c || document).querySelector(s); };
-  var $$ = function (s, c) { return Array.prototype.slice.call((c || document).querySelectorAll(s)); };
-  var lenis = function () { return window.__lenis || null; };
-
-  var scrollToEl = function (el, offset) {
-    var y = el.getBoundingClientRect().top + window.scrollY - (offset || 0);
-    if (lenis()) lenis().scrollTo(y, { duration: 1.1 });
-    else window.scrollTo({ top: y, behavior: 'smooth' });
-  };
-  var lockScroll = function (on) {
-    if (lenis()) { on ? lenis().stop() : lenis().start(); }
-    document.documentElement.style.overflow = on ? 'hidden' : '';
-  };
-
-  /* ----------------------------------------------------------------------
-     FAQ accordion — one open at a time per list
-     ---------------------------------------------------------------------- */
   $$('.faq').forEach(function (list) {
     var items = $$('.faq-item', list);
     var set = function (item, open) {
@@ -775,11 +755,16 @@
       items.forEach(function (it) { if (it.classList.contains('is-open')) $('.faq-a', it).style.height = $('.faq-a', it).scrollHeight + 'px'; });
     });
   });
+})();
 
-  /* ----------------------------------------------------------------------
-     Forms — validate required fields, then show the thank-you state.
-     These are front-end only: wire the submit to your CRM or mail service.
-     ---------------------------------------------------------------------- */
+/* ==========================================================================
+   11. Forms: validation + thank-you state
+   These are front-end only: wire the submit to your CRM or mail service.
+   ========================================================================== */
+(function () {
+  'use strict';
+  var $ = IR.$, $$ = IR.$$, reduced = IR.reduced;
+
   $$('form[data-form]').forEach(function (form) {
     var check = function (fld) {
       var input = $('input, select, textarea', fld);
@@ -815,10 +800,16 @@
       if (label && inp.files[0]) label.textContent = inp.files[0].name;
     });
   });
+})();
 
-  /* ----------------------------------------------------------------------
-     Careers: filter openings, and "Apply" pre-selects the role in the form
-     ---------------------------------------------------------------------- */
+/* ==========================================================================
+   12. Careers: apply buttons
+   ========================================================================== */
+(function () {
+  'use strict';
+  var $ = IR.$, $$ = IR.$$, reduced = IR.reduced;
+  var scrollToEl = IR.scrollToEl;
+
   var jobChips = $$('.job-filter .chip');
   if (jobChips.length) {
     jobChips.forEach(function (chip) {
@@ -840,10 +831,17 @@
       if (target) scrollToEl(target, 90);
     });
   });
+})();
 
-  /* ----------------------------------------------------------------------
-     Project page: sticky tabs with scroll-spy
-     ---------------------------------------------------------------------- */
+/* ==========================================================================
+   13. Project page: section tabs + nearby list
+   ========================================================================== */
+(function () {
+  'use strict';
+  var $ = IR.$, $$ = IR.$$, reduced = IR.reduced;
+  var lenis = IR.lenisNow;
+  var scrollToEl = IR.scrollToEl;
+
   var tabs = $$('.pd-tabs [data-target]');
   if (tabs.length) {
     var blocks = tabs.map(function (t) { return document.getElementById(t.dataset.target); });
@@ -866,9 +864,41 @@
     activate();
   }
 
-  /* ----------------------------------------------------------------------
-     Gallery lightbox
-     ---------------------------------------------------------------------- */
+  /* "What's nearby": past 8 places, fold the rest behind a View all button so
+     the section stays compact however long the list grows. */
+  var NEAR_SHOWN = 8;
+  $$('.loc-grid .near').forEach(function (list) {
+    var items = $$('li', list);
+    if (items.length <= NEAR_SHOWN) return;
+    var extra = items.slice(NEAR_SHOWN);
+    var btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'near-more';
+    btn.setAttribute('aria-expanded', 'false');
+    var label = function (open) {
+      btn.innerHTML = (open ? 'Show fewer places' : 'View all ' + items.length + ' places') +
+        ' <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 10l5 5 5-5z"/></svg>';
+    };
+    var set = function (open) {
+      extra.forEach(function (li) { li.hidden = !open; });
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      label(open);
+      if (window.ScrollTrigger) window.ScrollTrigger.refresh();
+    };
+    btn.addEventListener('click', function () { set(btn.getAttribute('aria-expanded') !== 'true'); });
+    list.after(btn);
+    set(false);
+  });
+})();
+
+/* ==========================================================================
+   14. Project page: gallery lightbox
+   ========================================================================== */
+(function () {
+  'use strict';
+  var $ = IR.$, $$ = IR.$$, reduced = IR.reduced;
+  var lockScroll = IR.lockScroll;
+
   var shots = $$('[data-lb]');
   var lb = $('#lightbox');
   if (shots.length && lb) {
@@ -894,10 +924,16 @@
       if (e.key === 'ArrowRight') show(at + 1);
     });
   }
+})();
 
-  /* ----------------------------------------------------------------------
-     Enquiry modal (Get best price, Download brochure, price breakup)
-     ---------------------------------------------------------------------- */
+/* ==========================================================================
+   15. Enquiry popup
+   ========================================================================== */
+(function () {
+  'use strict';
+  var $ = IR.$, $$ = IR.$$, reduced = IR.reduced;
+  var lockScroll = IR.lockScroll;
+
   var mdl = $('#enqModal');
   if (mdl) {
     var title = $('[data-mdl-title]', mdl), kick = $('[data-mdl-kicker]', mdl);
@@ -914,10 +950,15 @@
     mdl.addEventListener('click', function (e) { if (e.target === mdl) closeM(); });
     document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && mdl.classList.contains('is-open')) closeM(); });
   }
+})();
 
-  /* ----------------------------------------------------------------------
-     Careers: open roles expand to show the position details
-     ---------------------------------------------------------------------- */
+/* ==========================================================================
+   16. Careers: open roles + job search
+   ========================================================================== */
+(function () {
+  'use strict';
+  var $ = IR.$, $$ = IR.$$, reduced = IR.reduced;
+
   var roles = $$('.cx-job');
   if (roles.length) {
     var setRole = function (role, open) {
@@ -967,88 +1008,179 @@
       search.addEventListener('submit', function (e) { e.preventDefault(); run(); });
     }
   }
+})();
 
-  /* ----------------------------------------------------------------------
-     City / developer pages: show only the projects that match ?city= or ?dev=
-     ---------------------------------------------------------------------- */
-  var listing = $('[data-listing]');
-  if (listing && window.IR_DATA) {
-    var D = window.IR_DATA, mode = listing.dataset.listing;
-    var qs = new URLSearchParams(window.location.search);
-    var want = (qs.get(mode === 'city' ? 'city' : 'dev') || '').toLowerCase();
-    var cityOf = function (k) { return D.cities.filter(function (c) { return c.key === k; })[0]; };
-    var devOf = function (k) { return D.developers.filter(function (d) { return d.key === k; })[0]; };
-    var match = mode === 'city' ? cityOf(want) : devOf(want);
-    /* optional ?type=residential|commercial|plots, set by the Projects menu */
-    var typeWant = (qs.get('type') || '').toLowerCase();
-    var typeName = ({ residential: 'Residential', commercial: 'Commercial', plots: 'Plots' })[typeWant] || '';
-    var rows = D.projects.filter(function (p) {
-      return (!match || (mode === 'city' ? p.c : p.d) === match.key) && (!typeName || p.t === typeName);
+/* ==========================================================================
+   17. Projects listing: filters, sorting, pagination
+   Every project card is in the HTML with data- labels. This block only
+   reads the filters, then shows, sorts and pages the cards. All choices
+   live in the URL, so a filtered view can be shared or bookmarked.
+   property-type.html locks the type from ?type= and swaps the heading.
+   ========================================================================== */
+(function () {
+  'use strict';
+  var $ = IR.$, $$ = IR.$$, reduced = IR.reduced;
+  var lenis = IR.lenisNow;
+
+  var flt = $('[data-flt]'), grid = $('[data-listing]');
+  if (flt && grid) {
+    var PER_PAGE = 6;
+    var cards = $$('.pcard', grid);
+    var tabs = $$('.flt-tabs [data-type]', flt);
+    var sortEl = $('[data-sort]'), rbar = $('[data-rbar]'), pager = $('[data-pager]'), empty = $('[data-lst-empty]');
+    var field = function (n) { return flt.elements.namedItem(n); };
+    var TYPE_COPY = {
+      residential: { label: 'Residential', h1: 'Residential <em>projects</em>', lead: 'Homes for every stage of life, from a first apartment to a family villa, each checked before it reaches you.' },
+      commercial:  { label: 'Commercial',  h1: 'Commercial <em>projects</em>',  lead: 'Offices, retail and pre-leased assets, assessed on lease terms, tenant quality and location.' },
+      plots:       { label: 'Plots',       h1: 'Plots &amp; <em>land</em>',     lead: 'Freehold plots with clear title and sanctioned layouts, ready for you to build on.' }
+    };
+    var locked = flt.hasAttribute('data-locked-type');
+
+    /* ----- state <-> URL ----- */
+    var state = (function () {
+      var u = new URLSearchParams(location.search);
+      var t = (u.get('type') || '').toLowerCase();
+      if (!TYPE_COPY[t]) t = locked ? 'residential' : 'all';
+      return { type: t, city: u.get('city') || '', dev: u.get('dev') || '', status: u.get('status') || '',
+               budget: u.get('budget') || '', q: u.get('q') || '', sort: u.get('sort') || '', page: Math.max(1, +u.get('page') || 1) };
+    })();
+    var writeUrl = function () {
+      var u = new URLSearchParams();
+      if (state.type !== 'all') u.set('type', state.type);
+      ['city', 'dev', 'status', 'budget', 'q', 'sort'].forEach(function (k) { if (state[k]) u.set(k, state[k]); });
+      if (state.page > 1) u.set('page', state.page);
+      var qs = u.toString();
+      history.replaceState(null, '', location.pathname + (qs ? '?' + qs : ''));
+    };
+    var fillForm = function () {
+      ['city', 'dev', 'status', 'budget', 'q'].forEach(function (k) { if (field(k)) field(k).value = state[k]; });
+      if (sortEl) sortEl.value = state.sort;
+      tabs.forEach(function (t) { t.setAttribute('aria-selected', t.dataset.type === state.type ? 'true' : 'false'); });
+    };
+
+    /* ----- filtering ----- */
+    var matches = function (c, ignoreType) {
+      var cr = parseFloat(c.dataset.price), band = state.budget.split('-');
+      return (ignoreType || state.type === 'all' || c.dataset.type === state.type) &&
+             (!state.city || c.dataset.city === state.city) &&
+             (!state.dev || c.dataset.developer === state.dev) &&
+             (!state.status || c.dataset.status === state.status) &&
+             (!state.budget || (cr >= +band[0] && cr < +band[1])) &&
+             (!state.q || c.dataset.search.indexOf(state.q.toLowerCase()) > -1);
+    };
+    var sorted = function (list) {
+      var by = {
+        'price-asc':  function (a, b) { return a.dataset.price - b.dataset.price; },
+        'price-desc': function (a, b) { return b.dataset.price - a.dataset.price; },
+        'name':       function (a, b) { return $('h3', a).textContent.localeCompare($('h3', b).textContent); }
+      }[state.sort] || function (a, b) { return a.dataset.index - b.dataset.index; };
+      return list.slice().sort(by);
+    };
+
+    /* ----- rendering ----- */
+    var heading = function () {
+      var h1 = $('[data-lst-h1]'), sub = $('[data-lst-sub]'), crumb = $('[data-lst-crumb]'), logo = $('[data-lst-logo]');
+      var pick = function (k, v) { return cards.filter(function (c) { return c.dataset[k] === v; })[0]; };
+      var title = function (text, em) { h1.textContent = text; var e = document.createElement('em'); e.textContent = em; h1.appendChild(e); };
+      if (locked) {
+        var t = TYPE_COPY[state.type];
+        if (h1) h1.innerHTML = t.h1;
+        if (sub) sub.textContent = t.lead;
+        if (crumb) crumb.textContent = t.label;
+        document.title = t.label + ' Projects — Intelligent Realtors';
+        return;
+      }
+      var dev = state.dev && pick('developer', state.dev), place = state.city && pick('city', state.city);
+      if (h1 && dev) title('Projects by ', dev.dataset.developerName);
+      else if (h1 && place) title('Projects in ', place.dataset.cityName);
+      if (logo) { logo.hidden = !dev; if (dev) { $('img', logo).src = dev.dataset.developerLogo; $('img', logo).alt = dev.dataset.developerName; } }
+      if (crumb) crumb.textContent = dev ? dev.dataset.developerName : place ? place.dataset.cityName : 'Projects';
+      if (dev || place) document.title = 'Projects ' + (dev ? 'by ' + dev.dataset.developerName : 'in ' + place.dataset.cityName) + ' — Intelligent Realtors';
+    };
+    var render = function (scroll) {
+      var list = sorted(cards.filter(function (c) { return matches(c, false); }));
+      var pages = Math.max(1, Math.ceil(list.length / PER_PAGE));
+      if (state.page > pages) state.page = pages;
+      var from = (state.page - 1) * PER_PAGE, page = list.slice(from, from + PER_PAGE);
+
+      cards.forEach(function (c) { c.hidden = page.indexOf(c) < 0; });
+      page.forEach(function (c, i) { grid.appendChild(c); c.style.animationDelay = (i * 0.06) + 's'; });
+
+      /* tab counts follow every filter except the type itself */
+      $$('[data-count]', flt).forEach(function (s) {
+        var k = s.dataset.count;
+        s.textContent = cards.filter(function (c) { return matches(c, true) && (k === 'all' || c.dataset.type === k); }).length;
+      });
+      if (rbar) rbar.innerHTML = list.length
+        ? 'Showing <b>' + (from + 1) + '&ndash;' + (from + page.length) + '</b> of <b>' + list.length + '</b> ' + (list.length === 1 ? 'project' : 'projects')
+        : 'No projects match';
+      if (empty) empty.hidden = list.length > 0;
+
+      if (pager) {
+        var html = '';
+        if (pages > 1) {
+          html += '<button type="button" data-page="' + (state.page - 1) + '"' + (state.page === 1 ? ' disabled' : '') + ' aria-label="Previous page">&lsaquo;</button>';
+          for (var p = 1; p <= pages; p++) html += '<button type="button" data-page="' + p + '"' + (p === state.page ? ' aria-current="page"' : '') + '>' + p + '</button>';
+          html += '<button type="button" data-page="' + (state.page + 1) + '"' + (state.page === pages ? ' disabled' : '') + ' aria-label="Next page">&rsaquo;</button>';
+        }
+        pager.innerHTML = html;
+      }
+      writeUrl();
+      if (scroll) { if (lenis()) lenis().scrollTo(flt, { offset: -110, duration: 1 }); else flt.scrollIntoView({ behavior: 'smooth' }); }
+      if (window.ScrollTrigger) window.ScrollTrigger.refresh();
+    };
+
+    /* ----- events ----- */
+    var update = function (scroll) { state.page = 1; render(scroll); };
+    tabs.forEach(function (t) { t.addEventListener('click', function () { state.type = t.dataset.type; fillForm(); update(false); }); });
+    ['city', 'dev', 'status', 'budget'].forEach(function (k) {
+      if (field(k)) field(k).addEventListener('change', function () { state[k] = this.value; update(false); });
+    });
+    if (field('q')) field('q').addEventListener('input', function () { state.q = this.value.trim(); update(false); });
+    if (sortEl) sortEl.addEventListener('change', function () { state.sort = sortEl.value; update(false); });
+    var clear = function () {
+      ['city', 'dev', 'status', 'budget', 'q', 'sort'].forEach(function (k) { state[k] = ''; });
+      if (!locked) state.type = 'all';
+      fillForm(); update(true);
+    };
+    flt.addEventListener('reset', function (e) { e.preventDefault(); clear(); });
+    flt.addEventListener('submit', function (e) { e.preventDefault(); update(true); });
+    $$('[data-flt-clear]').forEach(function (b) { b.addEventListener('click', clear); });
+    if (pager) pager.addEventListener('click', function (e) {
+      var b = e.target.closest('[data-page]'); if (!b || b.disabled) return;
+      state.page = +b.dataset.page; render(true);
     });
 
-    var esc = function (t) { return String(t).replace(/&/g, '&amp;').replace(/</g, '&lt;'); };
-    var pin = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.3 7 13 7 13s7-7.7 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>';
-    var tick = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm-1.2 14.5-4-4 1.4-1.4 2.6 2.6 5.6-5.6 1.4 1.4-7 7z"/></svg>';
-    var ne = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v2h5.6L5 15.6 6.4 17 15 8.4V14h2V5z"/></svg>';
-    var card = function (p, i) {
-      return '<article class="pcard lst-card" style="animation-delay:' + (i * 0.07) + 's">' +
-        '<div class="pcard-media"><img src="' + p.i + '" alt="' + esc(p.n) + '" loading="lazy">' +
-          '<span class="pcard-status">' + esc(p.s) + '</span><span class="pcard-cat">' + esc(p.t) + '</span>' +
-          '<div class="pcard-overlay"><h3>' + esc(p.n) + '</h3><span class="pcard-loc">' + pin + esc(p.a) + ', ' + esc(cityOf(p.c).name) + '</span></div>' +
-          '<span class="pcard-go" aria-hidden="true">' + ne + '</span></div>' +
-        '<div class="pcard-body"><span class="pcard-dev">' + tick + 'By ' + esc(devOf(p.d).name) + '</span>' +
-          '<span class="pcard-from">Starting from</span><span class="pcard-price">' + esc(p.p) + '<sup>*</sup></span>' +
-          '<ul class="pcard-specs list-unstyled"><li>' + esc(p.sp[0]) + '</li><li>' + esc(p.sp[1]) + '</li></ul>' +
-          '<a href="project-details.html" class="pcard-link">View details ' + ne + '</a></div>' +
-      '</article>';
-    };
-
-    var name = match ? match.name : (mode === 'city' ? 'all cities' : 'our developer partners');
-    var h1 = $('[data-lst-h1]'), sub = $('[data-lst-sub]'), crumb = $('[data-lst-crumb]'), logo = $('[data-lst-logo]');
-    var lead = (typeName === 'Plots' ? 'Plots' : typeName ? typeName + ' projects' : 'Projects') + (mode === 'city' ? ' in ' : ' by ');
-    if (h1) h1.innerHTML = lead + '<em>' + esc(name) + '</em>';
-    if (crumb) crumb.textContent = match ? match.name : (mode === 'city' ? 'All cities' : 'All developers');
-    if (sub) {
-      var types = rows.map(function (p) { return p.t; }).filter(function (t, i, a) { return a.indexOf(t) === i; });
-      sub.textContent = rows.length + (rows.length === 1 ? ' project' : ' projects') + (types.length ? ' · ' + types.join(', ') : '');
-    }
-    if (logo && mode === 'dev' && match) { logo.hidden = false; $('img', logo).src = match.logo; $('img', logo).alt = match.name; }
-    if (match || typeName) document.title = lead + (match ? match.name : name) + ' — Intelligent Realtors';
-
-    var empty = $('[data-lst-empty]');
-    var show = function (list) {
-      listing.innerHTML = list.map(card).join('');
-      if (empty) empty.hidden = list.length > 0;
-    };
-    show(rows);
-
-    /* banner search: budget band + free text over name, developer, locality and city */
-    var crore = function (p) { var v = parseFloat(p.replace(/[^0-9.]/g, '')); return /L/.test(p) ? v / 100 : v; };
-    var form = $('[data-lst-search]');
-    if (form) {
-      var q = $('input[name="q"]', form), budget = $('select[name="budget"]', form);
-      var subDefault = sub ? sub.textContent : '';
-      var run = function (scroll) {
-        var term = q.value.trim().toLowerCase(), band = budget.value.split('-');
-        var list = rows.filter(function (p) {
-          var hay = [p.n, p.a, cityOf(p.c).name, devOf(p.d).name, p.t].join(' ').toLowerCase();
-          var cr = crore(p.p);
-          return (!term || hay.indexOf(term) > -1) && (!budget.value || (cr >= +band[0] && cr < +band[1]));
-        });
-        show(list);
-        if (sub) sub.textContent = (term || budget.value) ? list.length + (list.length === 1 ? ' project matches' : ' projects match') + ' your search' : subDefault;
-        if (scroll && lenis()) lenis().scrollTo(listing, { offset: -120, duration: 1 });
-        else if (scroll) listing.scrollIntoView({ behavior: 'smooth' });
-      };
-      form.addEventListener('submit', function (e) { e.preventDefault(); run(true); });
-      q.addEventListener('input', function () { run(false); });
-      budget.addEventListener('change', function () { run(false); });
-    }
+    fillForm(); heading(); render(false);
   }
+})();
 
-  /* ----------------------------------------------------------------------
-     Careers: growth bars fill when the card scrolls into view
-     ---------------------------------------------------------------------- */
+/* ==========================================================================
+   18. Blogs: category filter
+   ========================================================================== */
+(function () {
+  'use strict';
+  var $ = IR.$, $$ = IR.$$, reduced = IR.reduced;
+
+  var blogFilter = $('[data-blog-filter]');
+  if (blogFilter) {
+    var posts = $$('.blog-card');
+    blogFilter.addEventListener('click', function (e) {
+      var b = e.target.closest('[data-cat]'); if (!b) return;
+      $$('[data-cat]', blogFilter).forEach(function (x) { x.setAttribute('aria-selected', x === b ? 'true' : 'false'); });
+      posts.forEach(function (p) { p.hidden = b.dataset.cat !== 'all' && p.dataset.cat !== b.dataset.cat; });
+      if (window.ScrollTrigger) window.ScrollTrigger.refresh();
+    });
+  }
+})();
+
+/* ==========================================================================
+   19. Careers: growth bars
+   ========================================================================== */
+(function () {
+  'use strict';
+  var $ = IR.$, $$ = IR.$$, reduced = IR.reduced;
+
   var barCards = $$('[data-bars]');
   if (barCards.length) {
     if ('IntersectionObserver' in window) {
@@ -1059,3 +1191,16 @@
     } else barCards.forEach(function (c) { c.classList.add('is-in'); });
   }
 })();
+
+/* ==========================================================================
+   20. Image fallback
+   If a project photo from the CMS fails to load, show the placeholder
+   instead of a broken image. Runs once per image.
+   ========================================================================== */
+document.addEventListener('error', function (e) {
+  var img = e.target;
+  if (!img || img.tagName !== 'IMG' || img.dataset.fallback) return;
+  if (!img.closest('.pcard-media, .snap-list, .snap')) return;
+  img.dataset.fallback = '1';
+  img.src = window.IR_PLACEHOLDER;
+}, true);
