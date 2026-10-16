@@ -3376,10 +3376,15 @@ body:has(.pd-tabs) [id^="pd-"]{ scroll-margin-top:84px }
 .pillar:nth-child(2){ margin-top:60px }   /* the middle card sits lower */
 
 /* Card: a full photo with the title over it. On hover (or keyboard focus)
-   the photo shrinks upward and a panel below reveals the title, the text
-   and the link. Height is fixed so the three cards always line up. */
+   the photo slides up and a white panel below reveals the title, the text
+   and the link. Height is fixed so the three cards always line up.
+   Only transform and opacity animate (no height / margin changes), so the
+   text never reflows mid-hover; that reflow is what made it shiver. */
 .pillar{
-  --pillar-h:440px; --pillar-img-open:46%;
+  --pillar-h:440px;
+  --open:.46;          /* share of the card the photo keeps when open */
+  --shift:-12%;        /* how far the photo moves inside its frame when open */
+  --title:3rem;        /* gold rule + one-line title */
   position:relative; height:var(--pillar-h); border-radius:12px; overflow:hidden; isolation:isolate;
   background:#fff; border:1px solid var(--panel-line);
   box-shadow:0 24px 50px -34px rgba(10,22,40,.45);
@@ -3389,11 +3394,13 @@ body:has(.pd-tabs) [id^="pd-"]{ scroll-margin-top:84px }
 
 .pillar-img{
   position:absolute; left:0; right:0; top:0; height:100%; overflow:hidden; background:var(--navy);
-  transition:height .7s var(--ease);
+  transform:translate3d(0,0,0); backface-visibility:hidden; will-change:transform;
+  transition:transform .8s var(--ease);
 }
 .pillar-img img{
-  width:100%; height:var(--pillar-h); object-fit:cover; display:block;
-  transition:transform 1.1s var(--ease);
+  width:100%; height:100%; object-fit:cover; display:block;
+  transform:translate3d(0,0,0); backface-visibility:hidden; will-change:transform;
+  transition:transform .8s var(--ease);
 }
 /* navy wash so the white title reads over any photo */
 .pillar-img::after{
@@ -3402,15 +3409,20 @@ body:has(.pd-tabs) [id^="pd-"]{ scroll-margin-top:84px }
   transition:opacity .7s var(--ease);
 }
 
+/* the panel always sits where it ends up when open (top of the white area);
+   closed, it is pushed down so only the title shows near the bottom */
 .pillar-body{
-  position:absolute; left:0; right:0; bottom:0; z-index:1;
-  padding:0 1.6rem 1.6rem;
-  border:0; margin:0;
+  position:absolute; left:0; right:0; top:calc(var(--open) * 100%); z-index:1;
+  padding:1.6rem 1.6rem 0; border:0; margin:0;
+  transform:translate3d(0, calc((1 - var(--open)) * var(--pillar-h) - 3.2rem - var(--title)), 0);
+  backface-visibility:hidden; will-change:transform;
+  transition:transform .8s var(--ease);
 }
 /* gold rule that grows above the title as the panel opens */
 .pillar-body::before{
-  content:""; display:block; width:0; height:2px; margin:0 0 .9rem; background:var(--gold);
-  transition:width .7s var(--ease);
+  content:""; display:block; width:44px; height:2px; margin:0 0 .9rem; background:var(--gold);
+  transform:scaleX(0); transform-origin:left center;
+  transition:transform .7s var(--ease);
 }
 .pillar-body h3{
   font-family:var(--ff-display); font-weight:500; font-size:clamp(1.35rem,1.8vw,1.6rem);
@@ -3418,48 +3430,50 @@ body:has(.pd-tabs) [id^="pd-"]{ scroll-margin-top:84px }
   transition:color .5s var(--ease);
 }
 .pillar-body p, .pillar-link{
-  max-height:0; opacity:0; overflow:hidden; transform:translateY(12px);
-  transition:max-height .7s var(--ease), opacity .5s var(--ease), transform .7s var(--ease), margin .7s var(--ease);
+  opacity:0; transform:translate3d(0,12px,0);
+  transition:opacity .45s var(--ease), transform .7s var(--ease);
 }
 .pillar-body p{
-  font-size:.95rem; line-height:1.65; color:var(--body); margin:0;
-  display:-webkit-box; -webkit-line-clamp:4; -webkit-box-orient:vertical;   /* never taller than 4 lines */
+  font-size:.95rem; line-height:1.65; color:var(--body); margin:.7rem 0 0;
+  display:-webkit-box; -webkit-line-clamp:4; -webkit-box-orient:vertical; overflow:hidden;   /* never taller than 4 lines */
 }
-.pillar-link{ display:inline-flex; align-items:center; gap:.45rem; font-size:.86rem; font-weight:600; color:var(--navy) }
+.pillar-link{ display:inline-flex; align-items:center; gap:.45rem; margin-top:1rem; font-size:.86rem; font-weight:600; color:var(--navy) }
 .pillar-link svg{ width:15px; height:15px; fill:currentColor; transition:transform .3s var(--ease) }
 .pillar-link:hover{ color:var(--gold-deep) }
 .pillar-link:hover svg{ transform:translateX(4px) }
 
 /* ---- open state ---- */
-.pillar:hover .pillar-img, .pillar:focus-within .pillar-img{ height:var(--pillar-img-open) }
-.pillar:hover .pillar-img img, .pillar:focus-within .pillar-img img{ transform:translateY(-12%) scale(1.04) }
+.pillar:hover .pillar-img, .pillar:focus-within .pillar-img{ transform:translate3d(0, calc((var(--open) - 1) * 100%), 0) }
+.pillar:hover .pillar-img img, .pillar:focus-within .pillar-img img{ transform:translate3d(0, calc((1 - var(--open)) * 100% + var(--shift)), 0) scale(1.04) }
 .pillar:hover .pillar-img::after, .pillar:focus-within .pillar-img::after{ opacity:0 }
-.pillar:hover .pillar-body::before, .pillar:focus-within .pillar-body::before{ width:44px }
+.pillar:hover .pillar-body, .pillar:focus-within .pillar-body{ transform:translate3d(0,0,0) }
+.pillar:hover .pillar-body::before, .pillar:focus-within .pillar-body::before{ transform:scaleX(1) }
 .pillar:hover .pillar-body h3, .pillar:focus-within .pillar-body h3{ color:var(--navy) }
-.pillar:hover .pillar-body p, .pillar:focus-within .pillar-body p{ max-height:7em; opacity:1; transform:none; margin:.7rem 0 0; transition-delay:.12s }
-.pillar:hover .pillar-link, .pillar:focus-within .pillar-link{ max-height:2em; opacity:1; transform:none; margin-top:1rem; transition-delay:.2s }
+.pillar:hover .pillar-body p, .pillar:focus-within .pillar-body p{ opacity:1; transform:none; transition-delay:.15s }
+.pillar:hover .pillar-link, .pillar:focus-within .pillar-link{ opacity:1; transform:none; transition-delay:.22s }
 
 /* narrower desktops: cards are slimmer, so open a little less photo and
    keep the text tighter so it never runs into the photo */
 @media (min-width:992px) and (max-width:1279.98px){
-  .pillar{ --pillar-h:460px; --pillar-img-open:38% }
-  .pillar-body{ padding:0 1.3rem 1.4rem }
+  .pillar{ --pillar-h:460px; --open:.38 }
+  .pillar-body{ padding:1.4rem 1.3rem 0 }
   .pillar-body h3{ font-size:1.3rem }
   .pillar-body p{ -webkit-line-clamp:3; font-size:.92rem }
 }
 /* photos whose subject sits low in the frame (e.g. land under a big sky):
    slide further up when the card opens so the subject stays in view */
-.pillar--low:hover .pillar-img img, .pillar--low:focus-within .pillar-img img{ transform:translateY(-42%) scale(1.04) }
-@media (hover:none){ .pillar--low .pillar-img img{ transform:translateY(-42%) } }
+.pillar--low{ --shift:-42% }
+.pillar--low .pillar-img img{ filter:contrast(1.12) saturate(1.2) brightness(1.03) }   /* the plots photo is a little hazy */
 
 /* touch screens have no hover: show every card open */
 @media (hover:none){
-  .pillar .pillar-img{ height:var(--pillar-img-open) }
+  .pillar .pillar-img{ transform:translate3d(0, calc((var(--open) - 1) * 100%), 0) }
+  .pillar .pillar-img img{ transform:translate3d(0, calc((1 - var(--open)) * 100% + var(--shift)), 0) }
   .pillar .pillar-img::after{ opacity:0 }
-  .pillar .pillar-body::before{ width:44px }
+  .pillar .pillar-body{ transform:none }
+  .pillar .pillar-body::before{ transform:scaleX(1) }
   .pillar .pillar-body h3{ color:var(--navy) }
-  .pillar .pillar-body p{ max-height:7em; opacity:1; transform:none; margin:.7rem 0 0 }
-  .pillar .pillar-link{ max-height:2em; opacity:1; transform:none; margin-top:1rem }
+  .pillar .pillar-body p, .pillar .pillar-link{ opacity:1; transform:none }
 }
 @media (prefers-reduced-motion:reduce){
   .pillar, .pillar *, .pillar *::before, .pillar *::after{ transition:none !important }
