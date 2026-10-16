@@ -25,7 +25,8 @@
      17.  Projects listing: filters, sorting, pagination
      18.  Blogs: category filter
      19.  Careers: growth bars
-     20.  Image fallback
+     20.  Home: evening-to-night hero video
+     21.  Image fallback
 
    Libraries expected on the page: GSAP + ScrollTrigger, Lenis, Bootstrap.
    ========================================================================== */
@@ -187,15 +188,10 @@ if (!IR.reduced) document.documentElement.classList.add('js-ready');
     var items = $$('.snap-item', listEl), emptyEl = $('.snap-empty', listEl);
 
     var CITIES = [
-      { name: 'All cities',    count: 0  },
-      { name: 'Noida',         count: 68 },
-      { name: 'Gurugram',      count: 54 },
-      { name: 'Greater Noida', count: 31 },
-      { name: 'Mumbai',        count: 22 },
-      { name: 'Bengaluru',     count: 19 },
-      { name: 'Pune',          count: 14 },
-      { name: 'Ghaziabad',     count: 9  },
-      { name: 'Lucknow',       count: 6  }
+      { name: 'All cities', count: 0 },
+      { name: 'Noida', count: 10 },
+      { name: 'Yamuna Expressway', count: 7 },
+      { name: 'Greater Noida', count: 2 }
     ];
 
     var TYPES = [
@@ -546,19 +542,19 @@ if (!IR.reduced) document.documentElement.classList.add('js-ready');
 
   /* homepage hero only */
   if ($('.hero')) {
-    /* -- hero: headline, panel and strapline settle in sequence -- */
-    gsap.set('.hero-title, .search-card, .hero-ops', { opacity: 0 });
+    /* -- hero: photo eases in, then kicker, headline, subtitle and button
+          rise in sequence -- */
+    var heroBits = $$('.hero-kicker, .hero-title, .hero-sub, .hero-cta');
+    gsap.set(heroBits, { autoAlpha: 0 });
 
     var heroTl = gsap.timeline({ delay: .2 });
 
-    heroTl.fromTo('.hero-title', { autoAlpha: 0, y: 30 },
-                  { autoAlpha: 1, y: 0, duration: .7, ease: 'power3.out' })
-          .fromTo('.search-card', { autoAlpha: 0, y: 30 },
-                  { autoAlpha: 1, y: 0, duration: .7, ease: 'power3.out' }, '-=.42')
-          .fromTo('.sc-pill', { autoAlpha: 0, y: 14 },
-                  { autoAlpha: 1, y: 0, clearProps: 'transform', duration: .55, stagger: .06, ease: 'power3.out' }, '-=.4')
-          .fromTo('.hero-ops', { autoAlpha: 0, y: 30 },
-                  { autoAlpha: 1, y: 0, duration: .7, ease: 'power3.out' }, '-=.45');
+    /* banner text rises from the bottom one line after another, easing in
+       from a soft blur; the photos zoom and crossfade on their own in CSS */
+    heroTl.fromTo(heroBits,
+                  { autoAlpha: 0, y: 80, filter: 'blur(10px)' },
+                  { autoAlpha: 1, y: 0, filter: 'blur(0px)', clearProps: 'transform,filter',
+                    duration: 1.6, stagger: .22, ease: 'expo.out' }, .3);
 
     /* -- hero parallax -- */
     gsap.to('#heroImg', {
@@ -566,6 +562,30 @@ if (!IR.reduced) document.documentElement.classList.add('js-ready');
       ease: 'none',
       scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true }
     });
+  }
+
+  /* -- home: the about panel rises over the pinned banner. It enters as a
+        smaller card with an arched top and grows to full screen, the arch
+        flattening, by the time it reaches the top of the window. -- */
+  var rise = $('[data-rise]');
+  if (rise) {
+    var arch = function () { var r = Math.round(rise.offsetWidth * 0.5); return r + 'px ' + r + 'px 0px 0px'; };
+    gsap.fromTo(rise,
+      { scale: 0.72, borderRadius: arch },
+      {
+        scale: 1, borderRadius: '0px 0px 0px 0px', ease: 'none',
+        scrollTrigger: { trigger: rise.parentElement, start: 'top bottom', end: 'top top', scrub: true, invalidateOnRefresh: true }
+      });
+  }
+
+  /* -- home: the three pillars rise into place one after another -- */
+  if ($('.pillars')) {
+    gsap.fromTo('.pillar',
+      { autoAlpha: 0, y: 100 },
+      {
+        autoAlpha: 1, y: 0, clearProps: 'transform', duration: 1.1, stagger: .15, ease: 'power3.out',
+        scrollTrigger: { trigger: '.pillars', start: 'top 85%', once: true }
+      });
   }
 
   /* -- generic reveals -- */
@@ -1068,10 +1088,18 @@ if (!IR.reduced) document.documentElement.classList.add('js-ready');
              (!state.budget || (cr >= +band[0] && cr < +band[1])) &&
              (!state.q || c.dataset.search.indexOf(state.q.toLowerCase()) > -1);
     };
+    /* "price on request" cards have no price and always sort last */
+    var byPrice = function (dir) {
+      return function (a, b) {
+        var x = parseFloat(a.dataset.price), y = parseFloat(b.dataset.price);
+        if (isNaN(x) || isNaN(y)) return isNaN(x) - isNaN(y);
+        return (x - y) * dir;
+      };
+    };
     var sorted = function (list) {
       var by = {
-        'price-asc':  function (a, b) { return a.dataset.price - b.dataset.price; },
-        'price-desc': function (a, b) { return b.dataset.price - a.dataset.price; },
+        'price-asc':  byPrice(1),
+        'price-desc': byPrice(-1),
         'name':       function (a, b) { return $('h3', a).textContent.localeCompare($('h3', b).textContent); }
       }[state.sort] || function (a, b) { return a.dataset.index - b.dataset.index; };
       return list.slice().sort(by);
@@ -1193,7 +1221,60 @@ if (!IR.reduced) document.documentElement.classList.add('js-ready');
 })();
 
 /* ==========================================================================
-   20. Image fallback
+   20. Home: evening-to-night hero video
+   Plays one skyline from evening to night, starting at data-start seconds. Loads the 1080p
+   file on larger screens and 720p on phones. At the end of each run the
+   evening still fades in, the video rewinds to the start point underneath, and
+   the still fades out, so the cycle never jumps from night straight back. Pauses when
+   scrolled out of view or when the tab is hidden; with reduced motion the
+   poster stays as a still image.
+   ========================================================================== */
+(function () {
+  'use strict';
+  var video = document.querySelector('.hero-video');
+  if (!video || IR.reduced) return;
+  var still = document.querySelector('.hero-dissolve');
+  var FADE = 1400;            /* matches the CSS transition on .hero-dissolve */
+  var START = parseFloat(video.dataset.start) || 0;   /* where the evening begins */
+
+  var small = window.matchMedia('(max-width: 767.98px)').matches;
+  video.src = small ? video.dataset.srcSd : video.dataset.srcHd;
+  video.muted = true;         /* browsers only autoplay muted video */
+  video.preload = 'auto';
+  /* jump to the evening before the first frame is shown */
+  video.addEventListener('loadedmetadata', function () { if (START && video.currentTime < START) video.currentTime = START; }, { once: true });
+
+  var play = function () { var p = video.play(); if (p && p.catch) p.catch(function () {}); };
+  var inView = true, restarting = false;
+
+  /* night -> evening dissolve, started just before the clip ends */
+  video.addEventListener('timeupdate', function () {
+    if (restarting || !video.duration || video.duration - video.currentTime > FADE / 1000 + 0.15) return;
+    restarting = true;
+    if (still) still.classList.add('is-on');
+    setTimeout(function () {
+      video.addEventListener('seeked', function () {
+        if (inView && !document.hidden) play();
+        setTimeout(function () { if (still) still.classList.remove('is-on'); restarting = false; }, 120);
+      }, { once: true });
+      video.currentTime = START;
+    }, FADE);
+  });
+  video.addEventListener('ended', function () { if (!restarting) { video.currentTime = START; play(); } });
+
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(function (e) {
+      inView = e[0].isIntersecting;
+      if (inView && !document.hidden) play(); else video.pause();
+    }).observe(video);
+  } else play();
+  document.addEventListener('visibilitychange', function () {
+    if (document.hidden) video.pause(); else if (inView) play();
+  });
+})();
+
+/* ==========================================================================
+   21. Image fallback
    If a project photo from the CMS fails to load, show the placeholder
    instead of a broken image. Runs once per image.
    ========================================================================== */
