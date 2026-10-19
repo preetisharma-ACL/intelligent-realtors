@@ -9,7 +9,7 @@
       1.  Smooth scroll + scroll sync
       2.  Header: sticky / hiding state
       3.  Mobile menu (sidebar)
-      4.  Menus: city search + projects filter
+      4.  Menus: projects filter
       5.  Home: new-launch slider
       6.  Home: featured projects filter
       7.  Home: testimonials
@@ -18,7 +18,7 @@
      10.  FAQ accordion
      11.  Forms: validation + thank-you state
      12.  Careers: apply buttons
-     13.  Project page: section tabs + nearby list
+     13.  Project page: floor plan tabs, nearby list
      14.  Project page: gallery lightbox
      15.  Enquiry popup
      16.  Careers: open roles + job search
@@ -169,30 +169,54 @@ if (!IR.reduced) document.documentElement.classList.add('js-ready');
     if (e.key === 'Escape') closeMenu();
   });
 
+  /* Locations / Developers accordions: one open at a time; a closed list is
+     inert so its links are skipped by Tab and screen readers */
+  var groups = $$('[data-mm-group]');
+  var setGroup = function (g, open) {
+    g.classList.toggle('is-open', open);
+    $('.mm-toggle', g).setAttribute('aria-expanded', open ? 'true' : 'false');
+    $('.mm-sub', g).inert = !open;
+  };
+  groups.forEach(function (g) {
+    $('.mm-toggle', g).addEventListener('click', function () {
+      var open = !g.classList.contains('is-open');
+      groups.forEach(function (o) { if (o !== g) setGroup(o, false); });
+      setGroup(g, open);
+    });
+  });
+
   /* used by the anchor links in section 1 */
   IR.closeMenu = closeMenu;
 })();
 
 /* ==========================================================================
-   4. Menus: city search + projects filter
+   4. Menus: projects filter
    ========================================================================== */
 (function () {
   'use strict';
   var $ = IR.$, $$ = IR.$$, reduced = IR.reduced;
 
+  /* Locations / Developers dropdowns: once a list passes 6 links it switches
+     to a wide, four-across layout, so it grows sideways rather than down */
+  $$('.has-drop .drop-grid').forEach(function (g) {
+    g.closest('.has-drop').classList.toggle('is-wide', $$('a', g).length > 6);
+  });
+
   (function () {
     var cityEl = $('#snapCities'), typeEl = $('#snapTypes'), listEl = $('#snapList');
     if (!cityEl || !typeEl || !listEl) return;
 
-    var titleEl = $('#snapTitle'), allEl = $('#snapAll');
-    var items = $$('.snap-item', listEl), emptyEl = $('.snap-empty', listEl);
+    var titleEl = $('#snapTitle'), countEl = $('#snapCount');
+    var items = $$('.pm-card', listEl), emptyEl = $('.pm-empty', listEl);
 
-    var CITIES = [
-      { name: 'All cities', count: 0 },
-      { name: 'Noida', count: 10 },
-      { name: 'Yamuna Expressway', count: 7 },
-      { name: 'Greater Noida', count: 2 }
-    ];
+    /* cities and their counts come from the project cards themselves, so a
+       new city appears here as soon as a project in it is added; busiest first */
+    var tally = {};
+    items.forEach(function (a) { tally[a.dataset.city] = (tally[a.dataset.city] || 0) + 1; });
+    var CITIES = Object.keys(tally)
+      .map(function (n) { return { name: n, count: tally[n] }; })
+      .sort(function (a, b) { return b.count - a.count; });
+    CITIES.unshift({ name: 'All cities', count: items.length });
 
     var TYPES = [
       { key: 'all',         label: 'All types'   },
@@ -201,20 +225,77 @@ if (!IR.reduced) document.documentElement.classList.add('js-ready');
       { key: 'plots',       label: 'Plots'       }
     ];
 
-    var city = 'Noida', type = 'all';
     var ALL = 'All cities';
-    CITIES[0].count = CITIES.slice(1).reduce(function (n, c) { return n + c.count; }, 0);
+    var city = CITIES[1] ? CITIES[1].name : ALL, type = 'all';
     var slug = function (s) { return s.toLowerCase().replace(/\s+/g, '-'); };
     var ctaEl = $('#snapCta');
+    var cityBtn = function (c) {
+      return '<button type="button" class="pm-city' + (c.name === city ? ' is-active' : '') +
+             '" data-city="' + c.name + '">' + c.name + '<sup>' + c.count + '</sup></button>';
+    };
+
+    /* "+N more cities": the tabs that don't fit move into a small panel with a
+       search box, so any number of cities stays reachable */
+    var more = document.createElement('div');
+    more.className = 'pm-more';
+    more.innerHTML = '<button type="button" class="pm-more-btn" aria-expanded="false"></button>' +
+      '<div class="pm-more-panel" hidden><input type="search" class="pm-more-search" placeholder="Search city" aria-label="Search city">' +
+      '<div class="pm-more-list"></div><p class="pm-more-none" hidden>No city found.</p></div>';
+    cityEl.after(more);
+    var moreBtn = $('.pm-more-btn', more), morePanel = $('.pm-more-panel', more);
+    var moreList = $('.pm-more-list', more), moreSearch = $('.pm-more-search', more), moreNone = $('.pm-more-none', more);
+    var openMore = function (open) {
+      morePanel.hidden = !open;
+      moreBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      if (open) { moreSearch.value = ''; filterMore(); }
+    };
+    var filterMore = function () {
+      var q = moreSearch.value.trim().toLowerCase(), shown = 0;
+      $$('.pm-city', moreList).forEach(function (b) {
+        var hit = !q || b.dataset.city.toLowerCase().indexOf(q) > -1;
+        b.hidden = !hit; if (hit) shown++;
+      });
+      moreNone.hidden = shown > 0;
+    };
+
+    /* fit the tabs to the row: every tab that would overflow goes to "more" */
+    function layoutTabs() {
+      var tabs = $$('.pm-city', cityEl);
+      tabs.forEach(function (t) { t.hidden = false; });
+      more.hidden = true;
+      if (cityEl.scrollWidth <= cityEl.clientWidth + 1) { moreList.innerHTML = ''; return; }
+      more.hidden = false;
+      var gap = parseFloat(getComputedStyle(cityEl).columnGap) || 0, room = cityEl.clientWidth, used = 0, cut = tabs.length;
+      for (var i = 0; i < tabs.length; i++) {
+        used += tabs[i].offsetWidth + (i ? gap : 0);
+        if (used > room && i > 0) { cut = i; break; }
+      }
+      var spare = CITIES.slice(cut);
+      tabs.slice(cut).forEach(function (t) { t.hidden = true; });
+      moreList.innerHTML = spare.map(cityBtn).join('');
+      filterMore();   /* keep any search already typed when the list is rebuilt */
+      var picked = spare.some(function (c) { return c.name === city; });
+      moreBtn.classList.toggle('is-active', picked);
+      moreBtn.innerHTML = (picked ? city : '+' + spare.length + ' more ' + (spare.length === 1 ? 'city' : 'cities')) +
+        ' <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 10l5 5 5-5z"/></svg>';
+    }
+
+    /* the project grid shows exactly two rows of cards; the rest scroll */
+    function fitRows() {
+      listEl.scrollTop = 0;
+      var tops = [];
+      items.forEach(function (a) { if (!a.hidden && tops.indexOf(a.offsetTop) < 0) tops.push(a.offsetTop); });
+      tops.sort(function (a, b) { return a - b; });
+      if (tops.length < 3) { listEl.style.maxHeight = ''; return; }
+      var gap = parseFloat(getComputedStyle(listEl).rowGap) || 0;
+      listEl.style.maxHeight = (tops[2] - tops[0] - gap) + 'px';
+    }
 
     function render() {
-      cityEl.innerHTML = CITIES.map(function (c) {
-        return '<button class="snap-city' + (c.name === city ? ' is-active' : '') +
-               '" data-city="' + c.name + '">' + c.name + '<span>' + c.count + '</span></button>';
-      }).join('');
+      cityEl.innerHTML = CITIES.map(cityBtn).join('');
 
       typeEl.innerHTML = TYPES.map(function (t) {
-        return '<button class="snap-type' + (t.key === type ? ' is-active' : '') +
+        return '<button type="button" class="pm-type' + (t.key === type ? ' is-active' : '') +
                '" data-type="' + t.key + '">' + t.label + '</button>';
       }).join('');
 
@@ -227,7 +308,7 @@ if (!IR.reduced) document.documentElement.classList.add('js-ready');
       var label = TYPES.filter(function (t) { return t.key === type; })[0].label;
 
       titleEl.textContent = label + ' in ' + (city === ALL ? 'all cities' : city);
-      if (allEl) allEl.hidden = true;
+      if (countEl) countEl.textContent = rows.length + (rows.length === 1 ? ' project' : ' projects') + ' available';
 
       /* one button that follows the choice: city + property type */
       if (ctaEl) {
@@ -239,6 +320,8 @@ if (!IR.reduced) document.documentElement.classList.add('js-ready');
       }
 
       if (emptyEl) emptyEl.hidden = rows.length > 0;
+      layoutTabs();
+      fitRows();
 
       if (window.gsap && !reduced) {
         gsap.fromTo(rows.length ? rows : [emptyEl],
@@ -251,46 +334,33 @@ if (!IR.reduced) document.documentElement.classList.add('js-ready');
     }
 
     cityEl.addEventListener('click', function (e) {
-      var b = e.target.closest('.snap-city'); if (!b) return;
+      var b = e.target.closest('.pm-city'); if (!b) return;
       city = b.dataset.city; render();
     });
     cityEl.addEventListener('mouseover', function (e) {
-      var b = e.target.closest('.snap-city'); if (!b || b.dataset.city === city) return;
+      var b = e.target.closest('.pm-city'); if (!b || b.dataset.city === city) return;
       city = b.dataset.city; render();
     });
     typeEl.addEventListener('click', function (e) {
-      var b = e.target.closest('.snap-type'); if (!b) return;
+      var b = e.target.closest('.pm-type'); if (!b) return;
       type = b.dataset.type; render();
     });
+    moreBtn.addEventListener('click', function () { openMore(morePanel.hidden); });
+    moreSearch.addEventListener('input', filterMore);
+    moreList.addEventListener('click', function (e) {
+      var b = e.target.closest('.pm-city'); if (!b) return;
+      city = b.dataset.city; openMore(false); render();
+    });
+    document.addEventListener('click', function (e) { if (!more.contains(e.target)) openMore(false); });
+    /* widths are only final once the menu is open and fonts have loaded */
+    var refit = function () { layoutTabs(); fitRows(); };
+    var mega = cityEl.closest('.has-mega');
+    if (mega) mega.addEventListener('mouseenter', refit);
+    window.addEventListener('resize', refit);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(refit);
 
     render();
   })();
-
-  /* Locations dropdown: type to filter the city list. Enter opens the first
-     match; Escape clears the box. Matching ignores case and extra spaces. */
-  $$('[data-city-search]').forEach(function (input) {
-    var drop = input.closest('.drop');
-    var links = $$('.drop-grid a', drop), empty = $('.drop-empty', drop);
-    var name = function (a) { return a.firstChild.textContent.trim().toLowerCase(); };
-    var visible = function () { return links.filter(function (a) { return !a.hidden; }); };
-    var run = function () {
-      var term = input.value.trim().toLowerCase().replace(/\s+/g, ' ');
-      links.forEach(function (a) { a.hidden = !!term && name(a).indexOf(term) < 0; a.classList.remove('is-first'); });
-      var shown = visible();
-      if (term && shown.length) shown[0].classList.add('is-first');
-      if (empty) empty.hidden = shown.length > 0;
-    };
-    input.addEventListener('input', run);
-    input.addEventListener('search', run);   /* the box's own clear (x) button */
-    input.addEventListener('keydown', function (e) {
-      if (e.key === 'Enter') {
-        var first = visible()[0];
-        if (first && input.value.trim()) { e.preventDefault(); window.location.href = first.href; }
-      } else if (e.key === 'Escape') {
-        input.value = ''; run();
-      }
-    });
-  });
 })();
 
 /* ==========================================================================
@@ -460,6 +530,13 @@ if (!IR.reduced) document.documentElement.classList.add('js-ready');
           if (match) shown.push(card);
         });
 
+        /* the "View all" button below follows the chip */
+        var all = $('#featuredAll');
+        if (all) {
+          $('span', all).textContent = want === 'all' ? 'View all projects' : 'View all ' + chip.textContent.trim().toLowerCase() + (want === 'plots' ? '' : ' projects');
+          all.href = want === 'all' ? 'projects.html' : 'property-type.html?type=' + want;
+        }
+
         if (window.gsap && !reduced) {
           gsap.fromTo(shown,
             { autoAlpha: 0, y: 30 },
@@ -619,17 +696,65 @@ if (!IR.reduced) document.documentElement.classList.add('js-ready');
       });
   });
 
-  /* -- why-choose-us: cards fan out from the centre card -- */
-  if ($('.why5-row')) {
-    gsap.fromTo('.why5-row .wc',
-      { autoAlpha: 0, y: 46, scale: .94 },
-      {
-        autoAlpha: 1, y: 0, scale: 1, clearProps: 'transform',
-        duration: .85, ease: 'power3.out',
-        stagger: { each: .1, from: 'center' },
-        scrollTrigger: { trigger: '.why5-row', start: 'top 85%', once: true }
+  /* -- why-choose-us: same motion as the about cards. The five cards wait
+        stacked behind the centre card, then deal out to their places as you
+        scroll (scrubbed, so it reverses on the way back up). The cards differ
+        in size, so each stacked offset is measured: the inner pair peeks out a
+        little from behind the centre card, the outer pair a little more.
+        Five-across layout only; narrower screens just fade up. -- */
+  (function () {
+    var row = $('.why5-row');
+    if (!row) return;
+    var cards = [].slice.call(row.querySelectorAll('.wc'));
+    if (cards.length !== 5) return;
+    var mm = gsap.matchMedia();
+
+    mm.add('(min-width: 992px)', function () {
+      var PEEK = 26;                                    /* px each layer shows past the one in front */
+      var LOOK = [                                      /* stacked pose per card, left to right */
+        { depth: 2, rot: -9, scale: .86, y: 36 },
+        { depth: 1, rot: -5, scale: .93, y: 22 },
+        null,                                           /* centre card */
+        { depth: 1, rot: 5,  scale: .93, y: 22 },
+        { depth: 2, rot: 9,  scale: .86, y: 36 }
+      ];
+      var centreX = function (el) { return el.offsetLeft + el.offsetWidth / 2; };
+      /* x that parks a card behind the centre card with its outer edge showing */
+      var stackX = function (i) {
+        var c = cards[2], el = cards[i], side = i < 2 ? -1 : 1, L = LOOK[i];
+        var show = c.offsetWidth / 2 - el.offsetWidth * L.scale / 2 + L.depth * PEEK;
+        return centreX(c) - centreX(el) + side * show;
+      };
+
+      gsap.set(cards, { autoAlpha: 1 });
+      gsap.set(cards[2], { zIndex: 5 });
+      gsap.set([cards[1], cards[3]], { zIndex: 4 });
+      gsap.set([cards[0], cards[4]], { zIndex: 3 });
+
+      var tl = gsap.timeline({
+        defaults: { ease: 'none' },
+        scrollTrigger: {
+          trigger: row, start: 'top 92%', end: 'center 52%',
+          scrub: .7, invalidateOnRefresh: true
+        }
       });
-  }
+      cards.forEach(function (el, i) {
+        var L = LOOK[i];
+        /* fromTo, not from: on refresh a from() would re-read the stacked state as its end point */
+        if (L) tl.fromTo(el, { x: function () { return stackX(i); }, y: L.y, rotation: L.rot, scale: L.scale }, { x: 0, y: 0, rotation: 0, scale: 1 }, 0);
+        else   tl.fromTo(el, { y: -14, scale: 1.03 }, { y: 0, scale: 1 }, 0);
+      });
+
+      return function () { gsap.set(cards, { clearProps: 'zIndex,transform,opacity,visibility' }); };
+    });
+
+    mm.add('(max-width: 991.98px)', function () {
+      gsap.fromTo(cards, { autoAlpha: 0, y: 30 }, {
+        autoAlpha: 1, y: 0, clearProps: 'transform', duration: .7, stagger: .08, ease: 'power3.out',
+        scrollTrigger: { trigger: row, start: 'top 88%', once: true }
+      });
+    });
+  })();
 
   /* -- about: the three "learn more" cards wait stacked in the centre, then
         deal out to their places as you scroll. Scrubbed, so it reverses on the
@@ -854,40 +979,80 @@ if (!IR.reduced) document.documentElement.classList.add('js-ready');
 })();
 
 /* ==========================================================================
-   13. Project page: section tabs + nearby list
+   13. Project page: floor plan tabs, nearby list
    ========================================================================== */
 (function () {
   'use strict';
-  var $ = IR.$, $$ = IR.$$, reduced = IR.reduced;
+  var $ = IR.$, $$ = IR.$$;
   var lenis = IR.lenisNow;
   var scrollToEl = IR.scrollToEl;
 
+  /* section tabs: a click scrolls to the block just below the navbar + tab
+     bar; while scrolling, the tab of the block in view is underlined */
   var tabs = $$('.pd-tabs [data-target]');
   if (tabs.length) {
+    var bar = $('.pd-tabs'), header = $('.site-header');
     var blocks = tabs.map(function (t) { return document.getElementById(t.dataset.target); });
-    /* the tab bar is the only sticky bar on this page, so offsets follow its height */
-    var tabBar = $('.pd-tabs');
+    var offset = function () { return (header ? header.offsetHeight : 0) + bar.offsetHeight + 16; };
     tabs.forEach(function (t, i) {
-      t.addEventListener('click', function () { if (blocks[i]) scrollToEl(blocks[i], tabBar.offsetHeight + 22); });
+      t.addEventListener('click', function () { if (blocks[i]) scrollToEl(blocks[i], offset()); });
     });
     var activate = function () {
-      var line = tabBar.offsetHeight + 60, current = 0;
+      var line = offset() + 40, current = 0;
       blocks.forEach(function (b, i) { if (b && b.getBoundingClientRect().top - line <= 0) current = i; });
       tabs.forEach(function (t, i) { t.classList.toggle('is-active', i === current); });
-      var active = tabs[current];
-      if (active && active.parentElement.scrollWidth > active.parentElement.clientWidth) {
-        active.parentElement.scrollLeft = active.offsetLeft - 20;
-      }
+      var nav = tabs[current].parentElement;
+      if (nav.scrollWidth > nav.clientWidth) nav.scrollLeft = tabs[current].offsetLeft - 20;
     };
     window.addEventListener('scroll', activate, { passive: true });
     if (lenis()) lenis().on('scroll', activate);
     activate();
   }
 
-  /* "What's nearby": past 8 places, fold the rest behind a View all button so
-     the section stays compact however long the list grows. */
+  /* floor plans: one tab per unit type shows its card; arrow keys move
+     between tabs, as in a standard tab list */
+  $$('[data-pj-tabs]').forEach(function (box) {
+    var btns = $$('[role="tab"]', box);
+    var show = function (i, focus) {
+      btns.forEach(function (b, k) {
+        var on = k === i;
+        b.classList.toggle('is-active', on);
+        b.setAttribute('aria-selected', on ? 'true' : 'false');
+        b.tabIndex = on ? 0 : -1;
+        document.getElementById(b.getAttribute('aria-controls')).hidden = !on;
+      });
+      if (focus) btns[i].focus();
+    };
+    btns.forEach(function (b, i) {
+      b.addEventListener('click', function () { show(i); });
+      b.addEventListener('keydown', function (e) {
+        if (e.key === 'ArrowRight') { e.preventDefault(); show((i + 1) % btns.length, true); }
+        if (e.key === 'ArrowLeft') { e.preventDefault(); show((i - 1 + btns.length) % btns.length, true); }
+      });
+    });
+  });
+
+  /* FAQ search: hides the questions (and answers) that don't contain the
+     words typed; a short note shows when nothing matches */
+  $$('[data-faq-search]').forEach(function (input) {
+    var sec = input.closest('section');
+    var items = $$('.faq-item', sec), none = $('[data-faq-none]', sec);
+    input.addEventListener('input', function () {
+      var q = input.value.trim().toLowerCase(), shown = 0;
+      items.forEach(function (it) {
+        var hit = !q || it.textContent.toLowerCase().indexOf(q) > -1;
+        it.hidden = !hit;
+        if (hit) shown++;
+      });
+      if (none) none.hidden = shown > 0;
+      if (window.ScrollTrigger) window.ScrollTrigger.refresh();
+    });
+  });
+
+  /* travel times: past 8 places, fold the rest behind a View all button so
+     the block stays compact however long the list grows */
   var NEAR_SHOWN = 8;
-  $$('.loc-grid .near').forEach(function (list) {
+  $$('.pj-near').forEach(function (list) {
     var items = $$('li', list);
     if (items.length <= NEAR_SHOWN) return;
     var extra = items.slice(NEAR_SHOWN);
@@ -1281,7 +1446,7 @@ if (!IR.reduced) document.documentElement.classList.add('js-ready');
 document.addEventListener('error', function (e) {
   var img = e.target;
   if (!img || img.tagName !== 'IMG' || img.dataset.fallback) return;
-  if (!img.closest('.pcard-media, .snap-list, .snap')) return;
+  if (!img.closest('.pcard-media, .pm-card')) return;
   img.dataset.fallback = '1';
   img.src = window.IR_PLACEHOLDER;
 }, true);

@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>The Aravalli Residences, Golf Course Extension — Intelligent Realtors</title>
-<meta name="description" content="The Aravalli Residences: 4 & 5 BHK sky villas on Golf Course Extension Road, Gurugram. Prices, floor plans, amenities and location.">
+<title>Godrej Jardinia, Sector 146, Noida-Greater Noida Expressway | Intelligent Realtors</title>
+<meta name="description" content="Godrej Jardinia by Godrej Properties in Sector 146, Noida-Greater Noida Expressway: 2 BHK, 3 BHK, 4 BHK, 831 – 1714 sq.ft, from ₹4.19 Cr. Price, amenities, location and FAQs.">
 
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 40 40%27><rect width=%2740%27 height=%2740%27 fill=%27%230a1628%27/><path d=%27M20 8 32 17v16h-8V25h-8v8H8V17z%27 fill=%27%23c9a961%27/></svg>">
 
@@ -14,9 +14,9 @@
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 <link href="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.css" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/style.css?v=20261016zv">
+<link rel="stylesheet" href="assets/css/style.css?v=20261019n">
 </head>
-<body>
+<body class="pj-page">
 
 <!-- ============ NAVBAR ============ -->
 <header class="site-header" id="siteHeader">
@@ -40,13 +40,12 @@
           <li class="has-drop">
             <a href="locations.html">Locations <svg viewBox="0 0 24 24" class="caret"><path d="M7 10l5 5 5-5z"/></svg></a>
             <div class="drop drop--cols">
-              <label class="drop-search"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15.5 14h-.8l-.3-.3a6.5 6.5 0 1 0-.7.7l.3.3v.8l5 5 1.5-1.5-5-5zm-6 0a4.5 4.5 0 1 1 0-9 4.5 4.5 0 0 1 0 9z"/></svg><input type="search" placeholder="Search a city" aria-label="Search cities" autocomplete="off" data-city-search></label>
+              <h6>Explore by city</h6>
               <div class="drop-grid">
-                <a href="projects.html?city=noida">Noida <span>10</span></a>
-                <a href="projects.html?city=yamuna-expressway">Yamuna Expressway <span>7</span></a>
-                <a href="projects.html?city=greater-noida">Greater Noida <span>2</span></a>
+                <a href="projects.html?city=noida" title="Noida"><b>Noida</b><span>10</span></a>
+                <a href="projects.html?city=yamuna-expressway" title="Yamuna Expressway"><b>Yamuna Expressway</b><span>7</span></a>
+                <a href="projects.html?city=greater-noida" title="Greater Noida"><b>Greater Noida</b><span>2</span></a>
               </div>
-              <p class="drop-empty" hidden>No city found. <a href="contact.html">Ask us about it</a></p>
             </div>
           </li>
 
@@ -55,15 +54,15 @@
             <div class="drop drop--cols">
               <h6>Channel partner to</h6>
               <div class="drop-grid">
-                <a href="projects.html?dev=wellgrow-infotech">Wellgrow Infotech <span>1</span></a>
-                <a href="projects.html?dev=godrej-properties">Godrej Properties <span>2</span></a>
-                <a href="projects.html?dev=ace-group">ACE Group <span>6</span></a>
-                <a href="projects.html?dev=samridhi-group">Samridhi Group <span>2</span></a>
-                <a href="projects.html?dev=eldeco-group">Eldeco Group <span>2</span></a>
-                <a href="projects.html?dev=m3m">M3M <span>3</span></a>
-                <a href="projects.html?dev=crc-group">CRC Group <span>1</span></a>
-                <a href="projects.html?dev=prasandi-infotech-park">Prasandi Infotech Park <span>1</span></a>
-                <a href="projects.html?dev=experion-developers">Experion Developers <span>1</span></a>
+                <a href="projects.html?dev=wellgrow-infotech" title="Wellgrow Infotech"><b>Wellgrow Infotech</b><span>1</span></a>
+                <a href="projects.html?dev=godrej-properties" title="Godrej Properties"><b>Godrej Properties</b><span>2</span></a>
+                <a href="projects.html?dev=ace-group" title="ACE Group"><b>ACE Group</b><span>6</span></a>
+                <a href="projects.html?dev=samridhi-group" title="Samridhi Group"><b>Samridhi Group</b><span>2</span></a>
+                <a href="projects.html?dev=eldeco-group" title="Eldeco Group"><b>Eldeco Group</b><span>2</span></a>
+                <a href="projects.html?dev=m3m" title="M3M"><b>M3M</b><span>3</span></a>
+                <a href="projects.html?dev=crc-group" title="CRC Group"><b>CRC Group</b><span>1</span></a>
+                <a href="projects.html?dev=prasandi-infotech-park" title="Prasandi Infotech Park"><b>Prasandi Infotech Park</b><span>1</span></a>
+                <a href="projects.html?dev=experion-developers" title="Experion Developers"><b>Experion Developers</b><span>1</span></a>
               </div>
             </div>
           </li>
@@ -71,48 +70,41 @@
           <li class="has-mega">
             <a href="projects.html" class="active">Projects <svg viewBox="0 0 24 24" class="caret"><path d="M7 10l5 5 5-5z"/></svg></a>
             <div class="mega">
-              <div class="snap">
-
-                <div class="snap-col snap-cities">
-                  <h6>Select city</h6>
-                  <div class="snap-scroll" id="snapCities"></div>
+              <div class="pm">
+                <div class="pm-top">
+                  <div class="pm-cities" id="snapCities" aria-label="City"></div>
+                  <div class="pm-types" id="snapTypes" aria-label="Property type"></div>
                 </div>
-
-                <div class="snap-col snap-types">
-                  <h6>Property type</h6>
-                  <div id="snapTypes"></div>
-                </div>
-
-                <div class="snap-col snap-results">
-                  <div class="snap-head">
+                <div class="pm-body">
+                  <aside class="pm-feature">
+                    <span class="pm-kicker">Now showing</span>
                     <h5 id="snapTitle">All types in Noida</h5>
-                    <a href="projects.html" class="snap-all" id="snapAll">View all <i>&rarr;</i></a>
+                    <p class="pm-count" id="snapCount"></p>
+                    <a href="projects.html" class="pm-cta" id="snapCta"><span>View all projects</span><i>&rarr;</i></a>
+                  </aside>
+                  <div class="pm-grid" id="snapList">
+                    <a class="pm-card" href="project-details.html" title="Orion One 32" data-city="Noida" data-type="commercial"><span class="pm-card-img"><img src="assets/images/projects/orion-one-32/cover.webp" alt="" loading="lazy"><b>₹46.9 L onwards</b></span><strong>Orion One 32</strong><em>Sector 132, Noida–Greater Noida Expressway</em></a>
+                    <a class="pm-card" href="project-details.html" title="Godrej Jardinia" data-city="Noida" data-type="residential"><span class="pm-card-img"><img src="assets/images/projects/godrej-jardinia/cover.webp" alt="" loading="lazy"><b>₹4.19 Cr onwards</b></span><strong>Godrej Jardinia</strong><em>Sector 146, Noida-Greater Noida Expressway</em></a>
+                    <a class="pm-card" href="project-details.html" title="ACE Starlit" data-city="Noida" data-type="residential"><span class="pm-card-img"><img src="assets/images/projects/ace-starlit/cover.webp" alt="" loading="lazy"><b>₹1.99 Cr onwards</b></span><strong>ACE Starlit</strong><em>Sector 152, Noida Expressway</em></a>
+                    <a class="pm-card" href="project-details.html" title="Samridhi Luxuriya Avenue" data-city="Noida" data-type="residential"><span class="pm-card-img"><img src="assets/images/projects/samridhi-luxuriya-avenue/cover.webp" alt="" loading="lazy"><b>₹2.37 Cr onwards</b></span><strong>Samridhi Luxuriya Avenue</strong><em>Sector 150, Noida</em></a>
+                    <a class="pm-card" href="project-details.html" title="Samridhi Daksh Avenue" data-city="Noida" data-type="residential"><span class="pm-card-img"><img src="assets/images/projects/samridhi-daksh-avenue/cover.webp" alt="" loading="lazy"><b>₹4.16 Cr onwards</b></span><strong>Samridhi Daksh Avenue</strong><em>Sector 150, Noida</em></a>
+                    <a class="pm-card" href="project-details.html" title="Eldeco Ballads of Bliss" data-city="Yamuna Expressway" data-type="residential"><span class="pm-card-img"><img src="assets/images/projects/eldeco-ballads-of-bliss/cover.webp" alt="" loading="lazy"><b>₹1.17 Cr onwards</b></span><strong>Eldeco Ballads of Bliss</strong><em>Sector 22D, Yamuna Expressway</em></a>
+                    <a class="pm-card" href="project-details.html" title="M3M Jacob And Co Residences" data-city="Noida" data-type="residential"><span class="pm-card-img"><img src="assets/images/projects/m3m-jacob-and-co-residences/cover.webp" alt="" loading="lazy"><b>₹7.75 Cr onwards</b></span><strong>M3M Jacob And Co Residences</strong><em>Sector 97, Noida</em></a>
+                    <a class="pm-card" href="project-details.html" title="M3M The Cullinan" data-city="Noida" data-type="residential"><span class="pm-card-img"><img src="assets/images/projects/m3m-the-cullinan/cover.webp" alt="" loading="lazy"><b>₹8.32 Cr onwards</b></span><strong>M3M The Cullinan</strong><em>Sector 94, Noida</em></a>
+                    <a class="pm-card" href="project-details.html" title="M3M The Line" data-city="Noida" data-type="residential"><span class="pm-card-img"><img src="assets/images/projects/m3m-the-line/cover.webp" alt="" loading="lazy"><b>₹1.47 Cr onwards</b></span><strong>M3M The Line</strong><em>Sector 72, Noida</em></a>
+                    <a class="pm-card" href="project-details.html" title="Eldeco WOW" data-city="Yamuna Expressway" data-type="residential"><span class="pm-card-img"><img src="assets/images/projects/eldeco-whispers-of-wonder-wow/cover.webp" alt="" loading="lazy"><b>₹1.05 Cr onwards</b></span><strong>Eldeco WOW</strong><em>Sector 22D, Yamuna Expressway</em></a>
+                    <a class="pm-card" href="project-details.html" title="Godrej Arden" data-city="Greater Noida" data-type="residential"><span class="pm-card-img"><img src="assets/images/projects/godrej-arden/cover.webp" alt="" loading="lazy"><b>₹1.87 Cr onwards</b></span><strong>Godrej Arden</strong><em>Sigma III, Greater Noida</em></a>
+                    <a class="pm-card" href="project-details.html" title="CRC The Flagship" data-city="Noida" data-type="commercial"><span class="pm-card-img"><img src="assets/images/projects/crc-the-flagship/cover.webp" alt="" loading="lazy"><b>₹76 L onwards</b></span><strong>CRC The Flagship</strong><em>Sector 140A, Noida</em></a>
+                    <a class="pm-card" href="project-details.html" title="BIIGTECH" data-city="Greater Noida" data-type="commercial"><span class="pm-card-img"><img src="assets/images/projects/biigtech/cover.webp" alt="" loading="lazy"><b>Price on request</b></span><strong>BIIGTECH</strong><em>Knowledge Park III, Greater Noida</em></a>
+                    <a class="pm-card" href="project-details.html" title="ACE Verde" data-city="Yamuna Expressway" data-type="residential"><span class="pm-card-img"><img src="assets/images/projects/ace-verde/cover.webp" alt="" loading="lazy"><b>₹1.62 Cr onwards</b></span><strong>ACE Verde</strong><em>Sector 22A, Yamuna Expressway</em></a>
+                    <a class="pm-card" href="project-details.html" title="ACE YXP" data-city="Yamuna Expressway" data-type="commercial"><span class="pm-card-img"><img src="assets/images/projects/ace-yxp/cover.webp" alt="" loading="lazy"><b>₹86.58 L onwards</b></span><strong>ACE YXP</strong><em>Sector 22D, Yamuna Expressway</em></a>
+                    <a class="pm-card" href="project-details.html" title="ACE The Nest" data-city="Yamuna Expressway" data-type="residential"><span class="pm-card-img"><img src="assets/images/projects/ace-the-nest/cover.webp" alt="" loading="lazy"><b>Price on request</b></span><strong>ACE The Nest</strong><em>Sector 22A, Yamuna Expressway</em></a>
+                    <a class="pm-card" href="project-details.html" title="ACE Estate" data-city="Yamuna Expressway" data-type="plots"><span class="pm-card-img"><img src="assets/images/projects/ace-estate/cover.webp" alt="" loading="lazy"><b>₹1.88 Cr onwards</b></span><strong>ACE Estate</strong><em>Sector 22D, Yamuna Expressway</em></a>
+                    <a class="pm-card" href="project-details.html" title="ACE Acreville" data-city="Yamuna Expressway" data-type="plots"><span class="pm-card-img"><img src="assets/images/projects/ace-acreville/cover.webp" alt="" loading="lazy"><b>Price on request</b></span><strong>ACE Acreville</strong><em>Sector 22A, Yamuna Expressway</em></a>
+                    <a class="pm-card" href="project-details.html" title="Experion Elements" data-city="Noida" data-type="residential"><span class="pm-card-img"><img src="assets/images/projects/experion-elements/cover.webp" alt="" loading="lazy"><b>₹5.95 Cr onwards</b></span><strong>Experion Elements</strong><em>Sector 45, Noida</em></a>
+                    <p class="pm-empty" hidden>Nothing live in this combination today. Tell us what you need and we will source it.</p>
                   </div>
-                  <div class="snap-list" id="snapList">
-                    <a class="snap-item" href="project-orion-one-32.html" data-city="Noida" data-type="commercial"><img src="assets/images/projects/orion-one-32/cover.webp" alt="" loading="lazy"><span class="snap-item-b"><strong>Orion One 32</strong><em>Sector 132, Noida–Greater Noida Expressway</em><b>₹46.9 L onwards</b></span></a>
-                    <a class="snap-item" href="project-godrej-jardinia.html" data-city="Noida" data-type="residential"><img src="assets/images/projects/godrej-jardinia/cover.webp" alt="" loading="lazy"><span class="snap-item-b"><strong>Godrej Jardinia</strong><em>Sector 146, Noida-Greater Noida Expressway</em><b>₹4.19 Cr onwards</b></span></a>
-                    <a class="snap-item" href="project-ace-starlit.html" data-city="Noida" data-type="residential"><img src="assets/images/projects/ace-starlit/cover.webp" alt="" loading="lazy"><span class="snap-item-b"><strong>ACE Starlit</strong><em>Sector 152, Noida Expressway</em><b>₹1.99 Cr onwards</b></span></a>
-                    <a class="snap-item" href="project-samridhi-luxuriya-avenue.html" data-city="Noida" data-type="residential"><img src="assets/images/projects/samridhi-luxuriya-avenue/cover.webp" alt="" loading="lazy"><span class="snap-item-b"><strong>Samridhi Luxuriya Avenue</strong><em>Sector 150, Noida</em><b>₹2.37 Cr onwards</b></span></a>
-                    <a class="snap-item" href="project-samridhi-daksh-avenue.html" data-city="Noida" data-type="residential"><img src="assets/images/projects/samridhi-daksh-avenue/cover.webp" alt="" loading="lazy"><span class="snap-item-b"><strong>Samridhi Daksh Avenue</strong><em>Sector 150, Noida</em><b>₹4.16 Cr onwards</b></span></a>
-                    <a class="snap-item" href="project-eldeco-ballads-of-bliss.html" data-city="Yamuna Expressway" data-type="residential"><img src="assets/images/projects/eldeco-ballads-of-bliss/cover.webp" alt="" loading="lazy"><span class="snap-item-b"><strong>Eldeco Ballads of Bliss</strong><em>Sector 22D, Yamuna Expressway</em><b>₹1.17 Cr onwards</b></span></a>
-                    <a class="snap-item" href="project-m3m-jacob-and-co-residences.html" data-city="Noida" data-type="residential"><img src="assets/images/projects/m3m-jacob-and-co-residences/cover.webp" alt="" loading="lazy"><span class="snap-item-b"><strong>M3M Jacob And Co Residences</strong><em>Sector 97, Noida</em><b>₹7.75 Cr onwards</b></span></a>
-                    <a class="snap-item" href="project-m3m-the-cullinan.html" data-city="Noida" data-type="residential"><img src="assets/images/projects/m3m-the-cullinan/cover.webp" alt="" loading="lazy"><span class="snap-item-b"><strong>M3M The Cullinan</strong><em>Sector 94, Noida</em><b>₹8.32 Cr onwards</b></span></a>
-                    <a class="snap-item" href="project-m3m-the-line.html" data-city="Noida" data-type="residential"><img src="assets/images/projects/m3m-the-line/cover.webp" alt="" loading="lazy"><span class="snap-item-b"><strong>M3M The Line</strong><em>Sector 72, Noida</em><b>₹1.47 Cr onwards</b></span></a>
-                    <a class="snap-item" href="project-eldeco-whispers-of-wonder-wow.html" data-city="Yamuna Expressway" data-type="residential"><img src="assets/images/projects/eldeco-whispers-of-wonder-wow/cover.webp" alt="" loading="lazy"><span class="snap-item-b"><strong>Eldeco WOW</strong><em>Sector 22D, Yamuna Expressway</em><b>₹1.05 Cr onwards</b></span></a>
-                    <a class="snap-item" href="project-godrej-arden.html" data-city="Greater Noida" data-type="residential"><img src="assets/images/projects/godrej-arden/cover.webp" alt="" loading="lazy"><span class="snap-item-b"><strong>Godrej Arden</strong><em>Sigma III, Greater Noida</em><b>₹1.87 Cr onwards</b></span></a>
-                    <a class="snap-item" href="project-crc-the-flagship.html" data-city="Noida" data-type="commercial"><img src="assets/images/projects/crc-the-flagship/cover.webp" alt="" loading="lazy"><span class="snap-item-b"><strong>CRC The Flagship</strong><em>Sector 140A, Noida</em><b>₹76 L onwards</b></span></a>
-                    <a class="snap-item" href="project-biigtech.html" data-city="Greater Noida" data-type="commercial"><img src="assets/images/projects/biigtech/cover.webp" alt="" loading="lazy"><span class="snap-item-b"><strong>BIIGTECH</strong><em>Knowledge Park III, Greater Noida</em><b>Price on request</b></span></a>
-                    <a class="snap-item" href="project-ace-verde.html" data-city="Yamuna Expressway" data-type="residential"><img src="assets/images/projects/ace-verde/cover.webp" alt="" loading="lazy"><span class="snap-item-b"><strong>ACE Verde</strong><em>Sector 22A, Yamuna Expressway</em><b>₹1.62 Cr onwards</b></span></a>
-                    <a class="snap-item" href="project-ace-yxp.html" data-city="Yamuna Expressway" data-type="commercial"><img src="assets/images/projects/ace-yxp/cover.webp" alt="" loading="lazy"><span class="snap-item-b"><strong>ACE YXP</strong><em>Sector 22D, Yamuna Expressway</em><b>₹86.58 L onwards</b></span></a>
-                    <a class="snap-item" href="project-ace-the-nest.html" data-city="Yamuna Expressway" data-type="residential"><img src="assets/images/projects/ace-the-nest/cover.webp" alt="" loading="lazy"><span class="snap-item-b"><strong>ACE The Nest</strong><em>Sector 22A, Yamuna Expressway</em><b>Price on request</b></span></a>
-                    <a class="snap-item" href="project-ace-estate.html" data-city="Yamuna Expressway" data-type="plots"><img src="assets/images/projects/ace-estate/cover.webp" alt="" loading="lazy"><span class="snap-item-b"><strong>ACE Estate</strong><em>Sector 22D, Yamuna Expressway</em><b>₹1.88 Cr onwards</b></span></a>
-                    <a class="snap-item" href="project-ace-acreville.html" data-city="Yamuna Expressway" data-type="plots"><img src="assets/images/projects/ace-acreville/cover.webp" alt="" loading="lazy"><span class="snap-item-b"><strong>ACE Acreville</strong><em>Sector 22A, Yamuna Expressway</em><b>Price on request</b></span></a>
-                    <a class="snap-item" href="project-experion-elements.html" data-city="Noida" data-type="residential"><img src="assets/images/projects/experion-elements/cover.webp" alt="" loading="lazy"><span class="snap-item-b"><strong>Experion Elements</strong><em>Sector 45, Noida</em><b>₹5.95 Cr onwards</b></span></a>
-                    <p class="snap-empty" hidden>Nothing live in this combination today. Tell us what you need and we will source it.</p>
-                  </div>
-                  <a href="locations.html" class="snap-cta" id="snapCta"><span>View all projects</span><i>&rarr;</i></a>
                 </div>
-
               </div>
             </div>
           </li>
@@ -144,8 +136,34 @@
     <button class="mm-close" id="mmClose" aria-label="Close menu">&times;</button>
   </div>
   <nav class="mm-links">
-    <a href="locations.html"><span class="mm-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.3 7 13 7 13s7-7.7 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg></span><span class="mm-txt">Locations</span></a>
-    <a href="projects.html"><span class="mm-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 7V3H2v18h20V7H12zM6 19H4v-2h2v2zm0-4H4v-2h2v2zm0-4H4V9h2v2zm0-4H4V5h2v2zm4 12H8v-2h2v2zm0-4H8v-2h2v2zm0-4H8V9h2v2zm0-4H8V5h2v2zm10 12h-8v-2h2v-2h-2v-2h2v-2h-2V9h8v10zm-2-8h-2v2h2v-2zm0 4h-2v2h2v-2z"/></svg></span><span class="mm-txt">Developers</span></a>
+    <div class="mm-group" data-mm-group>
+      <button type="button" class="mm-toggle" aria-expanded="false" aria-controls="mmLocations"><span class="mm-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.3 7 13 7 13s7-7.7 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg></span><span class="mm-txt">Locations</span><svg class="mm-caret" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 10l5 5 5-5z"/></svg></button>
+      <div class="mm-sub" id="mmLocations" inert>
+        <div class="mm-sub-in">
+          <a href="projects.html?city=noida" title="Noida"><b>Noida</b><span>10</span></a>
+          <a href="projects.html?city=yamuna-expressway" title="Yamuna Expressway"><b>Yamuna Expressway</b><span>7</span></a>
+          <a href="projects.html?city=greater-noida" title="Greater Noida"><b>Greater Noida</b><span>2</span></a>
+          <a class="mm-sub-all" href="locations.html">View all locations <span aria-hidden="true">&rarr;</span></a>
+        </div>
+      </div>
+    </div>
+    <div class="mm-group" data-mm-group>
+      <button type="button" class="mm-toggle" aria-expanded="false" aria-controls="mmDevelopers"><span class="mm-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 7V3H2v18h20V7H12zM6 19H4v-2h2v2zm0-4H4v-2h2v2zm0-4H4V9h2v2zm0-4H4V5h2v2zm4 12H8v-2h2v2zm0-4H8v-2h2v2zm0-4H8V9h2v2zm0-4H8V5h2v2zm10 12h-8v-2h2v-2h-2v-2h2v-2h-2V9h8v10zm-2-8h-2v2h2v-2zm0 4h-2v2h2v-2z"/></svg></span><span class="mm-txt">Developers</span><svg class="mm-caret" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 10l5 5 5-5z"/></svg></button>
+      <div class="mm-sub" id="mmDevelopers" inert>
+        <div class="mm-sub-in">
+          <a href="projects.html?dev=wellgrow-infotech" title="Wellgrow Infotech"><b>Wellgrow Infotech</b><span>1</span></a>
+          <a href="projects.html?dev=godrej-properties" title="Godrej Properties"><b>Godrej Properties</b><span>2</span></a>
+          <a href="projects.html?dev=ace-group" title="ACE Group"><b>ACE Group</b><span>6</span></a>
+          <a href="projects.html?dev=samridhi-group" title="Samridhi Group"><b>Samridhi Group</b><span>2</span></a>
+          <a href="projects.html?dev=eldeco-group" title="Eldeco Group"><b>Eldeco Group</b><span>2</span></a>
+          <a href="projects.html?dev=m3m" title="M3M"><b>M3M</b><span>3</span></a>
+          <a href="projects.html?dev=crc-group" title="CRC Group"><b>CRC Group</b><span>1</span></a>
+          <a href="projects.html?dev=prasandi-infotech-park" title="Prasandi Infotech Park"><b>Prasandi Infotech Park</b><span>1</span></a>
+          <a href="projects.html?dev=experion-developers" title="Experion Developers"><b>Experion Developers</b><span>1</span></a>
+          <a class="mm-sub-all" href="projects.html">View all projects <span aria-hidden="true">&rarr;</span></a>
+        </div>
+      </div>
+    </div>
     <a href="projects.html"><span class="mm-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 2 12h3v8h6v-6h2v6h6v-8h3L12 3z"/></svg></span><span class="mm-txt">Projects</span></a>
     <a href="about.html"><span class="mm-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg></span><span class="mm-txt">About Us</span></a>
     <a href="careers.html"><span class="mm-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6h-4V4c0-1.1-.9-2-2-2h-4c-1.1 0-2 .9-2 2v2H4c-1.1 0-2 .9-2 2v11c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-6 0h-4V4h4v2z"/></svg></span><span class="mm-txt">Career</span></a>
@@ -160,291 +178,377 @@
 <div class="mm-backdrop" id="mmBackdrop"></div>
 
 
-<main>
+<main class="pj">
 
-<section class="pd-hero">
-  <img src="assets/images/villa-with-pool-1800.jpg" alt="The Aravalli Residences" fetchpriority="high">
-  <button class="pd-photos" data-lb-open><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 19V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2zM8.5 13.5l2.5 3 3.5-4.5 4.5 6H5l3.5-4.5z"/></svg> 5 photos</button>
+<!-- ============ HERO: details top-left inside the photo grid ============ -->
+<section class="pj-hero" id="pd-top">
   <div class="container-xl">
-    <nav class="crumbs reveal" aria-label="Breadcrumb"><a href="index.html">Home</a><i></i><a href="projects.html">Projects</a><i></i><span>The Aravalli Residences</span></nav>
-    <div class="pd-tags reveal"><span class="pd-tag pd-tag--gold">New launch</span><span class="pd-tag pd-tag--glass">Residential</span><span class="pd-tag pd-tag--glass">RERA registered</span></div>
-    <h1 class="reveal">The Aravalli Residences</h1>
-    <div class="pd-loc reveal"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.3 7 13 7 13s7-7.7 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>Sector 63A, Golf Course Extension Road, Gurugram</div>
-    <p class="lead reveal">Low-density 4 and 5 BHK sky villas by Godrej Properties, with wraparound decks, private lift lobbies and uninterrupted Aravalli views.</p>
-    <div class="pd-actions reveal">
-      <a href="#" class="btn-gold" data-modal="enq" data-kicker="The Aravalli Residences" data-title="Get the best price">Get best price <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 11h12.2l-5.6-5.6L12 4l8 8-8 8-1.4-1.4 5.6-5.6H4z"/></svg></a>
-      <a href="#" class="btn-ghost-light" data-modal="enq" data-kicker="Brochure" data-title="Download the brochure"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 20h14v-2H5v2zm14-11h-4V3H9v6H5l7 7 7-7z"/></svg> Download brochure</a>
-    </div>
-  </div>
-  <div class="container-xl">
-    <div class="pd-stats">
-      <div><small>Starting price</small><b>&#8377;6.40 Cr*</b></div>
-      <div><small>Configuration</small><b>4 &amp; 5 BHK</b></div>
-      <div><small>Super area</small><b>3,240 &ndash; 4,810 sq.ft.</b></div>
-      <div><small>Possession</small><b>Dec 2029</b></div>
-      <div><small>Land parcel</small><b>12.5 acres</b></div>
-      <div><small>Towers</small><b>4 &middot; 420 homes</b></div>
-    </div>
-  </div>
-</section>
-
-<div class="pd-tabs">
-  <div class="container-xl">
-    <nav aria-label="Project sections">
-      <button data-target="pd-overview" class="is-active">Overview</button>
-      <button data-target="pd-amenities">Amenities</button>
-      <button data-target="pd-highlights">Highlights</button>
-      <button data-target="pd-price">Price &amp; plans</button>
-      <button data-target="pd-developer">Developer</button>
-      <button data-target="pd-location">Location</button>
-      <button data-target="pd-gallery">Gallery</button>
-      <button data-target="pd-faq">FAQs</button>
-    </nav>
-  </div>
-</div>
-
-<section class="pd-body">
-  <div class="container-xl">
-    <div class="pd-grid">
-      <div>
-        <div class="pd-blk" id="pd-overview">
-          <h2>Project overview</h2>
-          <p>The Aravalli Residences sits on a 12.5-acre parcel along Golf Course Extension Road, one of Gurugram&rsquo;s most established residential corridors. With just four towers and 420 homes, it keeps density low and open space generous &mdash; nearly 78% of the site is landscaped.</p>
-          <p>Every residence is a corner home with three-side ventilation, a 10-foot ceiling and a private lift lobby. Wraparound decks open onto views of the Aravalli ridge, and the 5 BHK sky villas add a private terrace garden.</p>
-          <div class="fact-grid">
-            <div class="fact"><small>Land parcel</small><b>12.5 acres</b></div>
-            <div class="fact"><small>Towers</small><b>4 &middot; G+32</b></div>
-            <div class="fact"><small>Homes</small><b>420</b></div>
-            <div class="fact"><small>Open space</small><b>78%</b></div>
-          </div>
+    <nav class="pj-crumbs" aria-label="Breadcrumb"><a href="index.html">Home</a><i></i><a href="projects.html">Projects</a><i></i><span>Godrej Jardinia</span></nav>
+    <div class="pj-bento pj-bento--n3">
+      <div class="pj-bento-copy reveal">
+        <p class="pj-hero-tags"><span class="pj-tag">Under construction</span><span>Residential</span><i></i><span>Godrej Properties</span></p>
+        <h1><em>Godrej Jardinia</em> 2, 3 &amp; 4 BHK residences in Sector 146, Noida</h1>
+        <p class="pj-hero-lead">Godrej Jardinia is a premium residential development in Sector 146, Noida, offering spacious apartments, landscaped open spaces, a piano-themed clubhouse and lifestyle amenities near the Noida Expressway.</p>
+        <div class="pj-hero-price">
+          <div><small>Starting from</small><strong>₹4.19 Cr<sup>*</sup></strong></div>
+          <button type="button" class="pj-btn pj-btn--line" data-modal="enq" data-kicker="Brochure" data-title="Download the brochure"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7.5 10.5 12 15l4.5-4.5M5 20h14"/></svg>Brochure</button>
         </div>
-
-        <div class="pd-blk" id="pd-amenities">
-          <h2>Amenities</h2>
-          <div class="amen-grid">
-            <div class="amen"><span class="ico-tile"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 2 9v2h20V9L12 3zM4 13v6H2v2h20v-2h-2v-6h-2v6h-3v-6h-2v6h-2v-6H9v6H6v-6H4z"/></svg></span>Grand clubhouse</div>
-            <div class="amen"><span class="ico-tile"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 15c2 0 2-1.5 4-1.5S8 15 10 15s2-1.5 4-1.5 2 1.5 4 1.5 2-1.5 4-1.5v2c-2 0-2 1.5-4 1.5s-2-1.5-4-1.5-2 1.5-4 1.5-2-1.5-4-1.5S4 17 2 17v-2zm0-5c2 0 2-1.5 4-1.5S8 10 10 10s2-1.5 4-1.5S16 10 18 10s2-1.5 4-1.5v2c-2 0-2 1.5-4 1.5s-2-1.5-4-1.5-2 1.5-4 1.5-2-1.5-4-1.5S4 12 2 12v-2z"/></svg></span>Infinity pool</div>
-            <div class="amen"><span class="ico-tile"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.6 15.4 22 14l-1.4-1.4L17.1 16 8 6.9l3.4-3.5L10 2 8.6 3.4 7.1 2 5 4.1 3.6 2.7 2.2 4.1l1.4 1.4L2 7.1l1.4 1.4L2 10l1.4 1.4L6.9 8 16 17.1l-3.5 3.4L14 22l1.4-1.4 1.5 1.4 2.1-2.1 1.4 1.4 1.4-1.4-1.4-1.4 1.6-1.6z"/></svg></span>Fitness centre</div>
-            <div class="amen"><span class="ico-tile"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17.3 18.2 21l-1.6-7 5.4-4.7-7.2-.6L12 2 9.2 8.7 2 9.3l5.4 4.7-1.6 7z"/></svg></span>Kids&rsquo; play zone</div>
-            <div class="amen"><span class="ico-tile"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 5.5a2 2 0 1 0 0-4 2 2 0 0 0 0 4zM9.8 8.9 7 23h2.1l1.8-8 2.1 2v6h2v-7.5l-2.1-2 .6-3A7.3 7.3 0 0 0 19 13v-2c-1.9 0-3.5-1-4.3-2.4l-1-1.6c-.4-.6-1-1-1.7-1-.3 0-.5.1-.8.1L6 8.3V13h2V9.6l1.8-.7"/></svg></span>Jogging track</div>
-            <div class="amen"><span class="ico-tile"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 18a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2H0v2h24v-2h-4zM4 6h16v10H4V6z"/></svg></span>Co-working lounge</div>
-            <div class="amen"><span class="ico-tile"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 4 5v6c0 5 3.4 9.7 8 11 4.6-1.3 8-6 8-11V5l-8-3zm-1.2 14.2-3.5-3.5 1.4-1.4 2.1 2.1 4.9-4.9 1.4 1.4-6.3 6.3z"/></svg></span>24/7 security</div>
-            <div class="amen"><span class="ico-tile"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 2v11h3v9l7-12h-4l4-8z"/></svg></span>EV charging</div>
+        <form class="pj-bar" data-form novalidate aria-label="Get the best price">
+          <div class="form-body pj-bar-in">
+            <div class="fld pj-bar-f"><label class="visually-hidden" for="pjName">Your name</label><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM4 21a8 8 0 0 1 16 0"/></svg><input id="pjName" name="name" type="text" autocomplete="name" placeholder="Your name" required><span class="fld-err">Please enter your name.</span></div>
+            <div class="fld pj-bar-f"><label class="visually-hidden" for="pjPhone">Mobile number</label><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2h8a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2zM11 18h2"/></svg><input id="pjPhone" name="phone" type="tel" autocomplete="tel" placeholder="Mobile number" required><span class="fld-err">Please enter a valid mobile number.</span></div>
+            <button class="pj-btn pj-btn--gold" type="submit">Get best price</button>
           </div>
-        </div>
-
-        <div class="pd-blk" id="pd-highlights">
-          <h2>Key highlights</h2>
-          <ul class="hl-list">
-            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm-1.2 14.5-4-4 1.4-1.4 2.6 2.6 5.6-5.6 1.4 1.4-7 7z"/></svg><span>Only four towers on 12.5 acres</span></li>
-            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm-1.2 14.5-4-4 1.4-1.4 2.6 2.6 5.6-5.6 1.4 1.4-7 7z"/></svg><span>Corner homes with three-side ventilation</span></li>
-            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm-1.2 14.5-4-4 1.4-1.4 2.6 2.6 5.6-5.6 1.4 1.4-7 7z"/></svg><span>Private lift lobby for every residence</span></li>
-            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm-1.2 14.5-4-4 1.4-1.4 2.6 2.6 5.6-5.6 1.4 1.4-7 7z"/></svg><span>10-foot ceilings and wraparound decks</span></li>
-            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm-1.2 14.5-4-4 1.4-1.4 2.6 2.6 5.6-5.6 1.4 1.4-7 7z"/></svg><span>IGBC Gold pre-certified design</span></li>
-            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm-1.2 14.5-4-4 1.4-1.4 2.6 2.6 5.6-5.6 1.4 1.4-7 7z"/></svg><span>Minutes from Golf Course Extension Road</span></li>
-          </ul>
-          <div class="hl-cards">
-            <div class="hl-card"><span class="ico-tile"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17 12h2L12 2 5 12h2l-4 6h7v4h4v-4h7z"/></svg></span><h4>Low-density living</h4><p>Four towers and 78% open, landscaped green space.</p></div>
-            <div class="hl-card"><span class="ico-tile"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 4 5v6c0 5 3.4 9.7 8 11 4.6-1.3 8-6 8-11V5l-8-3zm-1.2 14.2-3.5-3.5 1.4-1.4 2.1 2.1 4.9-4.9 1.4 1.4-6.3 6.3z"/></svg></span><h4>Five-tier security</h4><p>Gated perimeter, smart access and 24/7 surveillance.</p></div>
-            <div class="hl-card"><span class="ico-tile"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17.3 18.2 21l-1.6-7 5.4-4.7-7.2-.6L12 2 9.2 8.7 2 9.3l5.4 4.7-1.6 7z"/></svg></span><h4>Trusted developer</h4><p>Backed by the delivery record of Godrej Properties.</p></div>
-          </div>
-        </div>
-
-        <div class="pd-blk" id="pd-price">
-          <h2>Price list &amp; plans</h2>
-          <table class="price-tbl">
-            <thead><tr><th>Unit type</th><th>Super area</th><th>Price</th><th></th></tr></thead>
-            <tbody>
-              <tr><td><b>4 BHK</b></td><td>3,240 sq.ft.</td><td><b>&#8377;6.40 Cr*</b></td><td><button class="btn-mini" data-modal="enq" data-kicker="4 BHK" data-title="Get the price breakup">Price breakup</button></td></tr>
-              <tr><td><b>4 BHK + Study</b></td><td>3,690 sq.ft.</td><td><b>&#8377;7.25 Cr*</b></td><td><button class="btn-mini" data-modal="enq" data-kicker="4 BHK + Study" data-title="Get the price breakup">Price breakup</button></td></tr>
-              <tr><td><b>5 BHK Sky Villa</b></td><td>4,810 sq.ft.</td><td><b>&#8377;9.40 Cr*</b></td><td><button class="btn-mini" data-modal="enq" data-kicker="5 BHK Sky Villa" data-title="Get the price breakup">Price breakup</button></td></tr>
-              <tr><td><b>Penthouse</b></td><td>6,200 sq.ft.</td><td><b>On request</b></td><td><button class="btn-mini" data-modal="enq" data-kicker="Penthouse" data-title="Get the price breakup">Price breakup</button></td></tr>
-            </tbody>
-          </table>
-          <div class="pay-plan">
-            <h3>Payment plan</h3>
-            <div class="pay-steps">
-              <div class="pay-step"><b>10%</b><span>On booking</span><i style="--p:10%"></i></div>
-              <div class="pay-step"><b>15%</b><span>Within 60 days</span><i style="--p:25%"></i></div>
-              <div class="pay-step"><b>50%</b><span>Construction-linked</span><i style="--p:75%"></i></div>
-              <div class="pay-step"><b>25%</b><span>On possession</span><i style="--p:100%"></i></div>
-            </div>
-          </div>
-        </div>
-
-        <div class="pd-blk" id="pd-developer">
-          <h2>About the developer</h2>
-          <div class="dev-card">
-            <div class="dev-logo"><img src="assets/images/developers/godrej.svg" alt="Godrej Properties"></div>
-            <div>
-              <p>Godrej Properties brings the Godrej Group&rsquo;s long legacy of trust to real estate, with residential and commercial developments across India&rsquo;s major cities.</p>
-              <div class="dev-stats">
-                <div><b>1990</b><span>Godrej Properties founded</span></div>
-                <div><b>1897</b><span>Godrej Group heritage</span></div>
-                <div><b>Pan-India</b><span>presence</span></div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="pd-blk" id="pd-location">
-          <h2>Location advantages</h2>
-          <div class="loc-grid">
-            <div class="loc-map"><iframe src="https://maps.google.com/maps?q=Sector%2063A%2C%20Gurugram&t=&z=13&ie=UTF8&iwloc=&output=embed" title="Map of Sector 63A, Gurugram" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-              <div class="loc-chip">
-                <span class="loc-chip-pin"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.3 7 13 7 13s7-7.7 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg></span>
-                <span class="loc-chip-txt"><b>Sector 63A, Gurugram</b><small>Golf Course Extension Road</small></span>
-                <a href="https://maps.google.com/?q=Sector+63A+Gurugram" target="_blank" rel="noopener">Get directions <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v2h5.6L5 15.6 6.4 17 15 8.4V14h2V5z"/></svg></a>
-              </div>
-            </div>
-            <div class="near-head"><h3>What&rsquo;s nearby</h3><span>Approx. drive times</span></div>
-            <ul class="near">
-              <li><span class="ico-tile"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.9 6c-.2-.6-.8-1-1.4-1h-11c-.7 0-1.2.4-1.4 1L3 12v8a1 1 0 0 0 1 1h1a1 1 0 0 0 1-1v-1h12v1a1 1 0 0 0 1 1h1a1 1 0 0 0 1-1v-8l-2.1-6zM6.5 16a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm11 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zM5 11l1.5-4.5h11L19 11H5z"/></svg></span><span>Golf Course Extension Road</span><b>2 min</b></li>
-              <li><span class="ico-tile"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 13.2v4L12 21l7-3.8v-4L12 17l-7-3.8zM12 3 1 9l11 6 9-4.9V17h2V9L12 3z"/></svg></span><span>International schools</span><b>5 min</b></li>
-              <li><span class="ico-tile"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2zm-1 11h-4v4h-4v-4H6v-4h4V6h4v4h4v4z"/></svg></span><span>Multi-speciality hospital</span><b>12 min</b></li>
-              <li><span class="ico-tile"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2c-4 0-8 .5-8 4v9.5A3.5 3.5 0 0 0 7.5 19L6 20.5v.5h2.2l2-2h3.6l2 2H18v-.5L16.5 19a3.5 3.5 0 0 0 3.5-3.5V6c0-3.5-3.6-4-8-4zM7.5 17a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm3.5-7H6V6h5v4zm2 0V6h5v4h-5zm3.5 7a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"/></svg></span><span>Rapid Metro station</span><b>12 min</b></li>
-              <li><span class="ico-tile"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 2 9v2h20V9L12 3zM4 13v6H2v2h20v-2h-2v-6h-2v6h-3v-6h-2v6h-2v-6H9v6H6v-6H4z"/></svg></span><span>Cyber City</span><b>25 min</b></li>
-              <li><span class="ico-tile"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/></svg></span><span>IGI Airport</span><b>40 min</b></li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="pd-blk" id="pd-faq">
-          <h2>Frequently asked questions</h2>
-          <div class="faq">
-      <div class="faq-item">
-        <button class="faq-q" aria-expanded="false"><b>01</b><span>What is the starting price of The Aravalli Residences?</span><i></i></button>
-        <div class="faq-a"><p>Prices start from &#8377;6.40 Cr for a 4 BHK of 3,240 sq.ft. Ask us for the full price breakup including taxes and charges.</p></div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q" aria-expanded="false"><b>02</b><span>When is possession expected?</span><i></i></button>
-        <div class="faq-a"><p>Possession is expected by December 2029, as per the project&rsquo;s RERA filing. We share construction updates through the build.</p></div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q" aria-expanded="false"><b>03</b><span>Is the project RERA registered?</span><i></i></button>
-        <div class="faq-a"><p>Yes. We will share the RERA registration number and documents with you before any booking.</p></div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q" aria-expanded="false"><b>04</b><span>Can I visit the site?</span><i></i></button>
-        <div class="faq-a"><p>Yes &mdash; we arrange site visits seven days a week, including pick-up and drop within Delhi NCR.</p></div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q" aria-expanded="false"><b>05</b><span>Do you help with home loans?</span><i></i></button>
-        <div class="faq-a"><p>We work with leading banks and can help you compare loan offers and complete the paperwork.</p></div>
-      </div>
-    </div>
-        </div>
-      </div>
-
-      <aside class="pd-aside">
-        <form class="enq2" data-form novalidate>
-          <div class="form-body">
-            <div class="enq2-head">
-              <small>Get expert advice</small>
-              <h3>Schedule a free consultation</h3>
-              <p>Starting from <b>&#8377;6.40 Cr*</b> &middot; New launch</p>
-            </div>
-            <div class="enq2-fields">
-              <div class="fld"><label class="visually-hidden" for="enqName">Full name</label><input id="enqName" name="name" type="text" placeholder="Your name" required><span class="fld-err">Please enter your name.</span></div>
-              <div class="fld enq2-tel"><label class="visually-hidden" for="enqPhone">Mobile number</label><div class="enq2-tel-box"><span>+91</span><input id="enqPhone" name="phone" type="tel" placeholder="10-digit mobile" required></div><span class="fld-err">Please enter a valid mobile number.</span></div>
-              <div class="fld"><label class="visually-hidden" for="enqCity">City</label><input id="enqCity" name="city" type="text" placeholder="Your city"></div>
-              <div class="fld"><label class="visually-hidden" for="enqUnit">Interested in</label><select id="enqUnit" name="unit"><option value="">Interested in</option><option>4 BHK</option><option>4 BHK + Study</option><option>5 BHK Sky Villa</option><option>Penthouse</option><option>Not sure yet</option></select></div>
-              <label class="consent"><input type="checkbox" required checked> I agree to be contacted by Intelligent Realtors via call, SMS, email or WhatsApp.</label>
-              <button class="enq2-submit" type="submit">Submit enquiry</button>
-            </div>
-          </div>
-          <div class="form-ok" role="status"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm-1.2 14.5-4-4 1.4-1.4 2.6 2.6 5.6-5.6 1.4 1.4-7 7z"/></svg><span>Thank you, <b data-who>there</b>. We will call you within one working day.</span></div>
-          <div class="enq2-actions">
-            <a href="tel:+919811024680"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1l-2.3 2.2z"/></svg>Call</a>
-            <a href="https://wa.me/919811024680"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.5 14.4c-.3-.2-1.7-.9-2-1-.3-.1-.5-.2-.7.1l-.9 1.1c-.2.2-.3.2-.6.1a8.2 8.2 0 0 1-4-3.5c-.3-.5.3-.5.8-1.5.1-.2 0-.4 0-.5l-1-2.3c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4a3.3 3.3 0 0 0-1 2.5c0 1.5 1.1 2.9 1.2 3.1.2.2 2.1 3.3 5.2 4.5 1.9.8 2.7.9 3.6.7.6-.1 1.7-.7 2-1.4.2-.7.2-1.2.2-1.4l-.7-.4zM12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2zm0 18.2c-1.6 0-3.1-.4-4.4-1.2l-.3-.2-3.1.8.8-3-.2-.3A8.2 8.2 0 1 1 12 20.2z"/></svg>WhatsApp</a>
-            <button type="button" data-modal="enq" data-kicker="Brochure" data-title="Download the brochure"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 20h14v-2H5v2zm14-11h-4V3H9v6H5l7 7 7-7z"/></svg>Brochure</button>
-          </div>
+          <div class="form-ok" role="status"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm-1.2 14.5-4-4 1.4-1.4 2.6 2.6 5.6-5.6 1.4 1.4-7 7z"/></svg><span>Thank you, <b data-who>there</b>. An advisor will call you within one working day.</span></div>
         </form>
-      </aside>
+        <ul class="pj-hero-trust list-unstyled">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 4 6v6c0 4.4 3.4 8.3 8 9 4.6-.7 8-4.6 8-9V6l-8-3zM9 12l2 2 4-4"/></svg><span>RERA UPRERAPRJ288309</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 17h14M6 17v2M18 17v2M5 17l1.6-5.2A2 2 0 0 1 8.5 10.4h7a2 2 0 0 1 1.9 1.4L19 17M8 14h.01M16 14h.01"/></svg><span>Free site visit</span></li>
+        </ul>
+      </div>
+      <button type="button" class="pj-bento-ph pj-bento-ph--1" data-lb="assets/images/projects/godrej-jardinia/gallery-4.webp" data-lb-index="0" aria-label="Open photo 1 of 4"><img src="assets/images/projects/godrej-jardinia/gallery-4.webp" alt="Godrej Jardinia, photo 1" fetchpriority="high"></button>
+      <button type="button" class="pj-bento-ph pj-bento-ph--2" data-lb="assets/images/projects/godrej-jardinia/cover.webp" data-lb-index="1" aria-label="Open photo 2 of 4"><img src="assets/images/projects/godrej-jardinia/cover.webp" alt="Godrej Jardinia, photo 2" loading="lazy"></button>
+      <button type="button" class="pj-bento-ph pj-bento-ph--3" data-lb="assets/images/projects/godrej-jardinia/gallery-1.webp" data-lb-index="2" aria-label="Open photo 3 of 4"><img src="assets/images/projects/godrej-jardinia/gallery-1.webp" alt="Godrej Jardinia, photo 3" loading="lazy"><span class="pj-mosaic-more"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7a2 2 0 0 1 2-2h3l1.5-2h5L16 5h3a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2zM12 16.5a4 4 0 1 0 0-8 4 4 0 0 0 0 8z"/></svg>View all 4 photos</span></button>
+      <button type="button" data-lb="assets/images/projects/godrej-jardinia/gallery-2.webp" data-lb-index="3" hidden></button>
     </div>
   </div>
 </section>
 
-<section class="sec-pad-sm" id="pd-gallery">
+<!-- ============ FACT TILES ============ -->
+<section class="pj-tiles" aria-label="Key facts">
   <div class="container-xl">
-    <div class="sim-head">
-      <div class="reveal"><h2 class="sec-title">Inside <span class="accent">The Aravalli Residences</span></h2></div>
-      <button class="link-arrow" data-lb-open>View all 5 photos <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 11h12.2l-5.6-5.6L12 4l8 8-8 8-1.4-1.4 5.6-5.6H4z"/></svg></button>
+    <ul class="pj-tile-row list-unstyled">
+      <li class="reveal-card"><span class="pj-tile-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21V9l9-6 9 6v12M3 21h18M9 21v-7h6v7"/></svg></span><small>Configuration</small><b>2, 3 &amp; 4 BHK</b></li>
+      <li class="reveal-card"><span class="pj-tile-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16v16H4zM4 9h16M9 4v16"/></svg></span><small>Unit sizes</small><b>831 – 1714 sq.ft</b></li>
+      <li class="reveal-card"><span class="pj-tile-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 7a3 3 0 1 1-3 3M4 21l8-8M12 13l2 2M15 10l2 2"/></svg></span><small>Possession</small><b>December 2028</b></li>
+      <li class="reveal-card"><span class="pj-tile-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7l9-4 9 4-9 4-9-4zM3 12l9 4 9-4M3 17l9 4 9-4"/></svg></span><small>Total area</small><b>6.18 acres</b></li>
+      <li class="reveal-card"><span class="pj-tile-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16v16H4zM4 9h16M8 3v4M16 3v4"/></svg></span><small>Launched</small><b>April 2024</b></li>
+      <li class="reveal-card"><span class="pj-tile-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 4 6v6c0 4.4 3.4 8.3 8 9 4.6-.7 8-4.6 8-9V6l-8-3zM9 12l2 2 4-4"/></svg></span><small>RERA no.</small><b>UPRERAPRJ288309</b></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ OVERVIEW: text | photo ============ -->
+<section class="pj-sec pj-overview" id="pd-overview">
+  <div class="container-xl pj-row">
+    <div class="pj-row-text reveal">
+      <span class="pj-kicker">Overview</span>
+      <h2 class="pj-h2">About <em>Godrej Jardinia</em></h2>
+      <p class="pj-lead">Godrej Jardinia is a premium residential development in Sector 146, Noida, offering spacious apartments, landscaped open spaces, a piano-themed clubhouse and lifestyle amenities near the Noida Expressway.</p>
+      <p>Godrej Jardinia is a residential project by Godrej Properties in Sector 146, Noida-Greater Noida Expressway, offering 2 BHK, 3 BHK, 4 BHK across 831 – 1714 sq.ft, with possession expected in December 2028.</p>
+      <p>Intelligent Realtors works on Godrej Jardinia as a channel partner, so the price you pay is the developer’s price, with nothing added on our side.</p>
+      <button type="button" class="pj-btn pj-btn--gold" data-modal="enq" data-kicker="Godrej Jardinia" data-title="Get the best price">Get best price</button>
     </div>
-    <div class="gal reveal">
-      <button data-lb="assets/images/villa-with-pool-1800.jpg" data-lb-index="0" aria-label="Open photo 1"><img src="assets/images/villa-with-pool-1800.jpg" alt="" loading="lazy"></button>
-      <button data-lb="assets/images/interior-lounge-1800.jpg" data-lb-index="1" aria-label="Open photo 2"><img src="assets/images/interior-lounge-1000.jpg" alt="" loading="lazy"></button>
-      <button data-lb="assets/images/living-room-1800.jpg" data-lb-index="2" aria-label="Open photo 3"><img src="assets/images/living-room-1000.jpg" alt="" loading="lazy"></button>
-      <button data-lb="assets/images/white-modern-house-1800.jpg" data-lb-index="3" aria-label="Open photo 4"><img src="assets/images/white-modern-house-1000.jpg" alt="" loading="lazy"></button>
-      <button data-lb="assets/images/modern-villa-1800.jpg" data-lb-index="4" aria-label="Open photo 5"><img src="assets/images/modern-villa-1000.jpg" alt="" loading="lazy"><span class="gal-more">+ View all</span></button>
+    <div class="pj-row-media pj-deco reveal"><img src="assets/images/projects/godrej-jardinia/gallery-1.webp" alt="Godrej Jardinia" loading="lazy"></div>
+  </div>
+</section>
+
+<!-- ============ AMENITIES: icon row + photo banner ============ -->
+<section class="pj-sec pj-amen" id="pd-amenities">
+  <div class="container-xl">
+    <div class="pj-head reveal">
+      <span class="pj-kicker">Amenities</span>
+      <h2 class="pj-h2">A life beyond <em>ordinary</em></h2>
+      <p>Thoughtfully planned spaces at Godrej Jardinia for wellness, leisure and everyday living.</p>
+      <div class="pj-head-cta"><button type="button" class="pj-btn pj-btn--gold" data-modal="enq" data-kicker="Godrej Jardinia" data-title="Book a site visit">Book a site visit</button></div>
+    </div>
+    <ul class="pj-amen-row list-unstyled">
+      <li class="reveal-card"><span class="pj-amen-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21h18M5 21V10l7-5 7 5v11M9 21v-6h6v6M9 11h.01M15 11h.01"/></svg></span><b>Clubhouse</b><small>Socialise, celebrate, belong.</small></li>
+      <li class="reveal-card"><span class="pj-amen-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 18c1.7 0 2.6-1 4-1s2.3 1 4 1 2.6-1 4-1 2.3 1 4 1 2.3-1 4-1M2 14c1.7 0 2.6-1 4-1s2.3 1 4 1 2.6-1 4-1 2.3 1 4 1 2.3-1 4-1M8 11V5.5a2 2 0 1 1 4 0M14 11V5.5a2 2 0 1 1 4 0M8 8h10"/></svg></span><b>Swimming Pool</b><small>Unwind in the water.</small></li>
+      <li class="reveal-card"><span class="pj-amen-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 7v10M3.5 9.5v5M17.5 7v10M20.5 9.5v5M6.5 12h11"/></svg></span><b>Gymnasium</b><small>Stronger, healthier, happier.</small></li>
+      <li class="reveal-card"><span class="pj-amen-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21v-9M12 12C12 7.6 8.6 4 4 4c0 4.6 3.4 8 8 8zM12 12c0-3.9 3.1-7 8-7 0 3.9-3.1 7-8 7z"/></svg></span><b>Landscaped Gardens</b><small>Green spaces for a calmer you.</small></li>
+      <li class="reveal-card"><span class="pj-amen-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 21V7l8-4 8 4v14M4 10h16M9 10v6M15 10v6M8 16h8"/></svg></span><b>Kids Play Area</b><small>A brighter, happier childhood.</small></li>
+    </ul>
+    <figure class="pj-amen-banner reveal">
+      <img src="assets/images/projects/godrej-jardinia/gallery-4.webp" alt="Landscaped spaces at Godrej Jardinia" loading="lazy">
+      <figcaption><span class="pj-kicker pj-kicker--light">More than amenities</span><strong>A better everyday</strong></figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ============ KEY HIGHLIGHTS ============ -->
+<section class="pj-sec pj-highlights" id="pd-highlights">
+  <div class="container-xl">
+    <div class="pj-head reveal">
+      <h2 class="pj-h2">Key <em>highlights</em></h2>
+      <p>What sets Godrej Jardinia apart, from the facts on record.</p>
+      <div class="pj-head-cta"><button type="button" class="pj-btn pj-btn--gold" data-modal="enq" data-kicker="Godrej Jardinia" data-title="Get the best price">Get best price</button></div>
+    </div>
+    <div class="pj-hl reveal">
+      <div class="pj-hl-card"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16v16H4zM4 9h16M9 4v16"/></svg></span><h3>Configuration</h3><p>2 BHK, 3 BHK, 4 BHK available.</p></div>
+      <div class="pj-hl-card"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16v16H4zM4 9h16M9 4v16"/></svg></span><h3>Unit sizes</h3><p>From 831 – 1714 sq.ft.</p></div>
+      <div class="pj-hl-card"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18zM12 7v5l3 2"/></svg></span><h3>Status</h3><p>Under construction, possession expected December 2028.</p></div>
+      <div class="pj-hl-card"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21h18M5 21V10l7-5 7 5v11M9 21v-6h6v6"/></svg></span><h3>Developer</h3><p>Built by Godrej Properties, booked through us at the developer’s price.</p></div>
+    </div>
+    <ul class="pj-checks list-unstyled reveal">
+      <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm-1.2 14.5-4-4 1.4-1.4 2.6 2.6 5.6-5.6 1.4 1.4-7 7z"/></svg><span>Prime address at Sector 146, Noida-Greater Noida Expressway</span></li>
+      <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm-1.2 14.5-4-4 1.4-1.4 2.6 2.6 5.6-5.6 1.4 1.4-7 7z"/></svg><span>Residential from ₹4.19 Cr*</span></li>
+      <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm-1.2 14.5-4-4 1.4-1.4 2.6 2.6 5.6-5.6 1.4 1.4-7 7z"/></svg><span>RERA registered: UPRERAPRJ288309</span></li>
+      <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm-1.2 14.5-4-4 1.4-1.4 2.6 2.6 5.6-5.6 1.4 1.4-7 7z"/></svg><span>Developer’s price, with nothing added by us</span></li>
+      <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm-1.2 14.5-4-4 1.4-1.4 2.6 2.6 5.6-5.6 1.4 1.4-7 7z"/></svg><span>Free site visit with pick-up and drop</span></li>
+      <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm-1.2 14.5-4-4 1.4-1.4 2.6 2.6 5.6-5.6 1.4 1.4-7 7z"/></svg><span>Floor plans and payment plan on WhatsApp</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ FLOOR PLANS: one tab + card per unit type ============ -->
+<section class="pj-sec pj-plans" id="pd-plans">
+  <div class="container-xl">
+    <div class="pj-head reveal">
+      <h2 class="pj-h2">Floor plans &amp; <em>pricing</em></h2>
+      <p>Starting from <b>₹4.19 Cr<sup>*</sup></b> &middot; Unit sizes 831 – 1714 sq.ft</p>
+      <div class="pj-head-cta"><button type="button" class="pj-btn pj-btn--gold" data-modal="enq" data-kicker="Godrej Jardinia" data-title="Get the price sheet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7.5 10.5 12 15l4.5-4.5M5 20h14"/></svg>Download price sheet</button></div>
+    </div>
+    <div class="pj-fp reveal" data-pj-tabs>
+      <div class="pj-fp-tabs" role="tablist" aria-label="Unit types">
+        <button type="button" role="tab" id="fpTab0" aria-controls="fpPane0" aria-selected="true" class="is-active">2 BHK</button>
+        <button type="button" role="tab" id="fpTab1" aria-controls="fpPane1" aria-selected="false" tabindex="-1">3 BHK</button>
+        <button type="button" role="tab" id="fpTab2" aria-controls="fpPane2" aria-selected="false" tabindex="-1">4 BHK</button>
+      </div>
+      <div class="pj-fp-card" role="tabpanel" id="fpPane0" aria-labelledby="fpTab0">
+        <div class="pj-fp-plan">
+          <svg class="pj-fp-svg" viewBox="0 0 400 280" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="3"><rect x="10" y="10" width="380" height="260"/><path d="M10 120h150M160 10v190M160 200h90M250 120v150M250 120h140M300 10v110"/></g><g fill="none" stroke="currentColor" stroke-width="1.2" stroke-dasharray="4 5"><path d="M60 120a40 40 0 0 1 40-40M160 160a30 30 0 0 1 30 30M250 160a30 30 0 0 0-30 30"/></g><g fill="currentColor" font-family="sans-serif" font-size="13" letter-spacing="2"><text x="40" y="70">BEDROOM</text><text x="185" y="70">LIVING</text><text x="310" y="70">BALCONY</text><text x="40" y="180">BEDROOM</text><text x="175" y="245">KITCHEN</text><text x="290" y="200">BEDROOM</text></g></svg>
+          <span class="pj-fp-note">Indicative layout</span>
+          <button type="button" class="pj-fp-lock" data-modal="enq" data-kicker="Godrej Jardinia" data-title="Get the 2 BHK floor plan"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8zM14 3v5h5M9 13h6M9 17h4"/></svg>View 2 BHK floor plan</button>
+        </div>
+        <div class="pj-fp-info">
+          <span class="pj-kicker">Godrej Jardinia</span>
+          <h3>2 BHK residence</h3>
+          <dl>
+            <div><dt>Unit type</dt><dd>2 BHK</dd></div>
+            <div><dt>Project size range</dt><dd>831 – 1714 sq.ft</dd></div>
+            <div><dt>Project starts at</dt><dd>₹4.19 Cr*</dd></div>
+            <div><dt>Possession</dt><dd>December 2028</dd></div>
+          </dl>
+          <div class="pj-fp-acts">
+            <button type="button" class="pj-btn pj-btn--gold" data-modal="enq" data-kicker="Godrej Jardinia" data-title="Get the 2 BHK price breakup">Get price breakup</button>
+            <button type="button" class="pj-btn pj-btn--line" data-modal="enq" data-kicker="Godrej Jardinia" data-title="Get the 2 BHK floor plan">Download floor plan</button>
+          </div>
+        </div>
+      </div>
+      <div class="pj-fp-card" role="tabpanel" id="fpPane1" aria-labelledby="fpTab1" hidden>
+        <div class="pj-fp-plan">
+          <svg class="pj-fp-svg" viewBox="0 0 400 280" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="3"><rect x="10" y="10" width="380" height="260"/><path d="M10 120h150M160 10v190M160 200h90M250 120v150M250 120h140M300 10v110"/></g><g fill="none" stroke="currentColor" stroke-width="1.2" stroke-dasharray="4 5"><path d="M60 120a40 40 0 0 1 40-40M160 160a30 30 0 0 1 30 30M250 160a30 30 0 0 0-30 30"/></g><g fill="currentColor" font-family="sans-serif" font-size="13" letter-spacing="2"><text x="40" y="70">BEDROOM</text><text x="185" y="70">LIVING</text><text x="310" y="70">BALCONY</text><text x="40" y="180">BEDROOM</text><text x="175" y="245">KITCHEN</text><text x="290" y="200">BEDROOM</text></g></svg>
+          <span class="pj-fp-note">Indicative layout</span>
+          <button type="button" class="pj-fp-lock" data-modal="enq" data-kicker="Godrej Jardinia" data-title="Get the 3 BHK floor plan"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8zM14 3v5h5M9 13h6M9 17h4"/></svg>View 3 BHK floor plan</button>
+        </div>
+        <div class="pj-fp-info">
+          <span class="pj-kicker">Godrej Jardinia</span>
+          <h3>3 BHK residence</h3>
+          <dl>
+            <div><dt>Unit type</dt><dd>3 BHK</dd></div>
+            <div><dt>Project size range</dt><dd>831 – 1714 sq.ft</dd></div>
+            <div><dt>Project starts at</dt><dd>₹4.19 Cr*</dd></div>
+            <div><dt>Possession</dt><dd>December 2028</dd></div>
+          </dl>
+          <div class="pj-fp-acts">
+            <button type="button" class="pj-btn pj-btn--gold" data-modal="enq" data-kicker="Godrej Jardinia" data-title="Get the 3 BHK price breakup">Get price breakup</button>
+            <button type="button" class="pj-btn pj-btn--line" data-modal="enq" data-kicker="Godrej Jardinia" data-title="Get the 3 BHK floor plan">Download floor plan</button>
+          </div>
+        </div>
+      </div>
+      <div class="pj-fp-card" role="tabpanel" id="fpPane2" aria-labelledby="fpTab2" hidden>
+        <div class="pj-fp-plan">
+          <svg class="pj-fp-svg" viewBox="0 0 400 280" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="3"><rect x="10" y="10" width="380" height="260"/><path d="M10 120h150M160 10v190M160 200h90M250 120v150M250 120h140M300 10v110"/></g><g fill="none" stroke="currentColor" stroke-width="1.2" stroke-dasharray="4 5"><path d="M60 120a40 40 0 0 1 40-40M160 160a30 30 0 0 1 30 30M250 160a30 30 0 0 0-30 30"/></g><g fill="currentColor" font-family="sans-serif" font-size="13" letter-spacing="2"><text x="40" y="70">BEDROOM</text><text x="185" y="70">LIVING</text><text x="310" y="70">BALCONY</text><text x="40" y="180">BEDROOM</text><text x="175" y="245">KITCHEN</text><text x="290" y="200">BEDROOM</text></g></svg>
+          <span class="pj-fp-note">Indicative layout</span>
+          <button type="button" class="pj-fp-lock" data-modal="enq" data-kicker="Godrej Jardinia" data-title="Get the 4 BHK floor plan"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8zM14 3v5h5M9 13h6M9 17h4"/></svg>View 4 BHK floor plan</button>
+        </div>
+        <div class="pj-fp-info">
+          <span class="pj-kicker">Godrej Jardinia</span>
+          <h3>4 BHK residence</h3>
+          <dl>
+            <div><dt>Unit type</dt><dd>4 BHK</dd></div>
+            <div><dt>Project size range</dt><dd>831 – 1714 sq.ft</dd></div>
+            <div><dt>Project starts at</dt><dd>₹4.19 Cr*</dd></div>
+            <div><dt>Possession</dt><dd>December 2028</dd></div>
+          </dl>
+          <div class="pj-fp-acts">
+            <button type="button" class="pj-btn pj-btn--gold" data-modal="enq" data-kicker="Godrej Jardinia" data-title="Get the 4 BHK price breakup">Get price breakup</button>
+            <button type="button" class="pj-btn pj-btn--line" data-modal="enq" data-kicker="Godrej Jardinia" data-title="Get the 4 BHK floor plan">Download floor plan</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pj-pay reveal">
+      <div><h3>Payment plan</h3><p>The developer’s current payment plan comes with the price sheet, along with any offers running this month.</p></div>
+      <button type="button" class="pj-btn pj-btn--line" data-modal="enq" data-kicker="Godrej Jardinia" data-title="Get the payment plan">Get payment plan</button>
     </div>
   </div>
 </section>
 
-<section class="sec-pad">
+<!-- ============ DEVELOPER: text | logo ============ -->
+<section class="pj-sec pj-devsec" id="pd-developer">
+  <div class="container-xl pj-row">
+    <div class="pj-row-text reveal">
+      <span class="pj-kicker">The developer</span>
+      <h2 class="pj-h2">Built by <em>Godrej Properties</em></h2>
+      <p>Godrej Jardinia is developed by Godrej Properties. We are an authorised channel partner for the project, so bookings through us are at the developer’s own price and terms.</p>
+      <a class="pj-btn pj-btn--line" href="projects.html?dev=godrej-properties">All 2 Godrej Properties projects <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 11h12.2l-5.6-5.6L12 4l8 8-8 8-1.4-1.4 5.6-5.6H4z"/></svg></a>
+    </div>
+    <div class="pj-row-media pj-deco reveal"><div class="pj-devlogo"><img src="assets/images/developers/godrej-properties.png" alt="Godrej Properties logo" loading="lazy"></div></div>
+  </div>
+</section>
+
+<!-- ============ LOCATION: one card, curved map | details ============ -->
+<section class="pj-sec pj-locsec" id="pd-location">
   <div class="container-xl">
-    <div class="sim-head">
-      <div class="reveal"><h2 class="sec-title">Similar <span class="accent">projects</span></h2></div>
-      <a href="projects.html" class="link-arrow">View all projects <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 11h12.2l-5.6-5.6L12 4l8 8-8 8-1.4-1.4 5.6-5.6H4z"/></svg></a>
+    <div class="pj-loc-card">
+      <div class="pj-loc-map">
+        <iframe src="https://www.google.com/maps?q=Godrej+Jardinia%2C+Sector+146%2C+Noida&amp;output=embed" title="Map showing Godrej Jardinia" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+      <div class="pj-loc-info reveal">
+        <span class="pj-kicker">Location</span>
+        <h2 class="pj-h2">Well placed in <em>Sector 146, Noida</em></h2>
+        <p class="pj-addr"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.3 7 13 7 13s7-7.7 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>Sector 146, Noida-Greater Noida Expressway</p>
+        <ul class="pj-near list-unstyled">
+          <li><span class="pj-near-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9l9-5 9 5-9 5-9-5zM7 11.2V16c0 1.1 2.2 3 5 3s5-1.9 5-3v-4.8M21 9v6"/></svg></span><span class="pj-near-name">Shiv Nadar School</span><b>9 Minutes</b></li>
+          <li><span class="pj-near-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 21V5h16v16M9 10h6M12 7v6M4 21h16"/></svg></span><span class="pj-near-name">Kailash Hospital</span><b>10 Minutes</b></li>
+          <li><span class="pj-near-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21h18M5 21V8l7-4 7 4v13M9 12h.01M15 12h.01M9 16h.01M15 16h.01"/></svg></span><span class="pj-near-name">Advant Navis Business Park</span><b>9 Minutes</b></li>
+          <li><span class="pj-near-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 8h14l-1 12H6zM9 8V6a3 3 0 0 1 6 0v2"/></svg></span><span class="pj-near-name">Uptown Square</span><b>12 Minutes</b></li>
+          <li><span class="pj-near-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3h10a2 2 0 0 1 2 2v9a3 3 0 0 1-3 3H8a3 3 0 0 1-3-3V5a2 2 0 0 1 2-2zM5 10h14M9 21l1.5-4M15 21l-1.5-4"/></svg></span><span class="pj-near-name">Sector 146 Metro Station</span><b>2 Minutes</b></li>
+          <li><span class="pj-near-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 16l20-6-2-2-7 2-4-6H7l2 7-5 1.5L2 11z"/></svg></span><span class="pj-near-name">IGI Airport</span><b>90 Minutes</b></li>
+          <li><span class="pj-near-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 21V5h16v16M9 10h6M12 7v6M4 21h16"/></svg></span><span class="pj-near-name">Jaypee Hospital</span><b>17 Minutes</b></li>
+        </ul>
+        <a class="pj-link" href="https://www.google.com/maps/search/?api=1&query=Godrej%20Jardinia%2C%20Sector%20146%2C%20Noida-Greater%20Noida%20Expressway" target="_blank" rel="noopener">Get directions <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v2h5.6L5 15.6 6.4 17 15 8.4V14h2V5z"/></svg></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ: heading, search, questions | illustration ============ -->
+<section class="pj-sec pj-faqsec" id="pd-faq">
+  <img class="pj-faq-leaf pj-faq-leaf--l" src="assets/images/shapes/leaves-left.svg" alt="" aria-hidden="true">
+  <img class="pj-faq-leaf pj-faq-leaf--r" src="assets/images/shapes/leaves-right.svg" alt="" aria-hidden="true">
+  <div class="container-xl pj-faq-grid">
+    <div class="pj-faq-main reveal">
+      <span class="pj-kicker">FAQs</span>
+      <h2 class="pj-h2">Frequently asked <em>questions</em></h2>
+      <label class="pj-faq-search">
+        <span class="visually-hidden">Search questions</span>
+        <input type="search" placeholder="Search a question here" data-faq-search autocomplete="off">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 18a7 7 0 1 0 0-14 7 7 0 0 0 0 14zM20 20l-4-4"/></svg>
+      </label>
+      <div class="faq pj-faq">
+        <div class="faq-item">
+          <button type="button" class="faq-q" aria-expanded="false"><span>What is Godrej Jardinia?</span><i></i></button>
+          <div class="faq-a"><p>Godrej Jardinia is a premium residential apartment development by Godrej Properties Limited in Sector 146, Noida, offering luxury residences and lifestyle amenities.</p></div>
+        </div>
+        <div class="faq-item">
+          <button type="button" class="faq-q" aria-expanded="false"><span>Where is Godrej Jardinia located?</span><i></i></button>
+          <div class="faq-a"><p>The project is located at Plot No. GH-01B, Sector 146, Noida, Gautam Buddha Nagar, Uttar Pradesh, near the Noida-Greater Noida Expressway.</p></div>
+        </div>
+        <div class="faq-item">
+          <button type="button" class="faq-q" aria-expanded="false"><span>Who is the developer of Godrej Jardinia?</span><i></i></button>
+          <div class="faq-a"><p>The developer is Godrej Properties Limited, a real estate development company established in 1990.</p></div>
+        </div>
+        <div class="faq-item">
+          <button type="button" class="faq-q" aria-expanded="false"><span>What is the RERA number of Godrej Jardinia?</span><i></i></button>
+          <div class="faq-a"><p>The project is registered under UP RERA number UPRERAPRJ288309/04/2024.</p></div>
+        </div>
+        <div class="faq-item">
+          <button type="button" class="faq-q" aria-expanded="false"><span>What is the starting price of Godrej Jardinia?</span><i></i></button>
+          <div class="faq-a"><p>The official website lists 3 BHK apartments starting at ₹4.91 crore. Other configurations may have different prices, so check the latest cost sheet.</p></div>
+        </div>
+      </div>
+      <p class="pj-faq-none" data-faq-none hidden>No question matches that. <button type="button" class="pj-link" data-modal="enq" data-kicker="Godrej Jardinia" data-title="Ask an advisor">Ask an advisor</button></p>
+    </div>
+    <div class="pj-faq-art reveal" aria-hidden="true">
+      <span class="pj-faq-word">FAQ</span>
+      <img src="assets/images/illustrations/faq-questions.svg" alt="" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<!-- ============ SIMILAR ============ -->
+<section class="pj-sec pj-similar">
+  <div class="container-xl">
+    <div class="pj-head reveal">
+      <h2 class="pj-h2">Similar <em>projects</em></h2>
+      <p>More residential projects you can buy through us at the developer’s price.</p>
+      <div class="pj-head-cta"><a class="pj-btn pj-btn--gold" href="projects.html?type=residential">View all residential projects <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 11h12.2l-5.6-5.6L12 4l8 8-8 8-1.4-1.4 5.6-5.6H4z"/></svg></a></div>
     </div>
     <div class="proj-grid">
-<article class="pcard reveal-card">
+      <article class="pcard reveal-card" data-cat="residential" data-city="noida" data-city-name="Noida"
+        data-developer="ace-group" data-developer-name="ACE Group" data-developer-logo="assets/images/developers/ace.png"
+        data-type="residential" data-status="Ready to move" data-price="1.99"
+        data-search="ace starlit sector 152, noida expressway noida ace group residential">
         <div class="pcard-media">
-          <img src="assets/images/project-placeholder.jpg" alt="Sutlej Sky Villas" loading="lazy">
-          <span class="pcard-status">New launch</span>
+          <img src="assets/images/projects/ace-starlit/cover.webp" alt="ACE Starlit" loading="lazy">
+          <span class="pcard-status">Ready to move</span>
           <span class="pcard-cat">Residential</span>
+          <div class="pcard-cap">
+            <h3><a href="project-details.html">ACE Starlit</a></h3>
+            <span class="pcard-loc"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.3 7 13 7 13s7-7.7 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>Sector 152, Noida Expressway</span>
+          </div>
         </div>
         <div class="pcard-body">
-          <span class="pcard-dev">M3M India</span>
-          <h3><a href="projects.html">Sutlej Sky Villas</a></h3>
-          <span class="pcard-loc"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.3 7 13 7 13s7-7.7 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>Sector 79, Gurugram</span>
-          <ul class="pcard-specs list-unstyled">
-            <li><small>Configuration</small>4 BHK + Study</li>
-            <li><small>Size</small>3,690 sq.ft.</li>
+          <div class="pcard-top">
+            <span class="pcard-by"><span><small>Developer</small>ACE Group</span></span>
+            <span class="pcard-amt"><small>Starting from</small><b>₹1.99 Cr<sup>*</sup></b></span>
+          </div>
+          <ul class="pcard-chips list-unstyled">
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17 11V3H7v4H3v14h8v-4h2v4h8V11h-4zM7 19H5v-2h2v2zm0-4H5v-2h2v2zm0-4H5V9h2v2zm4 4H9v-2h2v2zm0-4H9V9h2v2zm0-4H9V5h2v2zm4 8h-2v-2h2v2zm0-4h-2V9h2v2zm0-4h-2V5h2v2zm4 12h-2v-2h2v2zm0-4h-2v-2h2v2z"/></svg>2 BHK, 3 BHK</li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3h7v2H6.4l4.3 4.3-1.4 1.4L5 6.4V10H3V3zm18 0v7h-2V6.4l-4.3 4.3-1.4-1.4L17.6 5H14V3h7zM3 21v-7h2v3.6l4.3-4.3 1.4 1.4L6.4 19H10v2H3zm18 0h-7v-2h3.6l-4.3-4.3 1.4-1.4 4.3 4.3V14h2v7z"/></svg>1,350 – 1,775 sq.ft</li>
           </ul>
-          <div class="pcard-foot">
-            <div><span class="pcard-from">Starting from</span><span class="pcard-price">&#8377;5.20 Cr<sup>*</sup></span></div>
-            <a href="projects.html" class="pcard-link" aria-label="View Sutlej Sky Villas"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v2h5.6L5 15.6 6.4 17 15 8.4V14h2V5z"/></svg></a>
+          <div class="pcard-cta">
+            <a href="project-details.html" class="pcard-btn">View details</a>
+            <a href="project-details.html" class="pcard-go" aria-label="View ACE Starlit"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v2h5.6L5 15.6 6.4 17 15 8.4V14h2V5z"/></svg></a>
           </div>
         </div>
       </article>
-<article class="pcard reveal-card">
+      <article class="pcard reveal-card" data-cat="residential" data-city="noida" data-city-name="Noida"
+        data-developer="samridhi-group" data-developer-name="Samridhi Group" data-developer-logo="assets/images/developers/samridhi.png"
+        data-type="residential" data-status="Ready to move" data-price="2.37"
+        data-search="samridhi luxuriya avenue sector 150, noida noida samridhi group residential">
         <div class="pcard-media">
-          <img src="assets/images/project-placeholder.jpg" alt="The Kiln High Street" loading="lazy">
-          <span class="pcard-status">Under construction</span>
-          <span class="pcard-cat">Commercial</span>
+          <img src="assets/images/projects/samridhi-luxuriya-avenue/cover.webp" alt="Samridhi Luxuriya Avenue" loading="lazy">
+          <span class="pcard-status">Ready to move</span>
+          <span class="pcard-cat">Residential</span>
+          <div class="pcard-cap">
+            <h3><a href="project-details.html">Samridhi Luxuriya Avenue</a></h3>
+            <span class="pcard-loc"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.3 7 13 7 13s7-7.7 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>Sector 150, Noida</span>
+          </div>
         </div>
         <div class="pcard-body">
-          <span class="pcard-dev">Bhutani Infra</span>
-          <h3><a href="projects.html">The Kiln High Street</a></h3>
-          <span class="pcard-loc"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.3 7 13 7 13s7-7.7 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>Sector 129, Noida</span>
-          <ul class="pcard-specs list-unstyled">
-            <li><small>Configuration</small>Retail &amp; F&amp;B</li>
-            <li><small>Size</small>420 &ndash; 1,900 sq.ft.</li>
+          <div class="pcard-top">
+            <span class="pcard-by"><span><small>Developer</small>Samridhi Group</span></span>
+            <span class="pcard-amt"><small>Starting from</small><b>₹2.37 Cr<sup>*</sup></b></span>
+          </div>
+          <ul class="pcard-chips list-unstyled">
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17 11V3H7v4H3v14h8v-4h2v4h8V11h-4zM7 19H5v-2h2v2zm0-4H5v-2h2v2zm0-4H5V9h2v2zm4 4H9v-2h2v2zm0-4H9V9h2v2zm0-4H9V5h2v2zm4 8h-2v-2h2v2zm0-4h-2V9h2v2zm0-4h-2V5h2v2zm4 12h-2v-2h2v2zm0-4h-2v-2h2v2z"/></svg>2, 3 &amp; 4 BHK</li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3h7v2H6.4l4.3 4.3-1.4 1.4L5 6.4V10H3V3zm18 0v7h-2V6.4l-4.3 4.3-1.4-1.4L17.6 5H14V3h7zM3 21v-7h2v3.6l4.3-4.3 1.4 1.4L6.4 19H10v2H3zm18 0h-7v-2h3.6l-4.3-4.3 1.4-1.4 4.3 4.3V14h2v7z"/></svg>1,165 – 3,500 sq.ft</li>
           </ul>
-          <div class="pcard-foot">
-            <div><span class="pcard-from">Starting from</span><span class="pcard-price">&#8377;92 L<sup>*</sup></span></div>
-            <a href="projects.html" class="pcard-link" aria-label="View The Kiln High Street"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v2h5.6L5 15.6 6.4 17 15 8.4V14h2V5z"/></svg></a>
+          <div class="pcard-cta">
+            <a href="project-details.html" class="pcard-btn">View details</a>
+            <a href="project-details.html" class="pcard-go" aria-label="View Samridhi Luxuriya Avenue"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v2h5.6L5 15.6 6.4 17 15 8.4V14h2V5z"/></svg></a>
           </div>
         </div>
       </article>
-<article class="pcard reveal-card">
+      <article class="pcard reveal-card" data-cat="residential" data-city="noida" data-city-name="Noida"
+        data-developer="samridhi-group" data-developer-name="Samridhi Group" data-developer-logo="assets/images/developers/samridhi.png"
+        data-type="residential" data-status="Under construction" data-price="4.16"
+        data-search="samridhi daksh avenue sector 150, noida noida samridhi group residential">
         <div class="pcard-media">
-          <img src="assets/images/project-placeholder.jpg" alt="Marigold Estate" loading="lazy">
+          <img src="assets/images/projects/samridhi-daksh-avenue/cover.webp" alt="Samridhi Daksh Avenue" loading="lazy">
           <span class="pcard-status">Under construction</span>
           <span class="pcard-cat">Residential</span>
+          <div class="pcard-cap">
+            <h3><a href="project-details.html">Samridhi Daksh Avenue</a></h3>
+            <span class="pcard-loc"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.3 7 13 7 13s7-7.7 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>Sector 150, Noida</span>
+          </div>
         </div>
         <div class="pcard-body">
-          <span class="pcard-dev">ACE Group</span>
-          <h3><a href="projects.html">Marigold Estate</a></h3>
-          <span class="pcard-loc"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.3 7 13 7 13s7-7.7 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>Sector 150, Noida</span>
-          <ul class="pcard-specs list-unstyled">
-            <li><small>Configuration</small>3 &amp; 4 BHK</li>
-            <li><small>Size</small>2,150 &ndash; 3,400 sq.ft.</li>
+          <div class="pcard-top">
+            <span class="pcard-by"><span><small>Developer</small>Samridhi Group</span></span>
+            <span class="pcard-amt"><small>Starting from</small><b>₹4.16 Cr<sup>*</sup></b></span>
+          </div>
+          <ul class="pcard-chips list-unstyled">
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17 11V3H7v4H3v14h8v-4h2v4h8V11h-4zM7 19H5v-2h2v2zm0-4H5v-2h2v2zm0-4H5V9h2v2zm4 4H9v-2h2v2zm0-4H9V9h2v2zm0-4H9V5h2v2zm4 8h-2v-2h2v2zm0-4h-2V9h2v2zm0-4h-2V5h2v2zm4 12h-2v-2h2v2zm0-4h-2v-2h2v2z"/></svg>3 &amp; 4 BHK</li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3h7v2H6.4l4.3 4.3-1.4 1.4L5 6.4V10H3V3zm18 0v7h-2V6.4l-4.3 4.3-1.4-1.4L17.6 5H14V3h7zM3 21v-7h2v3.6l4.3-4.3 1.4 1.4L6.4 19H10v2H3zm18 0h-7v-2h3.6l-4.3-4.3 1.4-1.4 4.3 4.3V14h2v7z"/></svg>1,980 – 2,990 sq.ft</li>
           </ul>
-          <div class="pcard-foot">
-            <div><span class="pcard-from">Starting from</span><span class="pcard-price">&#8377;3.15 Cr<sup>*</sup></span></div>
-            <a href="projects.html" class="pcard-link" aria-label="View Marigold Estate"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v2h5.6L5 15.6 6.4 17 15 8.4V14h2V5z"/></svg></a>
+          <div class="pcard-cta">
+            <a href="project-details.html" class="pcard-btn">View details</a>
+            <a href="project-details.html" class="pcard-go" aria-label="View Samridhi Daksh Avenue"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v2h5.6L5 15.6 6.4 17 15 8.4V14h2V5z"/></svg></a>
           </div>
         </div>
       </article>
@@ -452,6 +556,7 @@
   </div>
 </section>
 
+<!-- ============ CTA (same band as the other pages) ============ -->
 <section class="cta-band">
   <div class="container-xl">
     <div class="cta-card on-dark reveal">
@@ -476,36 +581,36 @@
   </div>
 </section>
 
-
 <div class="lb" id="lightbox" role="dialog" aria-modal="true" aria-label="Photo gallery">
   <button class="lb-x" aria-label="Close">&times;</button>
   <button class="lb-nav lb-prev" aria-label="Previous photo"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15.4 7.4 14 6l-6 6 6 6 1.4-1.4L10.8 12z"/></svg></button>
-  <img src="" alt="Project photo">
+  <img alt="Godrej Jardinia photo">
   <button class="lb-nav lb-next" aria-label="Next photo"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.6 16.6 10 18l6-6-6-6-1.4 1.4L13.2 12z"/></svg></button>
   <span class="lb-count"></span>
 </div>
+
 
 <div class="mdl" id="enqModal" role="dialog" aria-modal="true" aria-label="Enquiry">
   <div class="mdl-box">
     <button class="mdl-x" aria-label="Close">&times;</button>
     <div class="mdl-art">
-      <img src="assets/images/villa-with-pool-1000.jpg" alt="">
+      <img src="assets/images/projects/godrej-jardinia/gallery-4.webp" alt="">
       <div>
-        <span class="pd-tag pd-tag--gold">New launch</span>
-        <h4>The Aravalli Residences</h4>
-        <span style="font-size:.85rem;color:rgba(255,255,255,.75)">Sector 63A, Gurugram &middot; from &#8377;6.40 Cr*</span>
-        <ul><li>Builder&rsquo;s price, nothing added</li><li>Free site visit with pick-up</li><li>Floor plans and payment plan on WhatsApp</li></ul>
+        <span class="pj-tag">Under construction</span>
+        <h4>Godrej Jardinia</h4>
+        <span class="mdl-art-sub">Sector 146, Noida-Greater Noida Expressway &middot; from ₹4.19 Cr*</span>
+        <ul><li>Builder’s price, nothing added</li><li>Free site visit with pick-up</li><li>Floor plans on WhatsApp</li></ul>
       </div>
     </div>
     <form class="mdl-form" data-form novalidate>
-      <span class="kicker" data-mdl-kicker>The Aravalli Residences</span>
+      <span class="kicker" data-mdl-kicker>Godrej Jardinia</span>
       <h3 data-mdl-title>Get the best price</h3>
       <p>Leave your details and an advisor will call you back shortly.</p>
       <div class="form-body">
         <div class="form-grid" style="grid-template-columns:1fr">
-          <div class="fld"><label>Full name <em>*</em></label><input name="name" type="text" required><span class="fld-err">Please fill this in correctly.</span></div>
-          <div class="fld"><label>Phone <em>*</em></label><input name="phone" type="tel" required><span class="fld-err">Please fill this in correctly.</span></div>
-          <div class="fld"><label>City</label><input name="city" type="text"></div>
+          <div class="fld"><label>Full name <em>*</em></label><input name="name" type="text" autocomplete="name" required><span class="fld-err">Please fill this in correctly.</span></div>
+          <div class="fld"><label>Phone <em>*</em></label><input name="phone" type="tel" autocomplete="tel" required><span class="fld-err">Please fill this in correctly.</span></div>
+          <div class="fld"><label>City</label><input name="city" type="text" autocomplete="address-level2"></div>
           <label class="consent"><input type="checkbox" required checked> I agree to be contacted by Intelligent Realtors about this project.</label>
           <button class="btn-gold w-full" type="submit">Submit enquiry <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 11h12.2l-5.6-5.6L12 4l8 8-8 8-1.4-1.4 5.6-5.6H4z"/></svg></button>
         </div>
@@ -543,10 +648,9 @@
         <ul class="list-unstyled f-links">
           <li><a href="index.html">Home</a></li>
           <li><a href="about.html">About us</a></li>
-          <li><a href="index.html#launches">New launches</a></li>
           <li><a href="projects.html">Projects</a></li>
-          <li><a href="index.html#partners">Partners</a></li>
-          <li><a href="index.html#testimonials">Testimonials</a></li>
+          <li><a href="locations.html">Locations</a></li>
+          <li><a href="blogs.html">Blogs</a></li>
           <li><a href="careers.html">Careers</a></li>
           <li><a href="contact.html">Contact</a></li>
         </ul>
@@ -555,12 +659,11 @@
       <nav class="f-col" aria-label="Properties">
         <h6>Properties</h6>
         <ul class="list-unstyled f-links">
-          <li><a href="projects.html">Residential</a></li>
-          <li><a href="projects.html">Commercial</a></li>
-          <li><a href="index.html#launches">New launches</a></li>
-          <li><a href="projects.html">Ready to move</a></li>
-          <li><a href="projects.html">Pre-leased assets</a></li>
-          <li><a href="projects.html">Plots &amp; land</a></li>
+          <li><a href="property-type.html?type=residential">Residential</a></li>
+          <li><a href="property-type.html?type=commercial">Commercial</a></li>
+          <li><a href="property-type.html?type=plots">Plots</a></li>
+          <li><a href="projects.html?status=Ready%20to%20move">Ready to move</a></li>
+          <li><a href="projects.html">All projects</a></li>
         </ul>
       </nav>
 
@@ -585,22 +688,15 @@
       </div>
     </div>
 
-    <div class="f-mark" aria-hidden="true">Intelligent Realtors</div>
 
     <div class="f-bottom">
-      <p>&copy; 2026 Intelligent Realtors Advisory LLP. All rights reserved.</p>
-      <p class="f-rera">RERA No. UPRERAAGT10452</p>
-      <div class="f-legal">
+      <p class="f-copy"><span class="f-copy-mark" aria-hidden="true"><svg viewBox="0 0 40 40"><path d="M20 4 34 14v22H24V26h-8v10H6V14L20 4z"/></svg></span><span>&copy; 2026 <b>Intelligent Realtors Advisory LLP</b><i aria-hidden="true"></i><em>All rights reserved</em></span></p>
+      <nav class="f-legal" aria-label="Legal">
         <a href="privacy-policy.html">Privacy policy</a>
+        <i aria-hidden="true"></i>
         <a href="terms.html">Terms &amp; conditions</a>
-      </div>
+      </nav>
     </div>
-
-    <p class="f-disclaimer">
-      Images on this page are indicative. Project details, pricing and configurations are
-      shared by developers and may change without notice. Nothing here constitutes an offer
-      or a guarantee of returns. Please verify all RERA particulars before booking.
-    </p>
   </div>
 </footer>
 
@@ -614,6 +710,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
-<script src="assets/js/main.js?v=20261016zs"></script>
+<script src="assets/js/main.js?v=20261019i"></script>
 </body>
 </html>

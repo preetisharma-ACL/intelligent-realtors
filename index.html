@@ -14,7 +14,7 @@
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 <link href="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.css" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/style.css?v=20261016zv">
+<link rel="stylesheet" href="assets/css/style.css?v=20261019n">
 </head>
 <body class="is-home">
 
@@ -40,13 +40,12 @@
           <li class="has-drop">
             <a href="locations.html">Locations <svg viewBox="0 0 24 24" class="caret"><path d="M7 10l5 5 5-5z"/></svg></a>
             <div class="drop drop--cols">
-              <label class="drop-search"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15.5 14h-.8l-.3-.3a6.5 6.5 0 1 0-.7.7l.3.3v.8l5 5 1.5-1.5-5-5zm-6 0a4.5 4.5 0 1 1 0-9 4.5 4.5 0 0 1 0 9z"/></svg><input type="search" placeholder="Search a city" aria-label="Search cities" autocomplete="off" data-city-search></label>
+              <h6>Explore by city</h6>
               <div class="drop-grid">
-                <a href="projects.html?city=noida">Noida <span>10</span></a>
-                <a href="projects.html?city=yamuna-expressway">Yamuna Expressway <span>7</span></a>
-                <a href="projects.html?city=greater-noida">Greater Noida <span>2</span></a>
+                <a href="projects.html?city=noida" title="Noida"><b>Noida</b><span>10</span></a>
+                <a href="projects.html?city=yamuna-expressway" title="Yamuna Expressway"><b>Yamuna Expressway</b><span>7</span></a>
+                <a href="projects.html?city=greater-noida" title="Greater Noida"><b>Greater Noida</b><span>2</span></a>
               </div>
-              <p class="drop-empty" hidden>No city found. <a href="contact.html">Ask us about it</a></p>
             </div>
           </li>
 
@@ -55,15 +54,15 @@
             <div class="drop drop--cols">
               <h6>Channel partner to</h6>
               <div class="drop-grid">
-                <a href="projects.html?dev=wellgrow-infotech">Wellgrow Infotech <span>1</span></a>
-                <a href="projects.html?dev=godrej-properties">Godrej Properties <span>2</span></a>
-                <a href="projects.html?dev=ace-group">ACE Group <span>6</span></a>
-                <a href="projects.html?dev=samridhi-group">Samridhi Group <span>2</span></a>
-                <a href="projects.html?dev=eldeco-group">Eldeco Group <span>2</span></a>
-                <a href="projects.html?dev=m3m">M3M <span>3</span></a>
-                <a href="projects.html?dev=crc-group">CRC Group <span>1</span></a>
-                <a href="projects.html?dev=prasandi-infotech-park">Prasandi Infotech Park <span>1</span></a>
-                <a href="projects.html?dev=experion-developers">Experion Developers <span>1</span></a>
+                <a href="projects.html?dev=wellgrow-infotech" title="Wellgrow Infotech"><b>Wellgrow Infotech</b><span>1</span></a>
+                <a href="projects.html?dev=godrej-properties" title="Godrej Properties"><b>Godrej Properties</b><span>2</span></a>
+                <a href="projects.html?dev=ace-group" title="ACE Group"><b>ACE Group</b><span>6</span></a>
+                <a href="projects.html?dev=samridhi-group" title="Samridhi Group"><b>Samridhi Group</b><span>2</span></a>
+                <a href="projects.html?dev=eldeco-group" title="Eldeco Group"><b>Eldeco Group</b><span>2</span></a>
+                <a href="projects.html?dev=m3m" title="M3M"><b>M3M</b><span>3</span></a>
+                <a href="projects.html?dev=crc-group" title="CRC Group"><b>CRC Group</b><span>1</span></a>
+                <a href="projects.html?dev=prasandi-infotech-park" title="Prasandi Infotech Park"><b>Prasandi Infotech Park</b><span>1</span></a>
+                <a href="projects.html?dev=experion-developers" title="Experion Developers"><b>Experion Developers</b><span>1</span></a>
               </div>
             </div>
           </li>
@@ -71,48 +70,41 @@
           <li class="has-mega">
             <a href="#projects">Projects <svg viewBox="0 0 24 24" class="caret"><path d="M7 10l5 5 5-5z"/></svg></a>
             <div class="mega">
-              <div class="snap">
-
-                <div class="snap-col snap-cities">
-                  <h6>Select city</h6>
-                  <div class="snap-scroll" id="snapCities"></div>
+              <div class="pm">
+                <div class="pm-top">
+                  <div class="pm-cities" id="snapCities" aria-label="City"></div>
+                  <div class="pm-types" id="snapTypes" aria-label="Property type"></div>
                 </div>
-
-                <div class="snap-col snap-types">
-                  <h6>Property type</h6>
-                  <div id="snapTypes"></div>
-                </div>
-
-                <div class="snap-col snap-results">
-                  <div class="snap-head">
+                <div class="pm-body">
+                  <aside class="pm-feature">
+                    <span class="pm-kicker">Now showing</span>
                     <h5 id="snapTitle">All types in Noida</h5>
-                    <a href="#projects" class="snap-all" id="snapAll">View all <i>&rarr;</i></a>
+                    <p class="pm-count" id="snapCount"></p>
+                    <a href="projects.html" class="pm-cta" id="snapCta"><span>View all projects</span><i>&rarr;</i></a>
+                  </aside>
+                  <div class="pm-grid" id="snapList">
+                    <a class="pm-card" href="project-details.html" title="Orion One 32" data-city="Noida" data-type="commercial"><span class="pm-card-img"><img src="assets/images/projects/orion-one-32/cover.webp" alt="" loading="lazy"><b>₹46.9 L onwards</b></span><strong>Orion One 32</strong><em>Sector 132, Noida–Greater Noida Expressway</em></a>
+                    <a class="pm-card" href="project-details.html" title="Godrej Jardinia" data-city="Noida" data-type="residential"><span class="pm-card-img"><img src="assets/images/projects/godrej-jardinia/cover.webp" alt="" loading="lazy"><b>₹4.19 Cr onwards</b></span><strong>Godrej Jardinia</strong><em>Sector 146, Noida-Greater Noida Expressway</em></a>
+                    <a class="pm-card" href="project-details.html" title="ACE Starlit" data-city="Noida" data-type="residential"><span class="pm-card-img"><img src="assets/images/projects/ace-starlit/cover.webp" alt="" loading="lazy"><b>₹1.99 Cr onwards</b></span><strong>ACE Starlit</strong><em>Sector 152, Noida Expressway</em></a>
+                    <a class="pm-card" href="project-details.html" title="Samridhi Luxuriya Avenue" data-city="Noida" data-type="residential"><span class="pm-card-img"><img src="assets/images/projects/samridhi-luxuriya-avenue/cover.webp" alt="" loading="lazy"><b>₹2.37 Cr onwards</b></span><strong>Samridhi Luxuriya Avenue</strong><em>Sector 150, Noida</em></a>
+                    <a class="pm-card" href="project-details.html" title="Samridhi Daksh Avenue" data-city="Noida" data-type="residential"><span class="pm-card-img"><img src="assets/images/projects/samridhi-daksh-avenue/cover.webp" alt="" loading="lazy"><b>₹4.16 Cr onwards</b></span><strong>Samridhi Daksh Avenue</strong><em>Sector 150, Noida</em></a>
+                    <a class="pm-card" href="project-details.html" title="Eldeco Ballads of Bliss" data-city="Yamuna Expressway" data-type="residential"><span class="pm-card-img"><img src="assets/images/projects/eldeco-ballads-of-bliss/cover.webp" alt="" loading="lazy"><b>₹1.17 Cr onwards</b></span><strong>Eldeco Ballads of Bliss</strong><em>Sector 22D, Yamuna Expressway</em></a>
+                    <a class="pm-card" href="project-details.html" title="M3M Jacob And Co Residences" data-city="Noida" data-type="residential"><span class="pm-card-img"><img src="assets/images/projects/m3m-jacob-and-co-residences/cover.webp" alt="" loading="lazy"><b>₹7.75 Cr onwards</b></span><strong>M3M Jacob And Co Residences</strong><em>Sector 97, Noida</em></a>
+                    <a class="pm-card" href="project-details.html" title="M3M The Cullinan" data-city="Noida" data-type="residential"><span class="pm-card-img"><img src="assets/images/projects/m3m-the-cullinan/cover.webp" alt="" loading="lazy"><b>₹8.32 Cr onwards</b></span><strong>M3M The Cullinan</strong><em>Sector 94, Noida</em></a>
+                    <a class="pm-card" href="project-details.html" title="M3M The Line" data-city="Noida" data-type="residential"><span class="pm-card-img"><img src="assets/images/projects/m3m-the-line/cover.webp" alt="" loading="lazy"><b>₹1.47 Cr onwards</b></span><strong>M3M The Line</strong><em>Sector 72, Noida</em></a>
+                    <a class="pm-card" href="project-details.html" title="Eldeco WOW" data-city="Yamuna Expressway" data-type="residential"><span class="pm-card-img"><img src="assets/images/projects/eldeco-whispers-of-wonder-wow/cover.webp" alt="" loading="lazy"><b>₹1.05 Cr onwards</b></span><strong>Eldeco WOW</strong><em>Sector 22D, Yamuna Expressway</em></a>
+                    <a class="pm-card" href="project-details.html" title="Godrej Arden" data-city="Greater Noida" data-type="residential"><span class="pm-card-img"><img src="assets/images/projects/godrej-arden/cover.webp" alt="" loading="lazy"><b>₹1.87 Cr onwards</b></span><strong>Godrej Arden</strong><em>Sigma III, Greater Noida</em></a>
+                    <a class="pm-card" href="project-details.html" title="CRC The Flagship" data-city="Noida" data-type="commercial"><span class="pm-card-img"><img src="assets/images/projects/crc-the-flagship/cover.webp" alt="" loading="lazy"><b>₹76 L onwards</b></span><strong>CRC The Flagship</strong><em>Sector 140A, Noida</em></a>
+                    <a class="pm-card" href="project-details.html" title="BIIGTECH" data-city="Greater Noida" data-type="commercial"><span class="pm-card-img"><img src="assets/images/projects/biigtech/cover.webp" alt="" loading="lazy"><b>Price on request</b></span><strong>BIIGTECH</strong><em>Knowledge Park III, Greater Noida</em></a>
+                    <a class="pm-card" href="project-details.html" title="ACE Verde" data-city="Yamuna Expressway" data-type="residential"><span class="pm-card-img"><img src="assets/images/projects/ace-verde/cover.webp" alt="" loading="lazy"><b>₹1.62 Cr onwards</b></span><strong>ACE Verde</strong><em>Sector 22A, Yamuna Expressway</em></a>
+                    <a class="pm-card" href="project-details.html" title="ACE YXP" data-city="Yamuna Expressway" data-type="commercial"><span class="pm-card-img"><img src="assets/images/projects/ace-yxp/cover.webp" alt="" loading="lazy"><b>₹86.58 L onwards</b></span><strong>ACE YXP</strong><em>Sector 22D, Yamuna Expressway</em></a>
+                    <a class="pm-card" href="project-details.html" title="ACE The Nest" data-city="Yamuna Expressway" data-type="residential"><span class="pm-card-img"><img src="assets/images/projects/ace-the-nest/cover.webp" alt="" loading="lazy"><b>Price on request</b></span><strong>ACE The Nest</strong><em>Sector 22A, Yamuna Expressway</em></a>
+                    <a class="pm-card" href="project-details.html" title="ACE Estate" data-city="Yamuna Expressway" data-type="plots"><span class="pm-card-img"><img src="assets/images/projects/ace-estate/cover.webp" alt="" loading="lazy"><b>₹1.88 Cr onwards</b></span><strong>ACE Estate</strong><em>Sector 22D, Yamuna Expressway</em></a>
+                    <a class="pm-card" href="project-details.html" title="ACE Acreville" data-city="Yamuna Expressway" data-type="plots"><span class="pm-card-img"><img src="assets/images/projects/ace-acreville/cover.webp" alt="" loading="lazy"><b>Price on request</b></span><strong>ACE Acreville</strong><em>Sector 22A, Yamuna Expressway</em></a>
+                    <a class="pm-card" href="project-details.html" title="Experion Elements" data-city="Noida" data-type="residential"><span class="pm-card-img"><img src="assets/images/projects/experion-elements/cover.webp" alt="" loading="lazy"><b>₹5.95 Cr onwards</b></span><strong>Experion Elements</strong><em>Sector 45, Noida</em></a>
+                    <p class="pm-empty" hidden>Nothing live in this combination today. Tell us what you need and we will source it.</p>
                   </div>
-                  <div class="snap-list" id="snapList">
-                    <a class="snap-item" href="project-orion-one-32.html" data-city="Noida" data-type="commercial"><img src="assets/images/projects/orion-one-32/cover.webp" alt="" loading="lazy"><span class="snap-item-b"><strong>Orion One 32</strong><em>Sector 132, Noida–Greater Noida Expressway</em><b>₹46.9 L onwards</b></span></a>
-                    <a class="snap-item" href="project-godrej-jardinia.html" data-city="Noida" data-type="residential"><img src="assets/images/projects/godrej-jardinia/cover.webp" alt="" loading="lazy"><span class="snap-item-b"><strong>Godrej Jardinia</strong><em>Sector 146, Noida-Greater Noida Expressway</em><b>₹4.19 Cr onwards</b></span></a>
-                    <a class="snap-item" href="project-ace-starlit.html" data-city="Noida" data-type="residential"><img src="assets/images/projects/ace-starlit/cover.webp" alt="" loading="lazy"><span class="snap-item-b"><strong>ACE Starlit</strong><em>Sector 152, Noida Expressway</em><b>₹1.99 Cr onwards</b></span></a>
-                    <a class="snap-item" href="project-samridhi-luxuriya-avenue.html" data-city="Noida" data-type="residential"><img src="assets/images/projects/samridhi-luxuriya-avenue/cover.webp" alt="" loading="lazy"><span class="snap-item-b"><strong>Samridhi Luxuriya Avenue</strong><em>Sector 150, Noida</em><b>₹2.37 Cr onwards</b></span></a>
-                    <a class="snap-item" href="project-samridhi-daksh-avenue.html" data-city="Noida" data-type="residential"><img src="assets/images/projects/samridhi-daksh-avenue/cover.webp" alt="" loading="lazy"><span class="snap-item-b"><strong>Samridhi Daksh Avenue</strong><em>Sector 150, Noida</em><b>₹4.16 Cr onwards</b></span></a>
-                    <a class="snap-item" href="project-eldeco-ballads-of-bliss.html" data-city="Yamuna Expressway" data-type="residential"><img src="assets/images/projects/eldeco-ballads-of-bliss/cover.webp" alt="" loading="lazy"><span class="snap-item-b"><strong>Eldeco Ballads of Bliss</strong><em>Sector 22D, Yamuna Expressway</em><b>₹1.17 Cr onwards</b></span></a>
-                    <a class="snap-item" href="project-m3m-jacob-and-co-residences.html" data-city="Noida" data-type="residential"><img src="assets/images/projects/m3m-jacob-and-co-residences/cover.webp" alt="" loading="lazy"><span class="snap-item-b"><strong>M3M Jacob And Co Residences</strong><em>Sector 97, Noida</em><b>₹7.75 Cr onwards</b></span></a>
-                    <a class="snap-item" href="project-m3m-the-cullinan.html" data-city="Noida" data-type="residential"><img src="assets/images/projects/m3m-the-cullinan/cover.webp" alt="" loading="lazy"><span class="snap-item-b"><strong>M3M The Cullinan</strong><em>Sector 94, Noida</em><b>₹8.32 Cr onwards</b></span></a>
-                    <a class="snap-item" href="project-m3m-the-line.html" data-city="Noida" data-type="residential"><img src="assets/images/projects/m3m-the-line/cover.webp" alt="" loading="lazy"><span class="snap-item-b"><strong>M3M The Line</strong><em>Sector 72, Noida</em><b>₹1.47 Cr onwards</b></span></a>
-                    <a class="snap-item" href="project-eldeco-whispers-of-wonder-wow.html" data-city="Yamuna Expressway" data-type="residential"><img src="assets/images/projects/eldeco-whispers-of-wonder-wow/cover.webp" alt="" loading="lazy"><span class="snap-item-b"><strong>Eldeco WOW</strong><em>Sector 22D, Yamuna Expressway</em><b>₹1.05 Cr onwards</b></span></a>
-                    <a class="snap-item" href="project-godrej-arden.html" data-city="Greater Noida" data-type="residential"><img src="assets/images/projects/godrej-arden/cover.webp" alt="" loading="lazy"><span class="snap-item-b"><strong>Godrej Arden</strong><em>Sigma III, Greater Noida</em><b>₹1.87 Cr onwards</b></span></a>
-                    <a class="snap-item" href="project-crc-the-flagship.html" data-city="Noida" data-type="commercial"><img src="assets/images/projects/crc-the-flagship/cover.webp" alt="" loading="lazy"><span class="snap-item-b"><strong>CRC The Flagship</strong><em>Sector 140A, Noida</em><b>₹76 L onwards</b></span></a>
-                    <a class="snap-item" href="project-biigtech.html" data-city="Greater Noida" data-type="commercial"><img src="assets/images/projects/biigtech/cover.webp" alt="" loading="lazy"><span class="snap-item-b"><strong>BIIGTECH</strong><em>Knowledge Park III, Greater Noida</em><b>Price on request</b></span></a>
-                    <a class="snap-item" href="project-ace-verde.html" data-city="Yamuna Expressway" data-type="residential"><img src="assets/images/projects/ace-verde/cover.webp" alt="" loading="lazy"><span class="snap-item-b"><strong>ACE Verde</strong><em>Sector 22A, Yamuna Expressway</em><b>₹1.62 Cr onwards</b></span></a>
-                    <a class="snap-item" href="project-ace-yxp.html" data-city="Yamuna Expressway" data-type="commercial"><img src="assets/images/projects/ace-yxp/cover.webp" alt="" loading="lazy"><span class="snap-item-b"><strong>ACE YXP</strong><em>Sector 22D, Yamuna Expressway</em><b>₹86.58 L onwards</b></span></a>
-                    <a class="snap-item" href="project-ace-the-nest.html" data-city="Yamuna Expressway" data-type="residential"><img src="assets/images/projects/ace-the-nest/cover.webp" alt="" loading="lazy"><span class="snap-item-b"><strong>ACE The Nest</strong><em>Sector 22A, Yamuna Expressway</em><b>Price on request</b></span></a>
-                    <a class="snap-item" href="project-ace-estate.html" data-city="Yamuna Expressway" data-type="plots"><img src="assets/images/projects/ace-estate/cover.webp" alt="" loading="lazy"><span class="snap-item-b"><strong>ACE Estate</strong><em>Sector 22D, Yamuna Expressway</em><b>₹1.88 Cr onwards</b></span></a>
-                    <a class="snap-item" href="project-ace-acreville.html" data-city="Yamuna Expressway" data-type="plots"><img src="assets/images/projects/ace-acreville/cover.webp" alt="" loading="lazy"><span class="snap-item-b"><strong>ACE Acreville</strong><em>Sector 22A, Yamuna Expressway</em><b>Price on request</b></span></a>
-                    <a class="snap-item" href="project-experion-elements.html" data-city="Noida" data-type="residential"><img src="assets/images/projects/experion-elements/cover.webp" alt="" loading="lazy"><span class="snap-item-b"><strong>Experion Elements</strong><em>Sector 45, Noida</em><b>₹5.95 Cr onwards</b></span></a>
-                    <p class="snap-empty" hidden>Nothing live in this combination today. Tell us what you need and we will source it.</p>
-                  </div>
-                  <a href="locations.html" class="snap-cta" id="snapCta"><span>View all projects</span><i>&rarr;</i></a>
                 </div>
-
               </div>
             </div>
           </li>
@@ -144,8 +136,34 @@
     <button class="mm-close" id="mmClose" aria-label="Close menu">&times;</button>
   </div>
   <nav class="mm-links">
-    <a href="locations.html"><span class="mm-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.3 7 13 7 13s7-7.7 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg></span><span class="mm-txt">Locations</span></a>
-    <a href="projects.html"><span class="mm-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 7V3H2v18h20V7H12zM6 19H4v-2h2v2zm0-4H4v-2h2v2zm0-4H4V9h2v2zm0-4H4V5h2v2zm4 12H8v-2h2v2zm0-4H8v-2h2v2zm0-4H8V9h2v2zm0-4H8V5h2v2zm10 12h-8v-2h2v-2h-2v-2h2v-2h-2V9h8v10zm-2-8h-2v2h2v-2zm0 4h-2v2h2v-2z"/></svg></span><span class="mm-txt">Developers</span></a>
+    <div class="mm-group" data-mm-group>
+      <button type="button" class="mm-toggle" aria-expanded="false" aria-controls="mmLocations"><span class="mm-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.3 7 13 7 13s7-7.7 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg></span><span class="mm-txt">Locations</span><svg class="mm-caret" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 10l5 5 5-5z"/></svg></button>
+      <div class="mm-sub" id="mmLocations" inert>
+        <div class="mm-sub-in">
+          <a href="projects.html?city=noida" title="Noida"><b>Noida</b><span>10</span></a>
+          <a href="projects.html?city=yamuna-expressway" title="Yamuna Expressway"><b>Yamuna Expressway</b><span>7</span></a>
+          <a href="projects.html?city=greater-noida" title="Greater Noida"><b>Greater Noida</b><span>2</span></a>
+          <a class="mm-sub-all" href="locations.html">View all locations <span aria-hidden="true">&rarr;</span></a>
+        </div>
+      </div>
+    </div>
+    <div class="mm-group" data-mm-group>
+      <button type="button" class="mm-toggle" aria-expanded="false" aria-controls="mmDevelopers"><span class="mm-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 7V3H2v18h20V7H12zM6 19H4v-2h2v2zm0-4H4v-2h2v2zm0-4H4V9h2v2zm0-4H4V5h2v2zm4 12H8v-2h2v2zm0-4H8v-2h2v2zm0-4H8V9h2v2zm0-4H8V5h2v2zm10 12h-8v-2h2v-2h-2v-2h2v-2h-2V9h8v10zm-2-8h-2v2h2v-2zm0 4h-2v2h2v-2z"/></svg></span><span class="mm-txt">Developers</span><svg class="mm-caret" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 10l5 5 5-5z"/></svg></button>
+      <div class="mm-sub" id="mmDevelopers" inert>
+        <div class="mm-sub-in">
+          <a href="projects.html?dev=wellgrow-infotech" title="Wellgrow Infotech"><b>Wellgrow Infotech</b><span>1</span></a>
+          <a href="projects.html?dev=godrej-properties" title="Godrej Properties"><b>Godrej Properties</b><span>2</span></a>
+          <a href="projects.html?dev=ace-group" title="ACE Group"><b>ACE Group</b><span>6</span></a>
+          <a href="projects.html?dev=samridhi-group" title="Samridhi Group"><b>Samridhi Group</b><span>2</span></a>
+          <a href="projects.html?dev=eldeco-group" title="Eldeco Group"><b>Eldeco Group</b><span>2</span></a>
+          <a href="projects.html?dev=m3m" title="M3M"><b>M3M</b><span>3</span></a>
+          <a href="projects.html?dev=crc-group" title="CRC Group"><b>CRC Group</b><span>1</span></a>
+          <a href="projects.html?dev=prasandi-infotech-park" title="Prasandi Infotech Park"><b>Prasandi Infotech Park</b><span>1</span></a>
+          <a href="projects.html?dev=experion-developers" title="Experion Developers"><b>Experion Developers</b><span>1</span></a>
+          <a class="mm-sub-all" href="projects.html">View all projects <span aria-hidden="true">&rarr;</span></a>
+        </div>
+      </div>
+    </div>
     <a href="#projects"><span class="mm-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 2 12h3v8h6v-6h2v6h6v-8h3L12 3z"/></svg></span><span class="mm-txt">Projects</span></a>
     <a href="about.html"><span class="mm-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg></span><span class="mm-txt">About Us</span></a>
     <a href="careers.html"><span class="mm-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6h-4V4c0-1.1-.9-2-2-2h-4c-1.1 0-2 .9-2 2v2H4c-1.1 0-2 .9-2 2v11c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-6 0h-4V4h4v2z"/></svg></span><span class="mm-txt">Career</span></a>
@@ -264,19 +282,22 @@
     <span class="pcard-status">Under construction</span>
     <span class="pcard-cat">Residential</span>
     <div class="pcard-cap">
-      <h3><a href="project-godrej-jardinia.html">Godrej Jardinia</a></h3>
+      <h3><a href="project-details.html">Godrej Jardinia</a></h3>
       <span class="pcard-loc"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.3 7 13 7 13s7-7.7 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>Sector 146, Noida-Greater Noida Expressway</span>
     </div>
   </div>
   <div class="pcard-body">
-    <span class="pcard-dev">Godrej Properties</span>
-    <ul class="pcard-specs list-unstyled">
-      <li><small>Configuration</small>2 BHK, 3 BHK, 4 BHK</li>
-      <li><small>Size</small>831 – 1714 sq.ft</li>
+    <div class="pcard-top">
+      <span class="pcard-by"><span><small>Developer</small>Godrej Properties</span></span>
+      <span class="pcard-amt"><small>Starting from</small><b>₹4.19 Cr<sup>*</sup></b></span>
+    </div>
+    <ul class="pcard-chips list-unstyled">
+      <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17 11V3H7v4H3v14h8v-4h2v4h8V11h-4zM7 19H5v-2h2v2zm0-4H5v-2h2v2zm0-4H5V9h2v2zm4 4H9v-2h2v2zm0-4H9V9h2v2zm0-4H9V5h2v2zm4 8h-2v-2h2v2zm0-4h-2V9h2v2zm0-4h-2V5h2v2zm4 12h-2v-2h2v2zm0-4h-2v-2h2v2z"/></svg>2 BHK, 3 BHK, 4 BHK</li>
+      <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3h7v2H6.4l4.3 4.3-1.4 1.4L5 6.4V10H3V3zm18 0v7h-2V6.4l-4.3 4.3-1.4-1.4L17.6 5H14V3h7zM3 21v-7h2v3.6l4.3-4.3 1.4 1.4L6.4 19H10v2H3zm18 0h-7v-2h3.6l-4.3-4.3 1.4-1.4 4.3 4.3V14h2v7z"/></svg>831 – 1714 sq.ft</li>
     </ul>
-    <div class="pcard-foot">
-      <div><span class="pcard-from">Starting from</span><span class="pcard-price">₹4.19 Cr<sup>*</sup></span></div>
-      <a href="project-godrej-jardinia.html" class="pcard-link" aria-label="View Godrej Jardinia"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v2h5.6L5 15.6 6.4 17 15 8.4V14h2V5z"/></svg></a>
+    <div class="pcard-cta">
+      <a href="project-details.html" class="pcard-btn">View details</a>
+      <a href="project-details.html" class="pcard-go" aria-label="View Godrej Jardinia"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v2h5.6L5 15.6 6.4 17 15 8.4V14h2V5z"/></svg></a>
     </div>
   </div>
 </article>
@@ -290,19 +311,22 @@
           <span class="pcard-status">Under construction</span>
           <span class="pcard-cat">Residential</span>
           <div class="pcard-cap">
-            <h3><a href="project-samridhi-daksh-avenue.html">Samridhi Daksh Avenue</a></h3>
+            <h3><a href="project-details.html">Samridhi Daksh Avenue</a></h3>
             <span class="pcard-loc"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.3 7 13 7 13s7-7.7 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>Sector 150, Noida</span>
           </div>
         </div>
         <div class="pcard-body">
-          <span class="pcard-dev">Samridhi Group</span>
-          <ul class="pcard-specs list-unstyled">
-            <li><small>Configuration</small>3 &amp; 4 BHK</li>
-            <li><small>Size</small>1,980 – 2,990 sq.ft</li>
+          <div class="pcard-top">
+            <span class="pcard-by"><span><small>Developer</small>Samridhi Group</span></span>
+            <span class="pcard-amt"><small>Starting from</small><b>₹4.16 Cr<sup>*</sup></b></span>
+          </div>
+          <ul class="pcard-chips list-unstyled">
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17 11V3H7v4H3v14h8v-4h2v4h8V11h-4zM7 19H5v-2h2v2zm0-4H5v-2h2v2zm0-4H5V9h2v2zm4 4H9v-2h2v2zm0-4H9V9h2v2zm0-4H9V5h2v2zm4 8h-2v-2h2v2zm0-4h-2V9h2v2zm0-4h-2V5h2v2zm4 12h-2v-2h2v2zm0-4h-2v-2h2v2z"/></svg>3 &amp; 4 BHK</li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3h7v2H6.4l4.3 4.3-1.4 1.4L5 6.4V10H3V3zm18 0v7h-2V6.4l-4.3 4.3-1.4-1.4L17.6 5H14V3h7zM3 21v-7h2v3.6l4.3-4.3 1.4 1.4L6.4 19H10v2H3zm18 0h-7v-2h3.6l-4.3-4.3 1.4-1.4 4.3 4.3V14h2v7z"/></svg>1,980 – 2,990 sq.ft</li>
           </ul>
-          <div class="pcard-foot">
-            <div><span class="pcard-from">Starting from</span><span class="pcard-price">₹4.16 Cr<sup>*</sup></span></div>
-            <a href="project-samridhi-daksh-avenue.html" class="pcard-link" aria-label="View Samridhi Daksh Avenue"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v2h5.6L5 15.6 6.4 17 15 8.4V14h2V5z"/></svg></a>
+          <div class="pcard-cta">
+            <a href="project-details.html" class="pcard-btn">View details</a>
+            <a href="project-details.html" class="pcard-go" aria-label="View Samridhi Daksh Avenue"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v2h5.6L5 15.6 6.4 17 15 8.4V14h2V5z"/></svg></a>
           </div>
         </div>
       </article>
@@ -316,19 +340,22 @@
           <span class="pcard-status">Under construction</span>
           <span class="pcard-cat">Residential</span>
           <div class="pcard-cap">
-            <h3><a href="project-eldeco-ballads-of-bliss.html">Eldeco Ballads of Bliss</a></h3>
+            <h3><a href="project-details.html">Eldeco Ballads of Bliss</a></h3>
             <span class="pcard-loc"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.3 7 13 7 13s7-7.7 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>Sector 22D, Yamuna Expressway</span>
           </div>
         </div>
         <div class="pcard-body">
-          <span class="pcard-dev">Eldeco Group</span>
-          <ul class="pcard-specs list-unstyled">
-            <li><small>Configuration</small>2 &amp; 3 BHK</li>
-            <li><small>Size</small>836 – 2,800 sq.ft</li>
+          <div class="pcard-top">
+            <span class="pcard-by"><span><small>Developer</small>Eldeco Group</span></span>
+            <span class="pcard-amt"><small>Starting from</small><b>₹1.17 Cr<sup>*</sup></b></span>
+          </div>
+          <ul class="pcard-chips list-unstyled">
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17 11V3H7v4H3v14h8v-4h2v4h8V11h-4zM7 19H5v-2h2v2zm0-4H5v-2h2v2zm0-4H5V9h2v2zm4 4H9v-2h2v2zm0-4H9V9h2v2zm0-4H9V5h2v2zm4 8h-2v-2h2v2zm0-4h-2V9h2v2zm0-4h-2V5h2v2zm4 12h-2v-2h2v2zm0-4h-2v-2h2v2z"/></svg>2 &amp; 3 BHK</li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3h7v2H6.4l4.3 4.3-1.4 1.4L5 6.4V10H3V3zm18 0v7h-2V6.4l-4.3 4.3-1.4-1.4L17.6 5H14V3h7zM3 21v-7h2v3.6l4.3-4.3 1.4 1.4L6.4 19H10v2H3zm18 0h-7v-2h3.6l-4.3-4.3 1.4-1.4 4.3 4.3V14h2v7z"/></svg>836 – 2,800 sq.ft</li>
           </ul>
-          <div class="pcard-foot">
-            <div><span class="pcard-from">Starting from</span><span class="pcard-price">₹1.17 Cr<sup>*</sup></span></div>
-            <a href="project-eldeco-ballads-of-bliss.html" class="pcard-link" aria-label="View Eldeco Ballads of Bliss"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v2h5.6L5 15.6 6.4 17 15 8.4V14h2V5z"/></svg></a>
+          <div class="pcard-cta">
+            <a href="project-details.html" class="pcard-btn">View details</a>
+            <a href="project-details.html" class="pcard-go" aria-label="View Eldeco Ballads of Bliss"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v2h5.6L5 15.6 6.4 17 15 8.4V14h2V5z"/></svg></a>
           </div>
         </div>
       </article>
@@ -342,19 +369,22 @@
           <span class="pcard-status">Under construction</span>
           <span class="pcard-cat">Residential</span>
           <div class="pcard-cap">
-            <h3><a href="project-m3m-jacob-and-co-residences.html">M3M Jacob And Co Residences</a></h3>
+            <h3><a href="project-details.html">M3M Jacob And Co Residences</a></h3>
             <span class="pcard-loc"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.3 7 13 7 13s7-7.7 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>Sector 97, Noida</span>
           </div>
         </div>
         <div class="pcard-body">
-          <span class="pcard-dev">M3M</span>
-          <ul class="pcard-specs list-unstyled">
-            <li><small>Configuration</small>3, 4 &amp; 5+ BHK</li>
-            <li><small>Size</small>2,500 – 6,500 sq.ft</li>
+          <div class="pcard-top">
+            <span class="pcard-by"><span><small>Developer</small>M3M</span></span>
+            <span class="pcard-amt"><small>Starting from</small><b>₹7.75 Cr<sup>*</sup></b></span>
+          </div>
+          <ul class="pcard-chips list-unstyled">
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17 11V3H7v4H3v14h8v-4h2v4h8V11h-4zM7 19H5v-2h2v2zm0-4H5v-2h2v2zm0-4H5V9h2v2zm4 4H9v-2h2v2zm0-4H9V9h2v2zm0-4H9V5h2v2zm4 8h-2v-2h2v2zm0-4h-2V9h2v2zm0-4h-2V5h2v2zm4 12h-2v-2h2v2zm0-4h-2v-2h2v2z"/></svg>3, 4 &amp; 5+ BHK</li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3h7v2H6.4l4.3 4.3-1.4 1.4L5 6.4V10H3V3zm18 0v7h-2V6.4l-4.3 4.3-1.4-1.4L17.6 5H14V3h7zM3 21v-7h2v3.6l4.3-4.3 1.4 1.4L6.4 19H10v2H3zm18 0h-7v-2h3.6l-4.3-4.3 1.4-1.4 4.3 4.3V14h2v7z"/></svg>2,500 – 6,500 sq.ft</li>
           </ul>
-          <div class="pcard-foot">
-            <div><span class="pcard-from">Starting from</span><span class="pcard-price">₹7.75 Cr<sup>*</sup></span></div>
-            <a href="project-m3m-jacob-and-co-residences.html" class="pcard-link" aria-label="View M3M Jacob And Co Residences"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v2h5.6L5 15.6 6.4 17 15 8.4V14h2V5z"/></svg></a>
+          <div class="pcard-cta">
+            <a href="project-details.html" class="pcard-btn">View details</a>
+            <a href="project-details.html" class="pcard-go" aria-label="View M3M Jacob And Co Residences"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v2h5.6L5 15.6 6.4 17 15 8.4V14h2V5z"/></svg></a>
           </div>
         </div>
       </article>
@@ -368,25 +398,29 @@
           <span class="pcard-status">Under construction</span>
           <span class="pcard-cat">Residential</span>
           <div class="pcard-cap">
-            <h3><a href="project-m3m-the-cullinan.html">M3M The Cullinan</a></h3>
+            <h3><a href="project-details.html">M3M The Cullinan</a></h3>
             <span class="pcard-loc"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.3 7 13 7 13s7-7.7 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>Sector 94, Noida</span>
           </div>
         </div>
         <div class="pcard-body">
-          <span class="pcard-dev">M3M</span>
-          <ul class="pcard-specs list-unstyled">
-            <li><small>Configuration</small>3, 4 &amp; 5+ BHK</li>
-            <li><small>Size</small>3,200 – 6,220 sq.ft</li>
+          <div class="pcard-top">
+            <span class="pcard-by"><span><small>Developer</small>M3M</span></span>
+            <span class="pcard-amt"><small>Starting from</small><b>₹8.32 Cr<sup>*</sup></b></span>
+          </div>
+          <ul class="pcard-chips list-unstyled">
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17 11V3H7v4H3v14h8v-4h2v4h8V11h-4zM7 19H5v-2h2v2zm0-4H5v-2h2v2zm0-4H5V9h2v2zm4 4H9v-2h2v2zm0-4H9V9h2v2zm0-4H9V5h2v2zm4 8h-2v-2h2v2zm0-4h-2V9h2v2zm0-4h-2V5h2v2zm4 12h-2v-2h2v2zm0-4h-2v-2h2v2z"/></svg>3, 4 &amp; 5+ BHK</li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3h7v2H6.4l4.3 4.3-1.4 1.4L5 6.4V10H3V3zm18 0v7h-2V6.4l-4.3 4.3-1.4-1.4L17.6 5H14V3h7zM3 21v-7h2v3.6l4.3-4.3 1.4 1.4L6.4 19H10v2H3zm18 0h-7v-2h3.6l-4.3-4.3 1.4-1.4 4.3 4.3V14h2v7z"/></svg>3,200 – 6,220 sq.ft</li>
           </ul>
-          <div class="pcard-foot">
-            <div><span class="pcard-from">Starting from</span><span class="pcard-price">₹8.32 Cr<sup>*</sup></span></div>
-            <a href="project-m3m-the-cullinan.html" class="pcard-link" aria-label="View M3M The Cullinan"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v2h5.6L5 15.6 6.4 17 15 8.4V14h2V5z"/></svg></a>
+          <div class="pcard-cta">
+            <a href="project-details.html" class="pcard-btn">View details</a>
+            <a href="project-details.html" class="pcard-go" aria-label="View M3M The Cullinan"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v2h5.6L5 15.6 6.4 17 15 8.4V14h2V5z"/></svg></a>
           </div>
         </div>
       </article>
   </div>
   <div class="rail-dots" id="launchDots" role="tablist" aria-label="New launch sets"></div>
   </div>
+  <div class="sec-more reveal"><a href="projects.html" class="btn-gold">View all projects <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 11h12.2l-5.6-5.6L12 4l8 8-8 8-1.4-1.4 5.6-5.6H4z"/></svg></a></div>
   </div>
 </section>
 
@@ -472,19 +506,22 @@
     <span class="pcard-status">Under construction</span>
     <span class="pcard-cat">Residential</span>
     <div class="pcard-cap">
-      <h3><a href="project-godrej-jardinia.html">Godrej Jardinia</a></h3>
+      <h3><a href="project-details.html">Godrej Jardinia</a></h3>
       <span class="pcard-loc"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.3 7 13 7 13s7-7.7 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>Sector 146, Noida-Greater Noida Expressway</span>
     </div>
   </div>
   <div class="pcard-body">
-    <span class="pcard-dev">Godrej Properties</span>
-    <ul class="pcard-specs list-unstyled">
-      <li><small>Configuration</small>2 BHK, 3 BHK, 4 BHK</li>
-      <li><small>Size</small>831 – 1714 sq.ft</li>
+    <div class="pcard-top">
+      <span class="pcard-by"><span><small>Developer</small>Godrej Properties</span></span>
+      <span class="pcard-amt"><small>Starting from</small><b>₹4.19 Cr<sup>*</sup></b></span>
+    </div>
+    <ul class="pcard-chips list-unstyled">
+      <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17 11V3H7v4H3v14h8v-4h2v4h8V11h-4zM7 19H5v-2h2v2zm0-4H5v-2h2v2zm0-4H5V9h2v2zm4 4H9v-2h2v2zm0-4H9V9h2v2zm0-4H9V5h2v2zm4 8h-2v-2h2v2zm0-4h-2V9h2v2zm0-4h-2V5h2v2zm4 12h-2v-2h2v2zm0-4h-2v-2h2v2z"/></svg>2 BHK, 3 BHK, 4 BHK</li>
+      <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3h7v2H6.4l4.3 4.3-1.4 1.4L5 6.4V10H3V3zm18 0v7h-2V6.4l-4.3 4.3-1.4-1.4L17.6 5H14V3h7zM3 21v-7h2v3.6l4.3-4.3 1.4 1.4L6.4 19H10v2H3zm18 0h-7v-2h3.6l-4.3-4.3 1.4-1.4 4.3 4.3V14h2v7z"/></svg>831 – 1714 sq.ft</li>
     </ul>
-    <div class="pcard-foot">
-      <div><span class="pcard-from">Starting from</span><span class="pcard-price">₹4.19 Cr<sup>*</sup></span></div>
-      <a href="project-godrej-jardinia.html" class="pcard-link" aria-label="View Godrej Jardinia"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v2h5.6L5 15.6 6.4 17 15 8.4V14h2V5z"/></svg></a>
+    <div class="pcard-cta">
+      <a href="project-details.html" class="pcard-btn">View details</a>
+      <a href="project-details.html" class="pcard-go" aria-label="View Godrej Jardinia"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v2h5.6L5 15.6 6.4 17 15 8.4V14h2V5z"/></svg></a>
     </div>
   </div>
 </article>
@@ -498,19 +535,22 @@
           <span class="pcard-status">Ready to move</span>
           <span class="pcard-cat">Residential</span>
           <div class="pcard-cap">
-            <h3><a href="project-ace-starlit.html">ACE Starlit</a></h3>
+            <h3><a href="project-details.html">ACE Starlit</a></h3>
             <span class="pcard-loc"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.3 7 13 7 13s7-7.7 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>Sector 152, Noida Expressway</span>
           </div>
         </div>
         <div class="pcard-body">
-          <span class="pcard-dev">ACE Group</span>
-          <ul class="pcard-specs list-unstyled">
-            <li><small>Configuration</small>2 BHK, 3 BHK</li>
-            <li><small>Size</small>1,350 – 1,775 sq.ft</li>
+          <div class="pcard-top">
+            <span class="pcard-by"><span><small>Developer</small>ACE Group</span></span>
+            <span class="pcard-amt"><small>Starting from</small><b>₹1.99 Cr<sup>*</sup></b></span>
+          </div>
+          <ul class="pcard-chips list-unstyled">
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17 11V3H7v4H3v14h8v-4h2v4h8V11h-4zM7 19H5v-2h2v2zm0-4H5v-2h2v2zm0-4H5V9h2v2zm4 4H9v-2h2v2zm0-4H9V9h2v2zm0-4H9V5h2v2zm4 8h-2v-2h2v2zm0-4h-2V9h2v2zm0-4h-2V5h2v2zm4 12h-2v-2h2v2zm0-4h-2v-2h2v2z"/></svg>2 BHK, 3 BHK</li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3h7v2H6.4l4.3 4.3-1.4 1.4L5 6.4V10H3V3zm18 0v7h-2V6.4l-4.3 4.3-1.4-1.4L17.6 5H14V3h7zM3 21v-7h2v3.6l4.3-4.3 1.4 1.4L6.4 19H10v2H3zm18 0h-7v-2h3.6l-4.3-4.3 1.4-1.4 4.3 4.3V14h2v7z"/></svg>1,350 – 1,775 sq.ft</li>
           </ul>
-          <div class="pcard-foot">
-            <div><span class="pcard-from">Starting from</span><span class="pcard-price">₹1.99 Cr<sup>*</sup></span></div>
-            <a href="project-ace-starlit.html" class="pcard-link" aria-label="View ACE Starlit"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v2h5.6L5 15.6 6.4 17 15 8.4V14h2V5z"/></svg></a>
+          <div class="pcard-cta">
+            <a href="project-details.html" class="pcard-btn">View details</a>
+            <a href="project-details.html" class="pcard-go" aria-label="View ACE Starlit"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v2h5.6L5 15.6 6.4 17 15 8.4V14h2V5z"/></svg></a>
           </div>
         </div>
       </article>
@@ -524,19 +564,22 @@
           <span class="pcard-status">Under construction</span>
           <span class="pcard-cat">Commercial</span>
           <div class="pcard-cap">
-            <h3><a href="project-orion-one-32.html">Orion One 32</a></h3>
+            <h3><a href="project-details.html">Orion One 32</a></h3>
             <span class="pcard-loc"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.3 7 13 7 13s7-7.7 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>Sector 132, Noida–Greater Noida Expressway</span>
           </div>
         </div>
         <div class="pcard-body">
-          <span class="pcard-dev">Wellgrow Infotech</span>
-          <ul class="pcard-specs list-unstyled">
-            <li><small>Configuration</small>Retail Shop, Commercial Office Space</li>
-            <li><small>Size</small>175 – 30000 sq.ft</li>
+          <div class="pcard-top">
+            <span class="pcard-by"><span><small>Developer</small>Wellgrow Infotech</span></span>
+            <span class="pcard-amt"><small>Starting from</small><b>₹46.9 L<sup>*</sup></b></span>
+          </div>
+          <ul class="pcard-chips list-unstyled">
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17 11V3H7v4H3v14h8v-4h2v4h8V11h-4zM7 19H5v-2h2v2zm0-4H5v-2h2v2zm0-4H5V9h2v2zm4 4H9v-2h2v2zm0-4H9V9h2v2zm0-4H9V5h2v2zm4 8h-2v-2h2v2zm0-4h-2V9h2v2zm0-4h-2V5h2v2zm4 12h-2v-2h2v2zm0-4h-2v-2h2v2z"/></svg>Retail Shop, Commercial Office Space</li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3h7v2H6.4l4.3 4.3-1.4 1.4L5 6.4V10H3V3zm18 0v7h-2V6.4l-4.3 4.3-1.4-1.4L17.6 5H14V3h7zM3 21v-7h2v3.6l4.3-4.3 1.4 1.4L6.4 19H10v2H3zm18 0h-7v-2h3.6l-4.3-4.3 1.4-1.4 4.3 4.3V14h2v7z"/></svg>175 – 30000 sq.ft</li>
           </ul>
-          <div class="pcard-foot">
-            <div><span class="pcard-from">Starting from</span><span class="pcard-price">₹46.9 L<sup>*</sup></span></div>
-            <a href="project-orion-one-32.html" class="pcard-link" aria-label="View Orion One 32"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v2h5.6L5 15.6 6.4 17 15 8.4V14h2V5z"/></svg></a>
+          <div class="pcard-cta">
+            <a href="project-details.html" class="pcard-btn">View details</a>
+            <a href="project-details.html" class="pcard-go" aria-label="View Orion One 32"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v2h5.6L5 15.6 6.4 17 15 8.4V14h2V5z"/></svg></a>
           </div>
         </div>
       </article>
@@ -550,19 +593,22 @@
           <span class="pcard-status">Under construction</span>
           <span class="pcard-cat">Commercial</span>
           <div class="pcard-cap">
-            <h3><a href="project-crc-the-flagship.html">CRC The Flagship</a></h3>
+            <h3><a href="project-details.html">CRC The Flagship</a></h3>
             <span class="pcard-loc"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.3 7 13 7 13s7-7.7 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>Sector 140A, Noida</span>
           </div>
         </div>
         <div class="pcard-body">
-          <span class="pcard-dev">CRC Group</span>
-          <ul class="pcard-specs list-unstyled">
-            <li><small>Configuration</small>Office Space · Retail / Shop</li>
-            <li><small>Size</small>440 – 2,462 sq.ft</li>
+          <div class="pcard-top">
+            <span class="pcard-by"><span><small>Developer</small>CRC Group</span></span>
+            <span class="pcard-amt"><small>Starting from</small><b>₹76 L<sup>*</sup></b></span>
+          </div>
+          <ul class="pcard-chips list-unstyled">
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17 11V3H7v4H3v14h8v-4h2v4h8V11h-4zM7 19H5v-2h2v2zm0-4H5v-2h2v2zm0-4H5V9h2v2zm4 4H9v-2h2v2zm0-4H9V9h2v2zm0-4H9V5h2v2zm4 8h-2v-2h2v2zm0-4h-2V9h2v2zm0-4h-2V5h2v2zm4 12h-2v-2h2v2zm0-4h-2v-2h2v2z"/></svg>Office Space · Retail / Shop</li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3h7v2H6.4l4.3 4.3-1.4 1.4L5 6.4V10H3V3zm18 0v7h-2V6.4l-4.3 4.3-1.4-1.4L17.6 5H14V3h7zM3 21v-7h2v3.6l4.3-4.3 1.4 1.4L6.4 19H10v2H3zm18 0h-7v-2h3.6l-4.3-4.3 1.4-1.4 4.3 4.3V14h2v7z"/></svg>440 – 2,462 sq.ft</li>
           </ul>
-          <div class="pcard-foot">
-            <div><span class="pcard-from">Starting from</span><span class="pcard-price">₹76 L<sup>*</sup></span></div>
-            <a href="project-crc-the-flagship.html" class="pcard-link" aria-label="View CRC The Flagship"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v2h5.6L5 15.6 6.4 17 15 8.4V14h2V5z"/></svg></a>
+          <div class="pcard-cta">
+            <a href="project-details.html" class="pcard-btn">View details</a>
+            <a href="project-details.html" class="pcard-go" aria-label="View CRC The Flagship"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v2h5.6L5 15.6 6.4 17 15 8.4V14h2V5z"/></svg></a>
           </div>
         </div>
       </article>
@@ -576,19 +622,22 @@
           <span class="pcard-status">Ready to move</span>
           <span class="pcard-cat">Plots</span>
           <div class="pcard-cap">
-            <h3><a href="project-ace-estate.html">ACE Estate</a></h3>
+            <h3><a href="project-details.html">ACE Estate</a></h3>
             <span class="pcard-loc"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.3 7 13 7 13s7-7.7 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>Sector 22D, Yamuna Expressway</span>
           </div>
         </div>
         <div class="pcard-body">
-          <span class="pcard-dev">ACE Group</span>
-          <ul class="pcard-specs list-unstyled">
-            <li><small>Configuration</small>Residential Plots</li>
-            <li><small>Size</small>150 – 500 sq.yd</li>
+          <div class="pcard-top">
+            <span class="pcard-by"><span><small>Developer</small>ACE Group</span></span>
+            <span class="pcard-amt"><small>Starting from</small><b>₹1.88 Cr<sup>*</sup></b></span>
+          </div>
+          <ul class="pcard-chips list-unstyled">
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17 11V3H7v4H3v14h8v-4h2v4h8V11h-4zM7 19H5v-2h2v2zm0-4H5v-2h2v2zm0-4H5V9h2v2zm4 4H9v-2h2v2zm0-4H9V9h2v2zm0-4H9V5h2v2zm4 8h-2v-2h2v2zm0-4h-2V9h2v2zm0-4h-2V5h2v2zm4 12h-2v-2h2v2zm0-4h-2v-2h2v2z"/></svg>Residential Plots</li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3h7v2H6.4l4.3 4.3-1.4 1.4L5 6.4V10H3V3zm18 0v7h-2V6.4l-4.3 4.3-1.4-1.4L17.6 5H14V3h7zM3 21v-7h2v3.6l4.3-4.3 1.4 1.4L6.4 19H10v2H3zm18 0h-7v-2h3.6l-4.3-4.3 1.4-1.4 4.3 4.3V14h2v7z"/></svg>150 – 500 sq.yd</li>
           </ul>
-          <div class="pcard-foot">
-            <div><span class="pcard-from">Starting from</span><span class="pcard-price">₹1.88 Cr<sup>*</sup></span></div>
-            <a href="project-ace-estate.html" class="pcard-link" aria-label="View ACE Estate"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v2h5.6L5 15.6 6.4 17 15 8.4V14h2V5z"/></svg></a>
+          <div class="pcard-cta">
+            <a href="project-details.html" class="pcard-btn">View details</a>
+            <a href="project-details.html" class="pcard-go" aria-label="View ACE Estate"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v2h5.6L5 15.6 6.4 17 15 8.4V14h2V5z"/></svg></a>
           </div>
         </div>
       </article>
@@ -602,23 +651,28 @@
           <span class="pcard-status">Ready to move</span>
           <span class="pcard-cat">Plots</span>
           <div class="pcard-cap">
-            <h3><a href="project-ace-acreville.html">ACE Acreville</a></h3>
+            <h3><a href="project-details.html">ACE Acreville</a></h3>
             <span class="pcard-loc"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.3 7 13 7 13s7-7.7 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>Sector 22A, Yamuna Expressway</span>
           </div>
         </div>
         <div class="pcard-body">
-          <span class="pcard-dev">ACE Group</span>
-          <ul class="pcard-specs list-unstyled">
-            <li><small>Configuration</small>Residential Plots</li>
-            <li><small>Size</small>200 – 500 sq.yd</li>
+          <div class="pcard-top">
+            <span class="pcard-by"><span><small>Developer</small>ACE Group</span></span>
+            <span class="pcard-amt"><small>Price</small><b>On request</b></span>
+          </div>
+          <ul class="pcard-chips list-unstyled">
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17 11V3H7v4H3v14h8v-4h2v4h8V11h-4zM7 19H5v-2h2v2zm0-4H5v-2h2v2zm0-4H5V9h2v2zm4 4H9v-2h2v2zm0-4H9V9h2v2zm0-4H9V5h2v2zm4 8h-2v-2h2v2zm0-4h-2V9h2v2zm0-4h-2V5h2v2zm4 12h-2v-2h2v2zm0-4h-2v-2h2v2z"/></svg>Residential Plots</li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3h7v2H6.4l4.3 4.3-1.4 1.4L5 6.4V10H3V3zm18 0v7h-2V6.4l-4.3 4.3-1.4-1.4L17.6 5H14V3h7zM3 21v-7h2v3.6l4.3-4.3 1.4 1.4L6.4 19H10v2H3zm18 0h-7v-2h3.6l-4.3-4.3 1.4-1.4 4.3 4.3V14h2v7z"/></svg>200 – 500 sq.yd</li>
           </ul>
-          <div class="pcard-foot">
-            <div><span class="pcard-from">Price</span><span class="pcard-price">On request</span></div>
-            <a href="project-ace-acreville.html" class="pcard-link" aria-label="View ACE Acreville"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v2h5.6L5 15.6 6.4 17 15 8.4V14h2V5z"/></svg></a>
+          <div class="pcard-cta">
+            <a href="project-details.html" class="pcard-btn">View details</a>
+            <a href="project-details.html" class="pcard-go" aria-label="View ACE Acreville"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v2h5.6L5 15.6 6.4 17 15 8.4V14h2V5z"/></svg></a>
           </div>
         </div>
       </article>
     </div>
+
+    <div class="sec-more reveal"><a href="projects.html" class="btn-gold" id="featuredAll"><span>View all projects</span> <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 11h12.2l-5.6-5.6L12 4l8 8-8 8-1.4-1.4 5.6-5.6H4z"/></svg></a></div>
   </div>
 </section>
 
@@ -766,10 +820,9 @@
         <ul class="list-unstyled f-links">
           <li><a href="index.html">Home</a></li>
           <li><a href="about.html">About us</a></li>
-          <li><a href="#launches">New launches</a></li>
-          <li><a href="#projects">Projects</a></li>
-          <li><a href="#partners">Partners</a></li>
-          <li><a href="#testimonials">Testimonials</a></li>
+          <li><a href="projects.html">Projects</a></li>
+          <li><a href="locations.html">Locations</a></li>
+          <li><a href="blogs.html">Blogs</a></li>
           <li><a href="careers.html">Careers</a></li>
           <li><a href="contact.html">Contact</a></li>
         </ul>
@@ -778,12 +831,11 @@
       <nav class="f-col" aria-label="Properties">
         <h6>Properties</h6>
         <ul class="list-unstyled f-links">
-          <li><a href="#projects">Residential</a></li>
-          <li><a href="#projects">Commercial</a></li>
-          <li><a href="#launches">New launches</a></li>
-          <li><a href="#projects">Ready to move</a></li>
-          <li><a href="#projects">Pre-leased assets</a></li>
-          <li><a href="#projects">Plots &amp; land</a></li>
+          <li><a href="property-type.html?type=residential">Residential</a></li>
+          <li><a href="property-type.html?type=commercial">Commercial</a></li>
+          <li><a href="property-type.html?type=plots">Plots</a></li>
+          <li><a href="projects.html?status=Ready%20to%20move">Ready to move</a></li>
+          <li><a href="projects.html">All projects</a></li>
         </ul>
       </nav>
 
@@ -808,22 +860,15 @@
       </div>
     </div>
 
-    <div class="f-mark" aria-hidden="true">Intelligent Realtors</div>
 
     <div class="f-bottom">
-      <p>&copy; 2026 Intelligent Realtors Advisory LLP. All rights reserved.</p>
-      <p class="f-rera">RERA No. UPRERAAGT10452</p>
-      <div class="f-legal">
+      <p class="f-copy"><span class="f-copy-mark" aria-hidden="true"><svg viewBox="0 0 40 40"><path d="M20 4 34 14v22H24V26h-8v10H6V14L20 4z"/></svg></span><span>&copy; 2026 <b>Intelligent Realtors Advisory LLP</b><i aria-hidden="true"></i><em>All rights reserved</em></span></p>
+      <nav class="f-legal" aria-label="Legal">
         <a href="privacy-policy.html">Privacy policy</a>
+        <i aria-hidden="true"></i>
         <a href="terms.html">Terms &amp; conditions</a>
-      </div>
+      </nav>
     </div>
-
-    <p class="f-disclaimer">
-      Images on this page are indicative. Project details, pricing and configurations are
-      shared by developers and may change without notice. Nothing here constitutes an offer
-      or a guarantee of returns. Please verify all RERA particulars before booking.
-    </p>
   </div>
 </footer>
 
@@ -837,6 +882,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
-<script src="assets/js/main.js?v=20261016zs"></script>
+<script src="assets/js/main.js?v=20261019i"></script>
 </body>
 </html>
