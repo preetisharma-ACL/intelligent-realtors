@@ -1302,23 +1302,13 @@ a.f-item:hover .f-ico{ background:var(--gold); color:var(--navy) }
 a.f-item:hover b{ color:var(--gold-soft) }
 
 /* bottom bar */
-/* bottom bar: a gold hairline that fades at both ends, then copyright left
-   and the legal links right. The right padding keeps the links clear of the
-   floating call / WhatsApp buttons in the corner. */
+/* bottom bar: a simple line, then copyright and legal links centred.
+   Bottom padding leaves room for the floating call / WhatsApp buttons. */
 .f-bottom{
-  position:relative; display:flex; align-items:center; justify-content:space-between; gap:1rem 2rem; flex-wrap:wrap;
-  margin-top:3rem; padding:1.6rem 5.5rem 1.8rem 0;
+  display:flex; flex-direction:column; align-items:center; justify-content:center; gap:.7rem; text-align:center;
+  margin-top:3rem; padding:1.5rem 0 2rem; border-top:1px solid rgba(255,255,255,.1);
 }
-.f-bottom::before{
-  content:""; position:absolute; left:0; right:0; top:0; height:1px;
-  background:linear-gradient(90deg,rgba(201,169,97,0) 0%,rgba(201,169,97,.55) 25%,rgba(201,169,97,.55) 75%,rgba(201,169,97,0) 100%);
-}
-.f-copy{ display:flex; align-items:center; gap:.8rem; margin:0; font-size:.84rem; color:rgba(255,255,255,.55) }
-.f-copy-mark{
-  width:32px; height:32px; flex:none; display:grid; place-items:center; border-radius:9px;
-  border:1px solid rgba(201,169,97,.45); background:rgba(201,169,97,.1);
-}
-.f-copy-mark svg{ width:15px; height:15px; fill:var(--gold) }
+.f-copy{ display:flex; align-items:center; justify-content:center; flex-wrap:wrap; margin:0; font-size:.84rem; color:rgba(255,255,255,.55) }
 .f-copy b{ font-weight:600; color:#fff }
 .f-copy i{ display:inline-block; width:4px; height:4px; margin:0 .65rem; border-radius:50%; background:var(--gold); vertical-align:middle }
 .f-copy em{ font-style:normal; font-weight:400; color:inherit }   /* not the site-wide gold <em> */
@@ -1341,8 +1331,8 @@ a.f-item:hover b{ color:var(--gold-soft) }
   .site-footer{ padding-top:3.8rem }
   .f-grid{ grid-template-columns:1fr 1fr; gap:2rem 1.2rem }
   .f-contact{ grid-column:1 / -1 }
-  .f-bottom{ flex-direction:column; justify-content:center; margin-top:2.4rem; padding:1.5rem 0 6.5rem; text-align:center }   /* room under it for the floating buttons */
-  .f-copy{ flex-direction:column; gap:.6rem }
+  .f-bottom{ margin-top:2rem; padding:1.2rem 4.2rem 1.4rem }   /* side room keeps the text clear of the floating buttons */
+  .f-copy{ flex-direction:column; gap:.15rem }
   .f-copy i{ display:none }
   .f-copy em{ display:block; margin-top:.15rem }
 }
@@ -3167,7 +3157,7 @@ body.is-home.scrolled .burger span{ background:var(--ink) }
 
 @media (max-width:767.98px){
   body.is-home .nav-inner{ height:76px }
-  .hero--cine{ padding-bottom:132px }   /* phones: low in the banner, just above the floating call/WhatsApp buttons */
+  .hero--cine{ justify-content:center; padding-top:84px; padding-bottom:84px }   /* phones: text in the middle of the banner */
   .hero-sub{ font-size:10.5px; letter-spacing:.1em; margin-top:14px }   /* phones: tagline on one line */
   .hero-cta{ padding:10px 22px; letter-spacing:.12em }
   .hero--cine .hero-sky video, .hero--cine .hero-sky img{ object-position:62% 50% }   /* phones: keep the tall towers in frame */
