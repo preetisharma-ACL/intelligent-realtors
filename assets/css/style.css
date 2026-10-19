@@ -3762,14 +3762,8 @@ body.is-home:not(.scrolled) .nav-connect:hover{ background:#fff; color:var(--nav
 .has-drop.is-wide .drop-grid{ grid-template-columns:repeat(4,minmax(0,1fr)) }
 
 /* ==========================================================================
-   HOME — phones: a shorter banner, and the about panel sized to its content
+   HOME — phones/tablets: the about panel sized to its content
    ========================================================================== */
-@media (max-width:767.98px){
-  /* banner about three quarters of the screen; navy behind it so the strip
-     beside the rising arched panel blends with the banner */
-  .hero-stack{ background:var(--navy) }
-  .hero-stack > .hero, .hero--cine{ min-height:76vh; min-height:76svh }
-}
 @media (max-width:991.98px){
   /* the panel no longer stretches to the full screen, so the photo sits
      right under the button instead of at the bottom of an empty panel */
