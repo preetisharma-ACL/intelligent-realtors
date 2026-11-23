@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Intelligent Realtors — site script
+   Verafide Developers — site script
    One file for the whole site. Every block checks for the elements it needs
    and does nothing when they are missing, so the same file loads on every
    page. Blocks share a few helpers through the IR object (section 0).
@@ -1280,7 +1280,7 @@ if (!IR.reduced) document.documentElement.classList.add('js-ready');
         if (h1) h1.innerHTML = t.h1;
         if (sub) sub.textContent = t.lead;
         if (crumb) crumb.textContent = t.label;
-        document.title = t.label + ' Projects — Intelligent Realtors';
+        document.title = t.label + ' Projects — Verafide Developers';
         return;
       }
       var dev = state.dev && pick('developer', state.dev), place = state.city && pick('city', state.city);
@@ -1288,7 +1288,7 @@ if (!IR.reduced) document.documentElement.classList.add('js-ready');
       else if (h1 && place) title('Projects in ', place.dataset.cityName);
       if (logo) { logo.hidden = !dev; if (dev) { $('img', logo).src = dev.dataset.developerLogo; $('img', logo).alt = dev.dataset.developerName; } }
       if (crumb) crumb.textContent = dev ? dev.dataset.developerName : place ? place.dataset.cityName : 'Projects';
-      if (dev || place) document.title = 'Projects ' + (dev ? 'by ' + dev.dataset.developerName : 'in ' + place.dataset.cityName) + ' — Intelligent Realtors';
+      if (dev || place) document.title = 'Projects ' + (dev ? 'by ' + dev.dataset.developerName : 'in ' + place.dataset.cityName) + ' — Verafide Developers';
     };
     var render = function (scroll) {
       var list = sorted(cards.filter(function (c) { return matches(c, false); }));
