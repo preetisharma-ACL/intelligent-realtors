@@ -27,6 +27,7 @@
      19.  Careers: growth bars
      20.  Home: evening-to-night hero video
      21.  Image fallback
+     22.  Navbar search
 
    Libraries expected on the page: GSAP + ScrollTrigger, Lenis, Bootstrap.
    ========================================================================== */
@@ -200,6 +201,15 @@ if (!IR.reduced) document.documentElement.classList.add('js-ready');
      to a wide, four-across layout, so it grows sideways rather than down */
   $$('.has-drop .drop-grid').forEach(function (g) {
     g.closest('.has-drop').classList.toggle('is-wide', $$('a', g).length > 6);
+  });
+
+  /* Developers only opens its menu (hover, or Tab for keyboard users);
+     clicking it does not leave the page. The mouse click also skips
+     focusing the link, so focus does not keep the menu pinned open while
+     the pointer moves on to Locations. */
+  $$('[data-drop-toggle]').forEach(function (a) {
+    a.addEventListener('mousedown', function (e) { e.preventDefault(); });
+    a.addEventListener('click', function (e) { e.preventDefault(); });
   });
 
   (function () {
@@ -1450,3 +1460,149 @@ document.addEventListener('error', function (e) {
   img.dataset.fallback = '1';
   img.src = window.IR_PLACEHOLDER;
 }, true);
+
+/* ==========================================================================
+   22. Navbar search
+   One search box in the bar (desktop) and one in the drawer. Suggestions
+   come from the menus already on every page: the project cards in the
+   Projects menu and the city / developer links in the dropdowns, so a new
+   project, city or developer is searchable as soon as it is in the menu.
+   Enter with nothing highlighted searches the listing (projects.html?q=).
+   ========================================================================== */
+(function () {
+  'use strict';
+  var $$ = IR.$$;
+  var forms = $$('[data-nav-search]');
+  if (!forms.length) return;
+
+  var PIN = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.3 7 13 7 13s7-7.7 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>';
+  var BLDG = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 7V3H2v18h20V7H12zM6 19H4v-2h2v2zm0-4H4v-2h2v2zm0-4H4V9h2v2zm0-4H4V5h2v2zm4 12H8v-2h2v2zm0-4H8v-2h2v2zm0-4H8V9h2v2zm0-4H8V5h2v2zm10 12h-8v-2h2v-2h-2v-2h2v-2h-2V9h8v10z"/></svg>';
+  var LIMIT = { project: 6, city: 4, dev: 4 };
+  var GROUP = { project: 'Projects', city: 'Locations', dev: 'Developers' };
+
+  var norm = function (s) {
+    return (s || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/\s+/g, ' ').trim();
+  };
+  var ESC = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' };
+  var esc = function (s) { return String(s).replace(/[&<>"']/g, function (c) { return ESC[c]; }); };
+
+  /* ---- index, built once from the menus ---- */
+  var index = [], seen = {};
+  var add = function (it) {
+    var key = it.kind + '|' + norm(it.name);
+    if (!it.name || seen[key]) return;
+    seen[key] = 1;
+    it.key = norm(it.name);
+    it.hay = norm(it.name + ' ' + (it.sub || '') + ' ' + (it.extra || ''));
+    index.push(it);
+  };
+  $$('.pm-card').forEach(function (a) {
+    var nameEl = a.querySelector('strong'), placeEl = a.querySelector('em'), img = a.querySelector('img');
+    var name = a.getAttribute('title') || (nameEl ? nameEl.textContent : '');
+    add({ kind: 'project', name: name, sub: placeEl ? placeEl.textContent : '',
+          extra: (a.dataset.city || '') + ' ' + (a.dataset.type || ''),
+          img: img ? img.getAttribute('src') : '',
+          href: 'projects.html?q=' + encodeURIComponent(name) });
+  });
+  [['city', 'projects.html?city='], ['dev', 'projects.html?dev=']].forEach(function (k) {
+    $$('a[href^="' + k[1] + '"]').forEach(function (a) {
+      var b = a.querySelector('b'), n = a.querySelector('span');
+      var count = n ? parseInt(n.textContent, 10) : NaN;
+      add({ kind: k[0], name: a.getAttribute('title') || (b ? b.textContent : a.textContent),
+            sub: isNaN(count) ? '' : count + (count === 1 ? ' project' : ' projects'),
+            href: a.getAttribute('href') });
+    });
+  });
+
+  /* every word of the query must appear; names that start with it rank first */
+  var search = function (q) {
+    var words = norm(q).split(' ').filter(Boolean);
+    if (!words.length) return [];
+    var nq = words.join(' ');
+    return index.map(function (it) {
+      if (!words.every(function (w) { return it.hay.indexOf(w) !== -1; })) return null;
+      var rank = it.key.indexOf(nq) === 0 ? 0
+               : (' ' + it.key).indexOf(' ' + nq) !== -1 ? 1
+               : it.key.indexOf(nq) !== -1 ? 2 : 3;
+      return { it: it, rank: rank };
+    }).filter(Boolean).sort(function (a, b) {
+      return a.rank - b.rank || a.it.name.localeCompare(b.it.name);
+    }).map(function (r) { return r.it; });
+  };
+
+  /* bold the matched part of a name (skipped if accents change its length) */
+  var mark = function (text, q) {
+    var t = norm(text), nq = norm(q), i = t.indexOf(nq);
+    if (!nq || i === -1 || t.length !== text.length) return esc(text);
+    return esc(text.slice(0, i)) + '<mark>' + esc(text.slice(i, i + nq.length)) + '</mark>' + esc(text.slice(i + nq.length));
+  };
+
+  forms.forEach(function (form, fi) {
+    var input = form.querySelector('input'), list = form.querySelector('.ns-list');
+    if (!input || !list) return;
+    var opts = [], active = -1;
+
+    var setActive = function (i) {
+      if (active > -1 && opts[active]) opts[active].classList.remove('is-active');
+      active = i;
+      if (i > -1 && opts[i]) {
+        opts[i].classList.add('is-active');
+        opts[i].scrollIntoView({ block: 'nearest' });
+        input.setAttribute('aria-activedescendant', opts[i].id);
+      } else {
+        input.removeAttribute('aria-activedescendant');
+      }
+    };
+    var close = function () {
+      list.hidden = true;
+      input.setAttribute('aria-expanded', 'false');
+      setActive(-1);
+    };
+    var render = function () {
+      var q = input.value.trim();
+      if (!q) { close(); list.innerHTML = ''; opts = []; return; }
+      var found = search(q), html = '', n = 0;
+      ['project', 'city', 'dev'].forEach(function (kind) {
+        var group = found.filter(function (it) { return it.kind === kind; }).slice(0, LIMIT[kind]);
+        if (!group.length) return;
+        html += '<div class="ns-group" role="presentation">' + GROUP[kind] + '</div>';
+        group.forEach(function (it) {
+          var media = it.img
+            ? '<img class="ns-thumb" src="' + esc(it.img) + '" alt="" loading="lazy">'
+            : '<span class="ns-badge">' + (kind === 'city' ? PIN : BLDG) + '</span>';
+          html += '<a class="ns-opt" role="option" id="ns' + fi + '-' + (n++) + '" href="' + esc(it.href) + '">' + media +
+                  '<span class="ns-txt"><b>' + mark(it.name, q) + '</b>' + (it.sub ? '<small>' + esc(it.sub) + '</small>' : '') + '</span></a>';
+        });
+      });
+      if (!found.length) html += '<p class="ns-empty">No project, location or developer matches &ldquo;' + esc(q) + '&rdquo;.</p>';
+      html += '<a class="ns-opt ns-all" role="option" id="ns' + fi + '-' + (n++) + '" href="projects.html?q=' + encodeURIComponent(q) + '"><span>Search all projects for &ldquo;' + esc(q) + '&rdquo;</span></a>';
+      list.innerHTML = html;
+      opts = $$('.ns-opt', list);
+      active = -1;
+      list.hidden = false;
+      input.setAttribute('aria-expanded', 'true');
+    };
+
+    input.addEventListener('input', render);
+    input.addEventListener('focus', function () { if (input.value.trim()) render(); });
+    input.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+        if (list.hidden) render();
+        if (!opts.length) return;
+        e.preventDefault();
+        var step = e.key === 'ArrowDown' ? 1 : -1;
+        setActive(active === -1 ? (step > 0 ? 0 : opts.length - 1) : (active + step + opts.length) % opts.length);
+      } else if (e.key === 'Enter' && active > -1 && !list.hidden) {
+        e.preventDefault();
+        window.location.href = opts[active].getAttribute('href');
+      } else if (e.key === 'Escape' && !list.hidden) {
+        e.preventDefault();
+        close();
+      }
+    });
+    form.addEventListener('submit', function (e) { if (!input.value.trim()) e.preventDefault(); });
+    /* close when focus or a click leaves this search box */
+    form.addEventListener('focusout', function (e) { if (!form.contains(e.relatedTarget)) close(); });
+    document.addEventListener('pointerdown', function (e) { if (!form.contains(e.target)) close(); });
+  });
+})();
