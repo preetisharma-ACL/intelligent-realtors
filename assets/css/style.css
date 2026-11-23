@@ -3849,3 +3849,29 @@ body.is-home:not(.scrolled) .nav-search--bar input:focus{ background:rgba(255,25
 .drop-all span{ transition:transform .3s var(--ease) }
 .drop-all:hover{ color:var(--navy) }
 .drop-all:hover span{ transform:translateX(4px) }
+
+/* ==========================================================================
+   PHONES: KEYSTONE MARK ALONE IN THE NAVBAR
+   The brand guide uses the mark alone where the full logo would fall under
+   140px wide. The mark SVG is a 130-unit square whose keystone runs from
+   x 11 to 119 and y 6 to 124 (118 units tall). --mark-h is the keystone's
+   height on screen; the negative margins trim the square's empty edges.
+   Home over the video uses the reversed mark (gold keystone).
+   ========================================================================== */
+.brand-mark{ display:none }
+@media (max-width:767.98px){
+  .brand-nav{ --mark-h:44px }
+  .brand-nav .brand-logo{ display:none }
+  .brand-nav .brand-mark{
+    display:block; grid-area:1 / 1; width:auto; max-width:none;
+    height:calc(var(--mark-h) * 130 / 118);
+    margin:calc(var(--mark-h) * -6 / 118) 0 calc(var(--mark-h) * -6 / 118) calc(var(--mark-h) * -11 / 118);
+    transition:opacity .35s var(--ease), visibility .35s var(--ease);
+  }
+  .brand-nav .brand-mark--light{ opacity:0; visibility:hidden }
+  body.is-home:not(.scrolled) .brand-nav .brand-mark--light{ opacity:1; visibility:visible }
+  body.is-home:not(.scrolled) .brand-nav .brand-mark--dark{ opacity:0; visibility:hidden }
+  /* a lower bar now that only the mark sits in it */
+  .nav-inner, body.is-home .nav-inner{ height:80px }
+  body.scrolled .nav-inner, body.is-home.scrolled .nav-inner{ height:72px }
+}
