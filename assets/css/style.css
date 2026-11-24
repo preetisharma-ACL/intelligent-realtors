@@ -1242,7 +1242,7 @@ body.menu-open .mm-backdrop{ opacity:1; visibility:visible }
    ========================================================================== */
 .site-footer{
   position:relative; isolation:isolate; overflow:hidden;
-  padding:5rem 0 1.6rem;
+  padding:5rem 0 0;
   color:rgba(255,255,255,.62);
   background:
     radial-gradient(60% 45% at 85% 0%, rgba(201,163,92,.10) 0%, rgba(201,163,92,0) 70%),
@@ -1262,7 +1262,17 @@ body.menu-open .mm-backdrop{ opacity:1; visibility:visible }
 }
 
 /* brand */
-.brand-footer{ --logo-h:132px; margin-bottom:1.4rem }   /* reversed logo, 177px wide */
+/* reversed logo, 177px wide. The link hugs the artwork only: the image's own
+   empty frame is trimmed with negative margins, and the same amount is added
+   back outside the link so the footer layout does not move. */
+.brand-footer{
+  --logo-h:132px; display:flex; width:fit-content;
+  margin-top:calc(var(--logo-h) * 21.2 / 263.07);
+  margin-bottom:calc(1.4rem + var(--logo-h) * 19.5 / 263.07);
+}
+.brand-footer .brand-logo{
+  margin:calc(var(--logo-h) * -21.2 / 263.07) calc(var(--logo-h) * -30.23 / 263.07) calc(var(--logo-h) * -19.5 / 263.07) calc(var(--logo-h) * -27.7 / 263.07);
+}
 .f-about{ font-size:.92rem; line-height:1.8; max-width:40ch; margin:0 0 1.6rem }
 .f-social{ display:flex; gap:.6rem }
 .f-social a{
@@ -1318,7 +1328,7 @@ a.f-item:hover b{ color:var(--gold-soft) }
    Bottom padding leaves room for the floating call / WhatsApp buttons. */
 .f-bottom{
   display:flex; flex-direction:column; align-items:center; justify-content:center; gap:.7rem; text-align:center;
-  margin-top:3rem; padding:1.5rem 0 2rem; border-top:1px solid rgba(255,255,255,.1);
+  margin-top:3rem; padding:1.5rem 0; border-top:1px solid rgba(255,255,255,.1);
 }
 .f-copy{ display:flex; align-items:center; justify-content:center; flex-wrap:wrap; margin:0; font-size:.84rem; color:rgba(255,255,255,.55) }
 .f-copy b{ font-weight:600; color:#fff }
@@ -1343,7 +1353,7 @@ a.f-item:hover b{ color:var(--gold-soft) }
   .site-footer{ padding-top:3.8rem }
   .f-grid{ grid-template-columns:1fr 1fr; gap:2rem 1.2rem }
   .f-contact{ grid-column:1 / -1 }
-  .f-bottom{ margin-top:2rem; padding:1.2rem 4.2rem 1.4rem }   /* side room keeps the text clear of the floating buttons */
+  .f-bottom{ margin-top:2rem; padding:1.2rem 4.2rem }   /* side room keeps the text clear of the floating buttons */
   .f-copy{ flex-direction:column; gap:.15rem }
   .f-copy i{ display:none }
   .f-copy em{ display:block; margin-top:.15rem }
@@ -3560,7 +3570,7 @@ body.is-home:not(.scrolled) .nav-connect:hover{ background:#fff; color:var(--nav
 .pj-hl-card svg{ width:24px; height:24px }
 .pj-hl-card h3{ margin:0 0 .45rem; font-family:var(--ff-display); font-size:1.12rem; font-weight:500; color:var(--navy) }
 .pj-hl-card p{ margin:0; font-size:.9rem; line-height:1.6; color:var(--body) }
-.pj-checks{ display:flex; flex-wrap:wrap; gap:.7rem 1rem; margin:1.6rem 0 0 }
+.pj-checks{ display:flex; justify-content: center; flex-wrap:wrap; gap:.7rem 1rem; margin:1.6rem 0 0 }
 .pj-checks li{
   display:inline-flex; align-items:center; gap:.55rem; padding:.55rem 1.1rem .55rem .6rem; border-radius:999px;
   background:#faf8f3; border:1px solid rgba(201,163,92,.35); font-size:.9rem; color:var(--ink);
@@ -3874,4 +3884,174 @@ body.is-home:not(.scrolled) .nav-search--bar input:focus{ background:rgba(255,25
   /* a lower bar now that only the mark sits in it */
   .nav-inner, body.is-home .nav-inner{ height:80px }
   body.scrolled .nav-inner, body.is-home.scrolled .nav-inner{ height:72px }
+}
+
+/* ==========================================================================
+   ABOUT: OUR MISSION & VISION — photo mosaic. Left half: Mission text and a
+   photo above, a portrait and Vision text below. Right half: one tall photo
+   spanning both rows, its top-right corner rounded.
+   ========================================================================== */
+.ab-vm{ padding:1rem 0 3.5rem; background:#fff }
+.vm-mosaic{
+  display:grid; grid-template-columns:1.2fr 1.2fr 1.6fr; grid-auto-rows:minmax(230px,auto);
+  grid-template-areas:"mt pa big" "pb vt big";
+}
+.vm-mission{ grid-area:mt }
+.vm-photo-a{ grid-area:pa }
+.vm-photo-b{ grid-area:pb }
+.vm-vision{ grid-area:vt }
+.vm-big{ grid-area:big; border-top-right-radius:clamp(60px,7vw,110px) }
+.vm-tile, .vm-big{ position:relative; margin:0; overflow:hidden }
+.vm-tile--photo img, .vm-big img{
+  position:absolute; inset:0; width:100%; height:100%; object-fit:cover;
+  transition:transform 1.2s var(--ease);
+}
+.vm-tile--photo:hover img, .vm-big:hover img{ transform:scale(1.05) }
+.vm-photo-a img{ object-position:40% 40% }
+.vm-photo-b img{ object-position:50% 50% }
+.vm-tile--text{ background:var(--cream); padding:1.7rem 2rem; display:flex; flex-direction:column; justify-content:center }
+.vm-tile--text h3{
+  position:relative; margin:0 0 1rem;
+  font-family:var(--ff-display); font-weight:500; font-size:clamp(1.2rem,1.5vw,1.4rem); letter-spacing:-.02em; color:var(--ink);
+}
+.vm-tile--text h3{ display:flex; align-items:center; gap:.8rem }
+.vm-tile--text .vm-ic{ flex:none; display:grid; place-items:center; width:44px; height:44px; border-radius:50%; background:var(--navy); color:var(--gold) }
+.vm-tile--text .vm-ic svg{ width:22px; height:22px; fill:none; stroke:currentColor; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round }
+.vm-tile--text p{ margin:0; font-size:.95rem; line-height:1.65; color:var(--body) }
+
+/* tablets and phones: tall photo on top, text tiles full width, the two photos side by side */
+@media (max-width:991.98px){
+  .vm-mosaic{
+    grid-template-columns:1fr 1fr; grid-auto-rows:auto;
+    grid-template-areas:"big big" "mt mt" "pa pb" "vt vt";
+  }
+  .vm-big{ height:clamp(180px,36vw,300px) }
+  .vm-tile--photo{ height:clamp(150px,30vw,250px) }
+}
+@media (max-width:767.98px){
+  .ab-vm{ padding:1rem 0 3rem }
+  .vm-tile--text{ padding:1.5rem 1.4rem }
+}
+
+/* ==========================================================================
+   ABOUT US DROPDOWN — a plain list of links in a small card with a pointer
+   ========================================================================== */
+.drop--list{ width:auto; min-width:230px; padding:.6rem; display:flex; flex-direction:column; gap:.15rem; border-radius:12px }
+.drop--list::before{
+  content:""; position:absolute; top:-7px; left:50%; width:14px; height:14px; margin-left:-7px;
+  background:var(--white); border-left:1px solid var(--panel-line); border-top:1px solid var(--panel-line);
+  transform:rotate(45deg);
+}
+.drop--list a{
+  display:block; padding:.75rem 1.1rem; border-radius:8px; white-space:nowrap;
+  font-size:.95rem; color:var(--ink); transition:background .22s var(--ease), color .22s var(--ease);
+}
+.drop--list a:hover, .drop--list a.is-current{ background:var(--panel-tint); color:var(--navy) }
+
+/* ==========================================================================
+   DIRECTOR'S PROFILE PAGE
+   ========================================================================== */
+.dp{ padding:5.5rem 0 4.5rem; background:#fff }
+.dp-grid{ display:grid; grid-template-columns:5fr 7fr; gap:clamp(2rem,5vw,5rem); align-items:center }
+.dp-photo{ position:relative; margin:0; aspect-ratio:4 / 5; overflow:hidden; border-top-left-radius:clamp(60px,7vw,110px); background:var(--cream) }
+.dp-photo img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:60% 20%; transition:transform 1.2s var(--ease) }
+.dp-photo:hover img{ transform:scale(1.04) }
+.dp-chip{
+  position:absolute; left:1.2rem; right:1.2rem; bottom:1.2rem;
+  display:flex; flex-direction:column; gap:.15rem; padding:1rem 1.2rem;
+  background:rgba(14,34,51,.9); border-left:3px solid var(--gold); color:rgba(255,255,255,.75); font-size:.85rem;
+}
+.dp-chip b{ font-family:var(--ff-display); font-weight:500; font-size:1.15rem; color:#fff }
+.dp-eyebrow{ display:inline-block; margin-bottom:1rem; font-size:.74rem; font-weight:700; letter-spacing:.16em; text-transform:uppercase; color:var(--gold-deep) }
+.dp-title{
+  font-family:var(--ff-display); font-weight:300; margin:0 0 1.4rem;
+  font-size:clamp(2rem,3.4vw,3rem); line-height:1.14; letter-spacing:-.03em; color:var(--ink);
+}
+.dp-title em{ font-style:normal; font-weight:400; color:var(--gold-deep) }
+.dp-lead{ font-weight:500; font-size:clamp(1.05rem,1.4vw,1.22rem); line-height:1.6; color:var(--ink); margin:0 0 1rem }
+.dp-copy > p:not(.dp-lead){ font-size:1.02rem; line-height:1.8; color:var(--body); margin:0 0 1.6rem }
+.dp-quote{ position:relative; margin:0 0 2rem; padding:1.4rem 1.6rem 1.3rem 3.6rem; background:var(--cream); border-left:3px solid var(--gold) }
+.dp-quote::before{ content:"\201C"; position:absolute; left:1rem; top:.4rem; font-family:Georgia,serif; font-size:3.4rem; line-height:1; color:var(--gold) }
+.dp-quote p{ margin:0 0 .7rem; font-size:1.05rem; line-height:1.7; font-style:italic; color:var(--ink) }
+.dp-quote cite{ font-style:normal; font-size:.82rem; font-weight:600; letter-spacing:.04em; color:var(--gold-deep) }
+.dp-actions{ display:flex; flex-wrap:wrap; align-items:center; gap:1rem 1.6rem }
+.dp-call{ display:inline-flex; align-items:center; gap:.55rem; font-weight:600; color:var(--navy) }
+.dp-call svg{ width:18px; height:18px; fill:var(--gold-deep) }
+.dp-call:hover{ color:var(--gold-deep) }
+
+.dp-values{ display:grid; grid-template-columns:repeat(3,1fr); gap:1.6rem; margin-top:4.5rem }
+.dp-value{ padding:2rem 1.9rem; background:var(--cream); border:1px solid rgba(201,163,92,.3) }
+.dp-value .vm-ic{ display:grid; place-items:center; width:48px; height:48px; border-radius:50%; background:var(--navy); color:var(--gold); margin-bottom:1.2rem }
+.dp-value .vm-ic svg{ width:22px; height:22px; fill:none; stroke:currentColor; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round }
+.dp-value h3{ margin:0 0 .6rem; font-family:var(--ff-display); font-weight:500; font-size:1.2rem; letter-spacing:-.01em; color:var(--ink) }
+.dp-value p{ margin:0; font-size:.95rem; line-height:1.7; color:var(--body) }
+
+@media (max-width:991.98px){
+  .dp-grid{ grid-template-columns:1fr }
+  .dp-photo{ max-width:460px; width:100% }
+  .dp-values{ grid-template-columns:1fr; gap:1rem; margin-top:3rem }
+}
+@media (max-width:767.98px){
+  .dp{ padding:3.5rem 0 3rem }
+  .dp-quote{ padding:1.2rem 1.2rem 1.1rem 3rem }
+  .dp-quote::before{ left:.75rem }
+}
+
+/* Director page values: soft pastel cards (peach, sky, lavender), each with a
+   number, a tinted circle in the top-right corner and a white icon tile */
+.dp-values{ counter-reset:dpv }
+.dp-value{
+  --tint:#fdf1e5; --edge:#f6e2cc; --shape:#fbe3cb;
+  counter-increment:dpv; position:relative; overflow:hidden; isolation:isolate;
+  padding:2.3rem 2.1rem 2.2rem; background:var(--tint); border:1px solid var(--edge); border-radius:var(--r-lg);
+  transition:transform .4s var(--ease), box-shadow .4s var(--ease);
+}
+.dp-value:nth-child(2){ --tint:#eaf3fd; --edge:#d6e6f8; --shape:#d7e7fa }
+.dp-value:nth-child(3){ --tint:#f3ebfc; --edge:#e5d8f6; --shape:#e6d8f8 }
+.dp-value::after{
+  content:""; position:absolute; right:-46px; top:-46px; z-index:-1; width:150px; height:150px;
+  border-radius:50%; background:var(--shape);
+  transition:transform .6s var(--ease);
+}
+.dp-value:hover::after{ transform:scale(1.08) }
+.dp-value::before{
+  content:counter(dpv, decimal-leading-zero); position:absolute; right:1.6rem; top:1.5rem;
+  font-size:.82rem; font-weight:700; letter-spacing:.06em; color:rgba(14,34,51,.45);
+}
+.dp-value:hover{ transform:translateY(-6px); box-shadow:0 26px 50px -26px rgba(14,34,51,.3) }
+.dp-value .vm-ic{ width:56px; height:56px; border-radius:14px; background:#fff; color:var(--navy); box-shadow:0 8px 20px -12px rgba(14,34,51,.25) }
+.dp-value h3{ color:var(--ink) }
+.dp-value p{ color:var(--body) }
+
+/* project details: no outline circle at the top-right corner of the overview photo */
+.pj-overview .pj-deco::before{ display:none }
+
+/* ==========================================================================
+   PROJECT PAGE: AMENITIES SLIDER — 4 amenities in view on desktop, 3 on
+   tablets, 2 on phones; round arrows sit on both sides of the row
+   ========================================================================== */
+.pj-amen-slider{ --amen-per:4; position:relative; display:flex; align-items:center; gap:1rem; margin:0 0 clamp(1.8rem,3vw,2.4rem) }
+.pj-amen-slider .pj-amen-row{
+  flex:1; min-width:0; flex-wrap:nowrap; justify-content:flex-start; margin:0;
+  overflow-x:auto; scroll-snap-type:x mandatory; scrollbar-width:none; overscroll-behavior-x:contain;
+}
+.pj-amen-slider .pj-amen-row::-webkit-scrollbar{ display:none }
+.pj-amen-slider .pj-amen-row li{ flex:0 0 calc(100% / var(--amen-per)); min-width:0; max-width:none; scroll-snap-align:start }
+.pj-amen-nav{
+  flex:none; display:grid; place-items:center; width:48px; height:48px; padding:0; border-radius:50%;
+  border:1px solid rgba(201,163,92,.6); background:#fff; color:var(--navy); cursor:pointer;
+  box-shadow:0 10px 24px -14px rgba(14,34,51,.45);
+  transition:background .3s var(--ease), color .3s var(--ease), border-color .3s var(--ease), opacity .3s var(--ease);
+}
+.pj-amen-nav svg{ width:22px; height:22px; fill:currentColor }
+.pj-amen-nav:hover:not(:disabled){ background:var(--gold); border-color:var(--gold); color:var(--navy) }
+.pj-amen-nav:disabled{ opacity:.35; cursor:default; box-shadow:none }
+.pj-amen-slider.is-static .pj-amen-nav{ display:none }
+@media (max-width:991.98px){ .pj-amen-slider{ --amen-per:3 } }
+@media (max-width:767.98px){
+  .pj-amen-slider{ --amen-per:2; gap:.5rem }
+  .pj-amen-slider .pj-amen-row li{ flex:0 0 50%; padding:1rem .6rem; border-left:1px solid rgba(201,163,92,.35) }
+  .pj-amen-slider .pj-amen-row li:first-child{ border-left:0 }
+  .pj-amen-nav{ width:38px; height:38px }
+  .pj-amen-nav svg{ width:18px; height:18px }
 }

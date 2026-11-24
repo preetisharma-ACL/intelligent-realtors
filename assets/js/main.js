@@ -28,6 +28,7 @@
      20.  Home: evening-to-night hero video
      21.  Image fallback
      22.  Navbar search
+     23.  Project page: amenities slider
 
    Libraries expected on the page: GSAP + ScrollTrigger, Lenis, Bootstrap.
    ========================================================================== */
@@ -1604,5 +1605,33 @@ document.addEventListener('error', function (e) {
     /* close when focus or a click leaves this search box */
     form.addEventListener('focusout', function (e) { if (!form.contains(e.relatedTarget)) close(); });
     document.addEventListener('pointerdown', function (e) { if (!form.contains(e.target)) close(); });
+  });
+})();
+
+/* ==========================================================================
+   23. Project page: amenities slider
+   The amenity row scrolls sideways (swipe or drag works natively); the
+   arrows move it one amenity at a time and grey out at either end. When
+   every amenity already fits, the arrows hide.
+   ========================================================================== */
+(function () {
+  var $$ = IR.$$, $ = IR.$;
+  $$('[data-amen-slider]').forEach(function (slider) {
+    var track = $('[data-amen-track]', slider);
+    var prev = $('[data-amen-prev]', slider);
+    var next = $('[data-amen-next]', slider);
+    if (!track || !prev || !next) return;
+    var step = function () { var li = track.querySelector('li'); return li ? li.getBoundingClientRect().width : track.clientWidth; };
+    var update = function () {
+      var max = track.scrollWidth - track.clientWidth;
+      slider.classList.toggle('is-static', max < 2);
+      prev.disabled = track.scrollLeft < 2;
+      next.disabled = track.scrollLeft > max - 2;
+    };
+    prev.addEventListener('click', function () { track.scrollBy({ left: -step(), behavior: 'smooth' }); });
+    next.addEventListener('click', function () { track.scrollBy({ left: step(), behavior: 'smooth' }); });
+    track.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update);
+    update();
   });
 })();
