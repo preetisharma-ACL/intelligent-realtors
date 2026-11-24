@@ -82,7 +82,16 @@ if (!IR.reduced) document.documentElement.classList.add('js-ready');
       duration: 1.15,
       easing: function (t) { return Math.min(1, 1.001 - Math.pow(2, -10 * t)); },
       smoothWheel: true,
-      touchMultiplier: 1.6
+      touchMultiplier: 1.6,
+      /* Leave the wheel alone over any panel that scrolls on its own (the
+         mega-menu project grid, dropdown lists, search results, modals,
+         drawers), so the panel scrolls instead of the page behind it. */
+      prevent: function (node) {
+        if (!node || node.nodeType !== 1 || node === document.body || node === document.documentElement) return false;
+        if (node.hasAttribute('data-lenis-prevent')) return true;
+        var oy = getComputedStyle(node).overflowY;
+        return (oy === 'auto' || oy === 'scroll') && node.scrollHeight > node.clientHeight + 1;
+      }
     });
     window.__lenis = lenis;          /* shared with pages.js */
 

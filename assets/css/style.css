@@ -4055,3 +4055,7 @@ body.is-home:not(.scrolled) .nav-search--bar input:focus{ background:rgba(255,25
   .pj-amen-nav{ width:38px; height:38px }
   .pj-amen-nav svg{ width:18px; height:18px }
 }
+
+/* panels that scroll on their own: when they reach the end, don't hand the
+   scroll on to the page behind them */
+.pm-grid, .drop-grid, .pm-more-list, .ns-list, .mdl-box{ overscroll-behavior:contain }
